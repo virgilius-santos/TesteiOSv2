@@ -1,16 +1,16 @@
 PODS:
-  - IQKeyboardManager (6.2.0)
-  - Nimble (7.3.1)
-  - Quick (1.3.2)
-  - SwiftKeychainWrapper (3.0.1)
-  - Swinject (2.5.0)
+  - IQKeyboardManager (6.2.1)
+  - Nimble (8.0.1)
+  - Quick (2.1.0)
+  - SwiftKeychainWrapper (3.2.0)
+  - Swinject (2.6.0)
 
 DEPENDENCIES:
-  - IQKeyboardManager (= 6.2.0)
-  - Nimble (= 7.3.1)
-  - Quick (= 1.3.2)
-  - SwiftKeychainWrapper (= 3.0.1)
-  - Swinject (= 2.5.0)
+  - IQKeyboardManager
+  - Nimble
+  - Quick
+  - SwiftKeychainWrapper
+  - Swinject
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -21,12 +21,12 @@ SPEC REPOS:
     - Swinject
 
 SPEC CHECKSUMS:
-  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
-  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
-  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
-  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
-  Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
+  IQKeyboardManager: 964638372b4a61892cc74fdfa6fd26de8c9464a2
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
+  Swinject: 48a96cda93633cf2860697b4ce76ab5db9ebaca2
 
-PODFILE CHECKSUM: c2d4cfecc5be69061561dc32e69252a6c25701a8
+PODFILE CHECKSUM: 1956c78aa5fe05669129f2ba98473cf8c17bd1b2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

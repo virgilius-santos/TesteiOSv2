@@ -10,18 +10,15 @@ import UIKit
 
 protocol DetailDisplayLogic: class
 {
+    var detailDataSource: UICollectionViewDataSource? { get set }
+    
     func displayUserInfo(viewModel: Detail.ViewModel)
-    func displayDetail(viewModel: Detail.ViewModel)
-    var interactor: (DetailBusinessLogic & DetailDataStore)! { get set }
+    func displayDetail()
 }
 
 class DetailsViewViewController: UIViewController {
-
-    let cellIdentifier = String(describing: DetailCell.self)
     
-    var interactor: (DetailBusinessLogic & DetailDataStore)!
-    var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)!
-    
+    var interactor: DetailBusinessLogic!
     
     // MARK: View lifecycle
     
@@ -76,28 +73,34 @@ class DetailsViewViewController: UIViewController {
     @IBOutlet weak var entriesCollectionView: UICollectionView! {
         didSet {
             entriesCollectionView.delegate = self
-            entriesCollectionView.dataSource = self
-            let nib = UINib(nibName: cellIdentifier, bundle: nil)
-            entriesCollectionView
-                .register(nib, forCellWithReuseIdentifier: cellIdentifier)
+            entriesCollectionView.registerWithNib(instance: DetailCell.self)
         }
     }
     
     @objc func exitAction() {
         interactor.logout()
-        router.routeToLogin()
     }
 
 }
 
 extension DetailsViewViewController: DetailDisplayLogic {
+    
+    var detailDataSource: UICollectionViewDataSource? {
+        set {
+            entriesCollectionView.dataSource = newValue
+        }
+        get {
+            return entriesCollectionView.dataSource
+        }
+    }
+    
     func displayUserInfo(viewModel: Detail.ViewModel) {
         nameView.infoLabel.text = viewModel.name
         accountInfoView.infoLabel.text = viewModel.account
         balnceInfoView.infoLabel.text = viewModel.balance
     }
     
-    func displayDetail(viewModel: Detail.ViewModel) {
+    func displayDetail() {
         detailsView.unlock()
         entriesCollectionView.reloadData()
     }
@@ -107,19 +110,4 @@ extension DetailsViewViewController: DetailDisplayLogic {
 
 extension DetailsViewViewController: UICollectionViewDelegate {
     
-}
-
-extension DetailsViewViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return interactor.detail.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! DetailCell
-        cell.dateLabel.text = interactor.detail[indexPath.row].date
-        cell.infoLabel.text = interactor.detail[indexPath.row].desc
-        cell.paymentLabel.text = interactor.detail[indexPath.row].title
-        cell.priceLabel.text = interactor.detail[indexPath.row].value
-        return cell
-    }
 }

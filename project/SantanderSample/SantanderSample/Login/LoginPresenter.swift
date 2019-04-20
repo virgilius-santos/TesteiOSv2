@@ -14,7 +14,8 @@ import UIKit
 
 protocol LoginPresentationLogic
 {
-    func present(response: Login.Response)
+    func presentError(response: Login.Response)
+    func presentLastLogin(response: Login.Response)
 }
 
 class LoginPresenter: LoginPresentationLogic
@@ -22,15 +23,17 @@ class LoginPresenter: LoginPresentationLogic
     
     weak var viewController: LoginDisplayLogic?
     
-    // MARK: Do something
-    
-    func present(response: Login.Response) {
-        var viewModel = Login.ViewModel()
+    func presentError(response: Login.Response) {
+        var viewModel = Login.ErrorViewModel()
         if !response.success, let msg = response.error?.message {
             viewModel.error = msg
         }
         DispatchQueue.main.async {
-            self.viewController?.display(viewModel: viewModel)
+            self.viewController?.displayError(viewModel: viewModel)
         }
+    }
+    
+    func presentLastLogin(response: Login.Response) {
+        
     }
 }

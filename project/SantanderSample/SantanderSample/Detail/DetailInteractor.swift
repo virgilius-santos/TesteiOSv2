@@ -19,22 +19,21 @@ protocol DetailBusinessLogic{
 
 protocol DetailDataStore{
     var user: Login.UserAccount? { get set }
-    var detail: [Detail.StatementViewModel] { get set }
 }
 
 class DetailInteractor: DetailBusinessLogic, DetailDataStore
 {
     var presenter: DetailPresentationLogic?
     var worker: DetailWorker?
+    var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)!
     
     var user: Login.UserAccount?
-    var detail: [Detail.StatementViewModel] = []
     
     // MARK: Do something
     
     func logout() {
         user = nil
-        detail = []
+        router.routeToLogin()
     }
     
     func getDetails() {

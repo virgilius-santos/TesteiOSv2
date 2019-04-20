@@ -33,5 +33,10 @@ class DetailCell: UICollectionViewCell {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
-    
+    func setup(viewModel: Detail.StatementViewModel?) {
+        dateLabel.text = viewModel?.date
+        infoLabel.text = viewModel?.desc
+        paymentLabel.text = viewModel?.title
+        priceLabel.text = viewModel?.value
+    }
 }

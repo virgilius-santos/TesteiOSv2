@@ -1,21 +1,21 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.3'
+platform :ios, '12.2'
 use_frameworks!
 
 def swinject_pods
-    pod 'Swinject', '2.5.0'
+    pod 'Swinject'
 end
 
 target 'SantanderSample' do
     # Pods for SantanderSample
     swinject_pods
-    pod 'IQKeyboardManager', '6.2.0'
-    pod 'SwiftKeychainWrapper', '3.0.1'
+    pod 'IQKeyboardManager'
+    pod 'SwiftKeychainWrapper'
 end
 
 def testing_pods
-    pod 'Quick', '1.3.2'
-    pod 'Nimble', '7.3.1'
+    pod 'Quick' 
+    pod 'Nimble'
     swinject_pods
 end
 

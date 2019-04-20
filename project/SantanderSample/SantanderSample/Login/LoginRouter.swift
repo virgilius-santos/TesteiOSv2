@@ -49,7 +49,8 @@ extension LoginRouter: LoginRoutingLogic {
 
     func routeToDetails() {
         let details = Assembly.shared.detailVC!
-        if let source = dataStore, var dest = details.router?.dataStore {
+        if let source = dataStore,
+            var dest = details.interactor as? DetailDataStore {
             passDataToDetails(source: source, destination: &(dest))
         }
         navigateToDetails(source: viewController!, destination: details)

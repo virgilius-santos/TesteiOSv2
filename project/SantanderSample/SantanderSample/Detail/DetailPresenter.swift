@@ -18,11 +18,20 @@ protocol DetailPresentationLogic
     func presentUserInfo(response: Detail.Response)
 }
 
-class DetailPresenter: DetailPresentationLogic
+class DetailPresenter: NSObject
 {
-    weak var viewController: DetailDisplayLogic?
+    weak var viewController: DetailDisplayLogic? {
+        didSet {
+            viewController?.detailDataSource = self
+        }
+    }
     
-    // MARK: Do something
+    var detailList: [Detail.StatementViewModel] = []
+    
+}
+
+extension DetailPresenter: DetailPresentationLogic
+{
     
     func presentUserInfo(response: Detail.Response)
     {
@@ -48,8 +57,10 @@ class DetailPresenter: DetailPresentationLogic
     
     func present(response: Detail.Response)
     {
-        let sts
-            = response.statementList.map {
+        
+        self.detailList = response
+            .statementList
+            .map {
                 (st) -> Detail.StatementViewModel in
                 var stVM = Detail.StatementViewModel()
                 stVM.desc = st.desc
@@ -61,10 +72,25 @@ class DetailPresenter: DetailPresentationLogic
                 
                 return stVM
         }
-        viewController?.interactor.detail = sts
-        let viewModel = Detail.ViewModel()
+        
         DispatchQueue.main.async {
-            self.viewController?.displayDetail(viewModel: viewModel)
+            self.viewController?.displayDetail()
         }
+    }
+}
+
+extension DetailPresenter: UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return detailList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
+        
+        cell?.setup(viewModel: detailList[safeIndex: indexPath.row])
+        
+        return cell ?? UICollectionViewCell()
     }
 }

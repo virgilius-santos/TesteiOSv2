@@ -59,8 +59,8 @@ class Assembly {
             let router = r.resolve(LoginRouter.self)
             
             controller.interactor = interactor
-            controller.router = router
             router?.viewController = controller
+            interactor?.router = router
             interactor?.presenter = presenter
             presenter?.viewController = controller
             
@@ -96,8 +96,8 @@ class Assembly {
             let router = r.resolve(DetailRouter.self)
             
             controller.interactor = interactor
-            controller.router = router
             router?.viewController = controller
+            interactor?.router = router
             interactor?.presenter = presenter
             presenter?.viewController = controller
             

@@ -13,14 +13,13 @@
 import UIKit
 
 protocol LoginDisplayLogic: class {
-    func display(viewModel: Login.ViewModel)
+    func displayError(viewModel: Login.ErrorViewModel)
+    func displayLastUser(viewModel: Login.LastUserViewModel)
 }
 
 class LoginViewController: UIViewController {
     
-    var interactor: (LoginBusinessLogic & LoginDataStore)!
-    var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)!
-
+    var interactor: LoginBusinessLogic!
 
     // MARK: View lifecycle
 
@@ -33,10 +32,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        idView.textField.text
-            = interactor.lastLogin.user ?? ""
-        passwordView.textField.text
-            = interactor.lastLogin.password ?? ""
+        interactor.getLastUser()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -108,15 +104,16 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController: LoginDisplayLogic {
     
-    // MARK: Routing
+    // MARK: Presenting
     
-    func display(viewModel: Login.ViewModel) {
+    func displayLastUser(viewModel: Login.LastUserViewModel) {
+        idView.textField.text = viewModel.user
+        passwordView.textField.text = viewModel.password
+    }
+    
+    func displayError(viewModel: Login.ErrorViewModel) {
         self.view.unlock()
-        if viewModel.error != nil {
-            showAlert(withMessage: viewModel.error!)
-        } else {
-            router.routeToDetails()
-        }
+        showAlert(withMessage: viewModel.error!)
     }
     
     private func showAlert(withMessage message: String){

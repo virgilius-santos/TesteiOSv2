@@ -15,6 +15,7 @@ import UIKit
 protocol LoginBusinessLogic
 {
     func auth(request: Login.Request)
+    func getLastUser()
 }
 
 protocol LoginDataStore {
@@ -26,6 +27,7 @@ class LoginInteractor: LoginDataStore {
     var presenter: LoginPresentationLogic?
     var worker: LoginWorker!
     var user: Login.UserAccount?
+    var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)!
     var lastLogin: Login.LoginSave {
         return worker.getLastLogin()
     }
@@ -40,25 +42,34 @@ extension LoginInteractor: LoginBusinessLogic {
         
         if !validationId {
             response.error = Login.Error(code: 0, message:"Erro de ID")
-            presenter?.present(response: response)
+            presenter?.presentError(response: response)
         } else if !validationPassword {
             response.error = Login.Error(code: 1, message:"Erro de password")
-            presenter?.present(response: response)
+            presenter?.presentError(response: response)
         } else {
             worker.login(request) { (result) in
                 switch result{
                 case .success(let response):
                     if response.success {
                         self.user = response.userAccount
+                        self.router.routeToDetails()
                     }
-                    self.presenter?.present(response: response)
+                    else {
+                        self.presenter?.presentError(response: response)
+                    }
                     break
                 case .error(let error):
                     response.error
                         = Login.Error(code: 2, message: error.localizedDescription)
-                    self.presenter?.present(response: response)
+                    self.presenter?.presentError(response: response)
                 }
             }
         }
+    }
+    
+    func getLastUser() {
+        var response = Login.Response()
+        response.userAccount = self.user
+        self.presenter?.presentLastLogin(response: response)
     }
 }

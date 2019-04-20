@@ -51,6 +51,8 @@
 		18572BDB2185C786008A196B /* ServiceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BDA2185C786008A196B /* ServiceManagerTests.swift */; };
 		18572BE32185D41D008A196B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BE22185D41D008A196B /* KeychainTests.swift */; };
 		18572BE52185D703008A196B /* LoginWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BE42185D703008A196B /* LoginWorkerTests.swift */; };
+		18DE5704226B2C3E009E25B5 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE5703226B2C3E009E25B5 /* UICollectionViewExtension.swift */; };
+		18DE5706226B2FC4009E25B5 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE5705226B2FC4009E25B5 /* ArrayExtensions.swift */; };
 		1CD772821F4866A1A47D88E7 /* Pods_SantanderSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D784D67B09F33BCDA6A64F1E /* Pods_SantanderSampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,8 @@
 		18572BDC2185C786008A196B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18572BE22185D41D008A196B /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		18572BE42185D703008A196B /* LoginWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWorkerTests.swift; sourceTree = "<group>"; };
+		18DE5703226B2C3E009E25B5 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
+		18DE5705226B2FC4009E25B5 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6022D23F24B537ADD8DE3832 /* Pods-SantanderSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderSample/Pods-SantanderSample.debug.xcconfig"; sourceTree = "<group>"; };
 		B1BF53DF74E5403D66EEFC86 /* Pods-SantanderSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				18572BB72184F60B008A196B /* Codable.swift */,
 				18572BBA21853BB9008A196B /* Double.swift */,
 				18572BD22185B26F008A196B /* DateExtensions.swift */,
+				18DE5703226B2C3E009E25B5 /* UICollectionViewExtension.swift */,
+				18DE5705226B2FC4009E25B5 /* ArrayExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -365,9 +371,11 @@
 				TargetAttributes = {
 					18572B2F2183B7C1008A196B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					18572BD72185C786008A196B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = 18572B2F2183B7C1008A196B;
 					};
 				};
@@ -450,7 +458,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SantanderSample/Pods-SantanderSample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SantanderSample/Pods-SantanderSample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
@@ -465,7 +473,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderSample/Pods-SantanderSample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SantanderSample/Pods-SantanderSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7FE7CDAD8DD7E4AFDBCDE41 /* [CP] Check Pods Manifest.lock */ = {
@@ -498,7 +506,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -513,7 +521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -536,6 +544,7 @@
 				18572B8D2183E3D8008A196B /* UIColor.swift in Sources */,
 				18572B592183B97B008A196B /* LoginInteractor.swift in Sources */,
 				18572B662183B9A0008A196B /* DetailPresenter.swift in Sources */,
+				18DE5704226B2C3E009E25B5 /* UICollectionViewExtension.swift in Sources */,
 				18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */,
 				18572B8B2183E352008A196B /* UIView.swift in Sources */,
 				18572B682183B9A0008A196B /* DetailRouter.swift in Sources */,
@@ -544,6 +553,7 @@
 				18572BD121859DCD008A196B /* KeychainWrapper.swift in Sources */,
 				18572B692183B9A0008A196B /* DetailModels.swift in Sources */,
 				18572BB62184E791008A196B /* ServiceManager.swift in Sources */,
+				18DE5706226B2FC4009E25B5 /* ArrayExtensions.swift in Sources */,
 				18572B6B2183B9A0008A196B /* DetailInteractor.swift in Sources */,
 				18572B842183BCF1008A196B /* ExitButtonView.swift in Sources */,
 				18572B742183BB72008A196B /* LogoView.swift in Sources */,
@@ -638,7 +648,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -693,7 +703,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -711,14 +721,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -731,14 +741,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -758,7 +768,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderSample.app/SantanderSample";
 			};
@@ -779,7 +789,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantanderSample.app/SantanderSample";
 			};

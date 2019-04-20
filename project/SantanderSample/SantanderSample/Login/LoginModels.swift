@@ -46,8 +46,13 @@ enum Login{
         var balance: Double?
     }
     
-    struct ViewModel {
+    struct ErrorViewModel {
         var error: String?
+    }
+    
+    struct LastUserViewModel {
+        var password: String?
+        var user: String?
     }
     
 }
