@@ -39,7 +39,6 @@
 		18572B912183EE66008A196B /* InfoDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B8F2183EE66008A196B /* InfoDetailView.xib */; };
 		18572B9821844E4C008A196B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9621844E4C008A196B /* LoginViewController.xib */; };
 		18572B9E21847CEC008A196B /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9C21847CEC008A196B /* DetailCell.xib */; };
-		18572BA021848295008A196B /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B9F21848295008A196B /* Assembly.swift */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
 		18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BAE2184B299008A196B /* DetailsViewViewController.swift */; };
 		18572BB12184B299008A196B /* DetailsViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572BAF2184B299008A196B /* DetailsViewViewController.xib */; };
@@ -103,7 +102,6 @@
 		18572B8F2183EE66008A196B /* InfoDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDetailView.xib; sourceTree = "<group>"; };
 		18572B9621844E4C008A196B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		18572B9C21847CEC008A196B /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
-		18572B9F21848295008A196B /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BAE2184B299008A196B /* DetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewViewController.swift; sourceTree = "<group>"; };
 		18572BAF2184B299008A196B /* DetailsViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewViewController.xib; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				18572B3F2183B7C2008A196B /* Info.plist */,
 				18572B3C2183B7C2008A196B /* LaunchScreen.storyboard */,
 				18572B3A2183B7C2008A196B /* Assets.xcassets */,
-				18572B9F21848295008A196B /* Assembly.swift */,
 			);
 			name = SupportFiles;
 			sourceTree = "<group>";
@@ -467,7 +464,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SantanderSample/Pods-SantanderSample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -475,7 +471,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -513,17 +508,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -539,7 +534,6 @@
 			files = (
 				18572BD32185B26F008A196B /* DateExtensions.swift in Sources */,
 				18572B5B2183B97B008A196B /* LoginViewController.swift in Sources */,
-				18572BA021848295008A196B /* Assembly.swift in Sources */,
 				18572B782183BBE3008A196B /* LoginButtonView.swift in Sources */,
 				18572B7C2183BC8B008A196B /* TitleDetailView.swift in Sources */,
 				18572B702183BB4A008A196B /* InputTextView.swift in Sources */,

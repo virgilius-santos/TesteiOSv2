@@ -8,7 +8,6 @@ end
 
 target 'SantanderSample' do
     # Pods for SantanderSample
-    swinject_pods
     pod 'IQKeyboardManager'
     pod 'SwiftKeychainWrapper'
 end

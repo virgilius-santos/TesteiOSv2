@@ -20,11 +20,7 @@ protocol DetailPresentationLogic
 
 class DetailPresenter: NSObject
 {
-    weak var viewController: DetailDisplayLogic? {
-        didSet {
-            viewController?.detailDataSource = self
-        }
-    }
+    weak var viewController: DetailDisplayLogic?
     
     var detailList: [Detail.StatementViewModel] = []
 }
