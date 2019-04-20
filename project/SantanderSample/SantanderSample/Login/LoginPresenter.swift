@@ -15,14 +15,16 @@ import UIKit
 protocol LoginPresentationLogic
 {
     func presentError(response: Login.Response)
-    func presentLastLogin(response: Login.Response)
+    func presentLastLogin(response: Login.LoginSave)
 }
 
-class LoginPresenter: LoginPresentationLogic
+class LoginPresenter
 {
     
     weak var viewController: LoginDisplayLogic?
-    
+}
+
+extension LoginPresenter: LoginPresentationLogic {
     func presentError(response: Login.Response) {
         var viewModel = Login.ErrorViewModel()
         if !response.success, let msg = response.error?.message {
@@ -33,7 +35,10 @@ class LoginPresenter: LoginPresentationLogic
         }
     }
     
-    func presentLastLogin(response: Login.Response) {
-        
+    func presentLastLogin(response: Login.LoginSave) {
+        var viewModel = Login.LastUserViewModel()
+        viewModel.user = response.user
+        viewModel.password = response.password
+        viewController?.displayLastUser(viewModel: viewModel)
     }
 }

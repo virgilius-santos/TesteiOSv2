@@ -68,8 +68,6 @@ extension LoginInteractor: LoginBusinessLogic {
     }
     
     func getLastUser() {
-        var response = Login.Response()
-        response.userAccount = self.user
-        self.presenter?.presentLastLogin(response: response)
+        self.presenter?.presentLastLogin(response: lastLogin)
     }
 }
