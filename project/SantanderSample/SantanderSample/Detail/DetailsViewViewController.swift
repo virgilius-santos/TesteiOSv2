@@ -85,6 +85,7 @@ final class DetailsViewViewController: UIViewController
     @IBOutlet weak var entriesCollectionView: UICollectionView! {
         didSet {
             entriesCollectionView.delegate = self
+            entriesCollectionView.dataSource = self
             entriesCollectionView.registerWithNib(instance: DetailCell.self)
         }
     }

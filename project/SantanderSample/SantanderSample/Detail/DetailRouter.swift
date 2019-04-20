@@ -25,7 +25,9 @@ class DetailRouter: NSObject
     
     func dismiss()
     {
-      viewController?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

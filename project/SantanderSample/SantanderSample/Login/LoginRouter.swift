@@ -27,7 +27,9 @@ final class LoginRouter: NSObject
   
     func navigateToDetails(source: LoginViewController?, destination: UIViewController)
     {
-        source?.present(destination, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            source?.present(destination, animated: true, completion: nil)
+        }
     }
 }
 
