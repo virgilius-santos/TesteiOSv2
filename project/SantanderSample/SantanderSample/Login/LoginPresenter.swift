@@ -14,8 +14,8 @@ import UIKit
 
 protocol LoginPresentationLogic
 {
-    func presentError(response: Login.Response)
-    func presentLastLogin(response: Login.LoginSave)
+    func present(error: Login.ErrorType)
+    func present(lastLogin: Login.LoginSave)
 }
 
 class LoginPresenter
@@ -25,20 +25,25 @@ class LoginPresenter
 }
 
 extension LoginPresenter: LoginPresentationLogic {
-    func presentError(response: Login.Response) {
+    
+    func present(error: Login.ErrorType) {
+        
         var viewModel = Login.ErrorViewModel()
-        if !response.success, let msg = response.error?.message {
-            viewModel.error = msg
-        }
+        viewModel.error = error.message
+        
         DispatchQueue.main.async {
             self.viewController?.displayError(viewModel: viewModel)
         }
     }
     
-    func presentLastLogin(response: Login.LoginSave) {
+    func present(lastLogin: Login.LoginSave) {
+        
         var viewModel = Login.LastUserViewModel()
-        viewModel.user = response.user
-        viewModel.password = response.password
-        viewController?.displayLastUser(viewModel: viewModel)
+        viewModel.user = lastLogin.user
+        viewModel.password = lastLogin.password
+        
+        DispatchQueue.main.async {
+            self.viewController?.displayLastUser(viewModel: viewModel)
+        }
     }
 }

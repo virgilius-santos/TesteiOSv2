@@ -33,6 +33,24 @@ enum Login{
         var success: Bool { return userAccount?.userId != nil}
     }
     
+    enum ErrorType {
+        
+        case idError
+        case passwordError
+        case unknow(String)
+        
+        var message: String {
+            switch self {
+            case .idError:
+                return "Erro de ID"
+            case .passwordError:
+                return "Erro de password"
+            case .unknow(let msg):
+                return msg
+            }
+        }
+    }
+    
     struct Error: Codable {
         var code: Int?
         var message: String?

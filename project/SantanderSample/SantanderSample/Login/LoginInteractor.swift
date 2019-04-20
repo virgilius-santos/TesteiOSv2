@@ -36,38 +36,34 @@ class LoginInteractor: LoginDataStore {
 extension LoginInteractor: LoginBusinessLogic {
     
     func auth(request: Login.Request) {
-        var response = Login.Response()
+
         let validationId = worker.validateId(request.user)
         let validationPassword = worker.validatePassword(request.password)
         
         if !validationId {
-            response.error = Login.Error(code: 0, message:"Erro de ID")
-            presenter?.presentError(response: response)
-        } else if !validationPassword {
-            response.error = Login.Error(code: 1, message:"Erro de password")
-            presenter?.presentError(response: response)
-        } else {
+            presenter?.present(error: .idError)
+        }
+        else if !validationPassword {
+            
+            presenter?.present(error: .passwordError)
+        }
+        else {
+            
             worker.login(request) { (result) in
                 switch result{
-                case .success(let response):
-                    if response.success {
-                        self.user = response.userAccount
-                        self.router.routeToDetails()
-                    }
-                    else {
-                        self.presenter?.presentError(response: response)
-                    }
-                    break
+                    
+                case .success(let userAccount):
+                    self.user = userAccount
+                    self.router.routeToDetails()
+
                 case .error(let error):
-                    response.error
-                        = Login.Error(code: 2, message: error.localizedDescription)
-                    self.presenter?.presentError(response: response)
+                    self.presenter?.present(error: .unknow(error.localizedDescription))
                 }
             }
         }
     }
     
     func getLastUser() {
-        self.presenter?.presentLastLogin(response: lastLogin)
+        self.presenter?.present(lastLogin: lastLogin)
     }
 }

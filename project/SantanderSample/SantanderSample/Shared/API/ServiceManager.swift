@@ -74,9 +74,7 @@ class ServiceManager {
                 completion(.error(error!))
                 return
             }
-//            if let resp = response {
-//                print(resp)
-//            }
+
             do {
                 let object = try T.Response.decoder(data: data)
                 completion(.success(object))

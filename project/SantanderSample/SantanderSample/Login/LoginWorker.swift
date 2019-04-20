@@ -25,15 +25,15 @@ class LoginWorker {
     let patternPassword
         = "^(?=.*[A-Z])(?=.*[!@#$&*])(((?=.*[0-9])|(?=.*[\\w]))).{3,}$"
     
-    func login(_ request: Login.Request, completion: @escaping(Result<Login.Response, Error>)->()) {
+    func login(_ request: Login.Request, completion: @escaping(Result<Login.UserAccount, Error>)->()) {
         serviceManager.login(request) { result in
             switch result {
             case .error(let error):
                 completion(.error(error))
             case .success(let response):
-                if response.success {
+                if let userAccount = response.userAccount {
                     self.saveLogin(request)
-                    completion(.success(response))
+                    completion(.success(userAccount))
                 } else {
                     completion(.error(APIError.loginFail))
                 }
