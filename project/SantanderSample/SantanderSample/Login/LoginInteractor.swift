@@ -24,24 +24,37 @@ protocol LoginDataStore: class
     var lastLogin: Login.LoginSave { get }
 }
 
-final class LoginInteractor: LoginDataStore
+final class LoginInteractor
 {
     typealias Router = (NSObjectProtocol & LoginRoutingLogic)
+    
+    var _user: Login.UserAccount?
     
     let worker: LoginWorker
     let router: Router
     let presenter: LoginPresentationLogic
     
-    var user: Login.UserAccount?
-    
-    var lastLogin: Login.LoginSave {
-        return worker.getLastLogin()
-    }
-    
     init(worker: LoginWorker, router: Router, presenter: LoginPresentationLogic) {
         self.presenter = presenter
         self.worker = worker
         self.router = router
+    }
+}
+
+extension LoginInteractor: LoginDataStore
+{
+    var user: Login.UserAccount? {
+        set {
+            _user = newValue
+        }
+        get {
+            return _user
+        }
+    }
+    
+    var lastLogin: Login.LoginSave
+    {
+        return worker.getLastLogin()
     }
 }
 
