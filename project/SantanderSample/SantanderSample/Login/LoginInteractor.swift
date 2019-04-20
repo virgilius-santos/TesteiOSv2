@@ -41,11 +41,11 @@ extension LoginInteractor: LoginBusinessLogic {
         let validationPassword = worker.validatePassword(request.password)
         
         if !validationId {
-            presenter?.present(error: .idError)
+            presenter?.present(error: Login.Error.id)
         }
         else if !validationPassword {
             
-            presenter?.present(error: .passwordError)
+            presenter?.present(error: Login.Error.password)
         }
         else {
             
@@ -57,7 +57,7 @@ extension LoginInteractor: LoginBusinessLogic {
                     self.router.routeToDetails()
 
                 case .error(let error):
-                    self.presenter?.present(error: .unknow(error.localizedDescription))
+                    self.presenter?.present(error: error)
                 }
             }
         }

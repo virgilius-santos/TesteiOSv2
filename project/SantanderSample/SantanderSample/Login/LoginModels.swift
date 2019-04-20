@@ -27,33 +27,20 @@ enum Login{
     }
     
     struct Response: Codable {
-        var userAccount: Login.UserAccount?
-        var error: Login.Error?
         
-        var success: Bool { return userAccount?.userId != nil}
-    }
-    
-    enum ErrorType {
-        
-        case idError
-        case passwordError
-        case unknow(String)
-        
-        var message: String {
-            switch self {
-            case .idError:
-                return "Erro de ID"
-            case .passwordError:
-                return "Erro de password"
-            case .unknow(let msg):
-                return msg
-            }
+        struct Error: Codable {
+            var code: Int?
+            var message: String?
         }
+        
+        var userAccount: Login.UserAccount?
+        var error: Error?
     }
     
-    struct Error: Codable {
-        var code: Int?
-        var message: String?
+    enum Error: Swift.Error {
+        
+        case id
+        case password
     }
     
     struct UserAccount: Codable {
