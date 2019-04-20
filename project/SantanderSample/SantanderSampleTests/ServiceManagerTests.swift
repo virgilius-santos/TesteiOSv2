@@ -20,7 +20,7 @@ class ServiceManagerTests: QuickSpec {
     }
     struct APIResponseLoginMock: APIResponse {
         var userAccount: Login.UserAccount?
-        var error: Login.Error?
+        var error: Login.Response.Error?
     }
     
     struct APIRequestDetailMock: APIRequestDetail {

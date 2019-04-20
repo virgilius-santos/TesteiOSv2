@@ -21,8 +21,9 @@ class LogingWorkerTests: QuickSpec {
             container.register(ServiceManager.self) { _ in ServiceManager() }
                 .inObjectScope(.container)
             container.register(LoginWorker.self) { r in
-                let rq = LoginWorker()
-                rq.serviceManager = r.resolve(ServiceManager.self)
+                
+                let serviceManager = r.resolve(ServiceManager.self)
+                let rq = LoginWorker(service: serviceManager!)
                 return rq
             }
             let _ = KeychainManager.remove(type: .user)
@@ -59,12 +60,9 @@ class LogingWorkerTests: QuickSpec {
             let rq = Login.Request(user: "teste", password: "teste")
             waitUntil(timeout: 10) { done in
                 lw.login(rq, completion: { (result) in
-                    if case .success(let response) = result {
-                        expect(response.userAccount?.userId)
+                    if case .success(let userAccount) = result {
+                        expect(userAccount.userId)
                             .notTo(beNil())
-                        expect(response.error).notTo(beNil())
-                        expect(response.error?.code).to(beNil())
-                        expect(response.error?.message).to(beNil())
                         
                         expect(KeychainManager.get(type: .user))
                             .to(equal(rq.user))
