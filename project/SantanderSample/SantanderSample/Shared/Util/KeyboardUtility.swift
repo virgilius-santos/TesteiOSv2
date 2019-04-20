@@ -17,7 +17,7 @@ class KeyboardManager {
     
     var enable: Bool = false {
         didSet(newValue) {
-            KeyboardManager.shared.enable = newValue
+            IQKeyboardManager.shared().isEnabled = newValue
         }
     }
     

@@ -53,6 +53,8 @@
 		18572BE52185D703008A196B /* LoginWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BE42185D703008A196B /* LoginWorkerTests.swift */; };
 		18DE5704226B2C3E009E25B5 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE5703226B2C3E009E25B5 /* UICollectionViewExtension.swift */; };
 		18DE5706226B2FC4009E25B5 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE5705226B2FC4009E25B5 /* ArrayExtensions.swift */; };
+		18DE570A226B4DF9009E25B5 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE5709226B4DF9009E25B5 /* LoginConfigurator.swift */; };
+		18DE570E226B54D2009E25B5 /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE570D226B54D2009E25B5 /* DetailConfigurator.swift */; };
 		1CD772821F4866A1A47D88E7 /* Pods_SantanderSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D784D67B09F33BCDA6A64F1E /* Pods_SantanderSampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,8 @@
 		18572BE42185D703008A196B /* LoginWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWorkerTests.swift; sourceTree = "<group>"; };
 		18DE5703226B2C3E009E25B5 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		18DE5705226B2FC4009E25B5 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		18DE5709226B4DF9009E25B5 /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
+		18DE570D226B54D2009E25B5 /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6022D23F24B537ADD8DE3832 /* Pods-SantanderSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderSample/Pods-SantanderSample.debug.xcconfig"; sourceTree = "<group>"; };
 		B1BF53DF74E5403D66EEFC86 /* Pods-SantanderSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SantanderSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SantanderSampleTests/Pods-SantanderSampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				18572B532183B97B008A196B /* LoginInteractor.swift */,
 				18572B562183B97B008A196B /* LoginPresenter.swift */,
 				18572B572183B97B008A196B /* LoginWorker.swift */,
+				18DE5709226B4DF9009E25B5 /* LoginConfigurator.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				18572B652183B9A0008A196B /* DetailInteractor.swift */,
 				18572B602183B9A0008A196B /* DetailPresenter.swift */,
 				18572B612183B9A0008A196B /* DetailWorker.swift */,
+				18DE570D226B54D2009E25B5 /* DetailConfigurator.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				18572B8D2183E3D8008A196B /* UIColor.swift in Sources */,
 				18572B592183B97B008A196B /* LoginInteractor.swift in Sources */,
 				18572B662183B9A0008A196B /* DetailPresenter.swift in Sources */,
+				18DE570E226B54D2009E25B5 /* DetailConfigurator.swift in Sources */,
 				18DE5704226B2C3E009E25B5 /* UICollectionViewExtension.swift in Sources */,
 				18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */,
 				18572B8B2183E352008A196B /* UIView.swift in Sources */,
@@ -561,6 +568,7 @@
 				18572B902183EE66008A196B /* InfoDetailView.swift in Sources */,
 				18572B5C2183B97B008A196B /* LoginPresenter.swift in Sources */,
 				18572B5E2183B97B008A196B /* LoginRouter.swift in Sources */,
+				18DE570A226B4DF9009E25B5 /* LoginConfigurator.swift in Sources */,
 				18572B5D2183B97B008A196B /* LoginWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

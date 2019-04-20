@@ -18,11 +18,23 @@ protocol LoginDisplayLogic: class
     func displayLastUser(viewModel: Login.LastUserViewModel)
 }
 
-class LoginViewController: UIViewController
+final class LoginViewController: UIViewController
 {
     
-    var interactor: LoginBusinessLogic!
+    let interactor: LoginBusinessLogic
 
+    init(interactor: LoginBusinessLogic)
+    {
+        self.interactor = interactor
+        
+        super.init(nibName: String(describing: LoginViewController.self), bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: View lifecycle
 
     override func viewDidLoad()
@@ -35,6 +47,8 @@ class LoginViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor.getLastUser()
+        
+        self.view.unlock()
     }
 
     override func viewDidDisappear(_ animated: Bool) {

@@ -18,24 +18,36 @@ protocol DetailBusinessLogic
     func logout()
 }
 
-protocol DetailDataStore
+final class DetailInteractor
 {
-    var user: Login.UserAccount? { get set }
+    typealias Router = (NSObjectProtocol & DetailRoutingLogic)
+    
+    let presenter: DetailPresentationLogic
+    let worker: DetailWorker
+    let router: Router
+    
+    let user: Login.UserAccount
+    
+    init(worker: DetailWorker,
+         router: Router,
+         presenter: DetailPresentationLogic,
+         user: Login.UserAccount)
+    {
+        
+        self.presenter = presenter
+        self.worker = worker
+        self.router = router
+        self.user = user
+    }
 }
 
-class DetailInteractor: DetailBusinessLogic, DetailDataStore
+extension DetailInteractor: DetailBusinessLogic
 {
-    var presenter: DetailPresentationLogic?
-    var worker: DetailWorker?
-    var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)!
-    
-    var user: Login.UserAccount?
-    
+
     // MARK: Do something
     
     func logout()
     {
-        user = nil
         router.routeToLogin()
     }
     
@@ -43,30 +55,33 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore
     {
         var response = Detail.Response()
         
-        response.name = self.user?.name
-        response.bankAccount = self.user?.bankAccount
-        response.agency = self.user?.agency
-        response.balance = self.user?.balance
+        response.name = self.user.name
+        response.bankAccount = self.user.bankAccount
+        response.agency = self.user.agency
+        response.balance = self.user.balance
         
-        self.presenter?.presentUserInfo(response: response)
+        self.presenter.presentUserInfo(response: response)
         
         
         var request = Detail.Request()
-        request.userId = user?.userId
+        request.userId = user.userId
         
-        worker?.getDetails(request: request, completion: { (result) in
+        worker
+            .getDetails(
+                request: request,
+                completion: { [weak self] (result) in
+                    
             switch result {
             case .success(let resp):
                 
                 response.statementList = resp.statementList
-                self.presenter?.present(response: response)
-                break
+                self?.presenter.present(response: response)
+
             case .error(let error):
                 response.error = Detail.DetailError()
                 response.error?.code = 0
                 response.error?.message = error.localizedDescription
-                self.presenter?.present(response: response)
-                break
+                self?.presenter.present(response: response)
             }
         })
     }

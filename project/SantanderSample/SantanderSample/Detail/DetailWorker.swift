@@ -14,7 +14,11 @@ import UIKit
 
 class DetailWorker
 {
-    var serviceManager: ServiceManager!
+    let serviceManager: ServiceManager
+    
+    init(service: ServiceManager) {
+        self.serviceManager = service
+    }
     
     func getDetails(request: Detail.Request, completion:@escaping(Result<Detail.Response,Error>)->())
     {

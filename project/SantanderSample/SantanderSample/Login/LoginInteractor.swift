@@ -18,20 +18,30 @@ protocol LoginBusinessLogic
     func getLastUser()
 }
 
-protocol LoginDataStore
+protocol LoginDataStore: class
 {
     var user: Login.UserAccount? { get set }
     var lastLogin: Login.LoginSave { get }
 }
 
-class LoginInteractor: LoginDataStore
+final class LoginInteractor: LoginDataStore
 {
-    var presenter: LoginPresentationLogic?
-    var worker: LoginWorker!
+    typealias Router = (NSObjectProtocol & LoginRoutingLogic)
+    
+    let worker: LoginWorker
+    let router: Router
+    let presenter: LoginPresentationLogic
+    
     var user: Login.UserAccount?
-    var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)!
+    
     var lastLogin: Login.LoginSave {
         return worker.getLastLogin()
+    }
+    
+    init(worker: LoginWorker, router: Router, presenter: LoginPresentationLogic) {
+        self.presenter = presenter
+        self.worker = worker
+        self.router = router
     }
 }
 
@@ -44,30 +54,32 @@ extension LoginInteractor: LoginBusinessLogic
         let validationPassword = worker.validatePassword(request.password)
         
         if !validationId {
-            presenter?.present(error: Login.Error.id)
+            presenter.present(error: Login.Error.id)
         }
         else if !validationPassword {
             
-            presenter?.present(error: Login.Error.password)
+            presenter.present(error: Login.Error.password)
         }
         else {
             
-            worker.login(request) { (result) in
-                switch result{
+            worker
+                .login(request) { [weak self] (result) in
                     
-                case .success(let userAccount):
-                    self.user = userAccount
-                    self.router.routeToDetails()
-
-                case .error(let error):
-                    self.presenter?.present(error: error)
-                }
+                    switch result{
+                        
+                    case .success(let userAccount):
+                        self?.user = userAccount
+                        self?.router.routeToDetails()
+                        
+                    case .error(let error):
+                        self?.presenter.present(error: error)
+                    }
             }
         }
     }
     
     func getLastUser()
     {
-        self.presenter?.present(lastLogin: lastLogin)
+        self.presenter.present(lastLogin: lastLogin)
     }
 }

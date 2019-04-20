@@ -12,9 +12,9 @@
 
 import UIKit
 
-class LoginWorker {
+final class LoginWorker {
     
-    var serviceManager: ServiceManager!
+    let serviceManager: ServiceManager
     
     let patternCPF
         = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})"
@@ -25,15 +25,19 @@ class LoginWorker {
     let patternPassword
         = "^(?=.*[A-Z])(?=.*[!@#$&*])(((?=.*[0-9])|(?=.*[\\w]))).{3,}$"
     
+    init(service: ServiceManager) {
+        self.serviceManager = service
+    }
+    
     func login(_ request: Login.Request, completion: @escaping(Result<Login.UserAccount, Error>)->())
     {
-        serviceManager.login(request) { result in
+        serviceManager.login(request) { [weak self] result in
             switch result {
             case .error(let error):
                 completion(.error(error))
             case .success(let response):
                 if let userAccount = response.userAccount {
-                    self.saveLogin(request)
+                    self?.saveLogin(request)
                     completion(.success(userAccount))
                 } else {
                     completion(.error(APIError.loginFail))

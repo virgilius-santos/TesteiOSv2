@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let service = ServiceManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -21,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         
         // Instantiate the root view controller with dependencies injected by the container.
-        window.rootViewController = Assembly.shared.loginVC
+        let controller = LoginConfigurator(service: service).build()
+        window.rootViewController = UINavigationController(rootViewController: controller)
         
         return true
     }

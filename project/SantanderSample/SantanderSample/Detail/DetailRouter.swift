@@ -17,28 +17,22 @@ import UIKit
     func routeToLogin()
 }
 
-protocol DetailDataPassing
+class DetailRouter: NSObject
 {
-    var dataStore: DetailDataStore? { get }
-}
-
-class DetailRouter: NSObject, DetailDataPassing
-{
-    
     weak var viewController: DetailsViewViewController?
-    var dataStore: DetailDataStore?
     
     // MARK: Navigation
     
-    func dismiss(){
+    func dismiss()
+    {
       viewController?.dismiss(animated: true, completion: nil)
     }
 }
 
-extension DetailRouter: DetailRoutingLogic{
-    func routeToLogin() {
+extension DetailRouter: DetailRoutingLogic
+{
+    func routeToLogin()
+    {
         dismiss()
     }
-    
-    
 }

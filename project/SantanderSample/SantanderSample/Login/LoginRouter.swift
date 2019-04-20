@@ -14,32 +14,20 @@ import UIKit
 
 @objc protocol LoginRoutingLogic
 {
-  func routeToDetails()
+    func routeToDetails()
 }
 
-protocol LoginDataPassing
+final class LoginRouter: NSObject
 {
-  var dataStore: LoginDataStore? { get }
-}
+    weak var viewController: LoginViewController?
+    weak var dataStore: LoginDataStore?
+    weak var worker: LoginWorker?
 
-class LoginRouter: NSObject, LoginDataPassing
-{
-  weak var viewController: LoginViewController?
-    
-  var dataStore: LoginDataStore?
-
-  // MARK: Navigation
+    // MARK: Navigation
   
-    func navigateToDetails(source: LoginViewController, destination: DetailsViewViewController)
+    func navigateToDetails(source: LoginViewController?, destination: UIViewController)
     {
-        source.present(destination, animated: true, completion: nil)
-    }
-
-  // MARK: Passing data
-  
-    func passDataToDetails(source: LoginDataStore, destination: inout DetailDataStore)
-    {
-        destination.user = source.user
+        source?.present(destination, animated: true, completion: nil)
     }
 }
 
@@ -49,16 +37,13 @@ extension LoginRouter: LoginRoutingLogic {
 
     func routeToDetails()
     {
-        guard let details = Assembly.shared.detailVC else {
+        guard let srv = worker?.serviceManager,
+            let user = dataStore?.user else {
             return
         }
+
+        let details = DetailConfigurator(service: srv, user: user).build()
         
-        if let source = dataStore,
-            var dest = details.interactor as? DetailDataStore {
-            
-            passDataToDetails(source: source, destination: &(dest))
-        }
-        
-        navigateToDetails(source: viewController!, destination: details)
+        navigateToDetails(source: viewController, destination: details)
     }
 }

@@ -16,16 +16,37 @@ protocol DetailDisplayLogic: class
     func displayDetail()
 }
 
-class DetailsViewViewController: UIViewController
+final class DetailsViewViewController: UIViewController
 {
-    var interactor: DetailBusinessLogic!
+    let interactor: DetailBusinessLogic
+    weak var detailDataSource: UICollectionViewDataSource?
+    
+    init(interactor: DetailBusinessLogic)
+    {
+        self.interactor = interactor
+        
+        super.init(nibName: String(describing: DetailsViewViewController.self), bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: View lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        entriesCollectionView.dataSource = detailDataSource
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         detailsView.lock()
-        interactor?.getDetails()
+        interactor.getDetails()
     }
     
     // MARK: Do something
@@ -85,14 +106,7 @@ class DetailsViewViewController: UIViewController
 
 extension DetailsViewViewController: DetailDisplayLogic
 {
-    var detailDataSource: UICollectionViewDataSource? {
-        set {
-            entriesCollectionView.dataSource = newValue
-        }
-        get {
-            return entriesCollectionView.dataSource
-        }
-    }
+    
     
     func displayUserInfo(viewModel: Detail.ViewModel)
     {
