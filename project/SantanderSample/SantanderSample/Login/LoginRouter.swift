@@ -47,12 +47,18 @@ extension LoginRouter: LoginRoutingLogic {
     
     // MARK: Routing
 
-    func routeToDetails() {
-        let details = Assembly.shared.detailVC!
+    func routeToDetails()
+    {
+        guard let details = Assembly.shared.detailVC else {
+            return
+        }
+        
         if let source = dataStore,
             var dest = details.interactor as? DetailDataStore {
+            
             passDataToDetails(source: source, destination: &(dest))
         }
+        
         navigateToDetails(source: viewController!, destination: details)
     }
 }

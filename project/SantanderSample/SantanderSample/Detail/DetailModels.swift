@@ -12,18 +12,17 @@
 
 import UIKit
 
-enum Detail {
-  // MARK: Use cases
-  
-  
-    struct Request: APIRequestDetail {
+enum Detail
+{
+    struct Request: APIRequestDetail
+    {
         typealias Response = Detail.Response
         
         var userId: Int?
     }
     
-    struct Response: Codable {
-        
+    struct Response: Codable
+    {
         var name: String?
         var bankAccount: String?
         var agency: String?
@@ -34,29 +33,32 @@ enum Detail {
         var success: Bool { return error?.code == nil}
     }
     
-    struct DetailError: Codable {
+    struct DetailError: Codable
+    {
         var code: Int?
         var message: String?
     }
     
-    struct ViewModel {
+    struct ViewModel
+    {
         var name: String?
         var account: String?
         var balance: String?
     }
     
-    struct StatementViewModel {
+    struct StatementViewModel
+    {
         var title: String?
         var desc: String?
         var date: String?
         var value: String?
     }
     
-    struct Statement: Codable {
+    struct Statement: Codable
+    {
         var title: String
         var desc: String
         var date: String
         var value: Double
     }
-  
 }

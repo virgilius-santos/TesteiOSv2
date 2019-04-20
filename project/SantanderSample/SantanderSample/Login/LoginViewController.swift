@@ -12,12 +12,14 @@
 
 import UIKit
 
-protocol LoginDisplayLogic: class {
+protocol LoginDisplayLogic: class
+{
     func displayError(viewModel: Login.ErrorViewModel)
     func displayLastUser(viewModel: Login.LastUserViewModel)
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController
+{
     
     var interactor: LoginBusinessLogic!
 
@@ -91,8 +93,10 @@ class LoginViewController: UIViewController {
     
 }
 
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension LoginViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         if textField.returnKeyType == .next {
             passwordView.textField.becomeFirstResponder()
         } else {
@@ -106,17 +110,20 @@ extension LoginViewController: LoginDisplayLogic {
     
     // MARK: Presenting
     
-    func displayLastUser(viewModel: Login.LastUserViewModel) {
+    func displayLastUser(viewModel: Login.LastUserViewModel)
+    {
         idView.textField.text = viewModel.user
         passwordView.textField.text = viewModel.password
     }
     
-    func displayError(viewModel: Login.ErrorViewModel) {
+    func displayError(viewModel: Login.ErrorViewModel)
+    {
         self.view.unlock()
         showAlert(withMessage: viewModel.error!)
     }
     
-    private func showAlert(withMessage message: String){
+    private func showAlert(withMessage message: String)
+    {
         let alertController = UIAlertController(title: "Alerta", message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in

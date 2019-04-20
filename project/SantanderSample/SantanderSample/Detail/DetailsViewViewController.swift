@@ -16,8 +16,8 @@ protocol DetailDisplayLogic: class
     func displayDetail()
 }
 
-class DetailsViewViewController: UIViewController {
-    
+class DetailsViewViewController: UIViewController
+{
     var interactor: DetailBusinessLogic!
     
     // MARK: View lifecycle
@@ -77,14 +77,14 @@ class DetailsViewViewController: UIViewController {
         }
     }
     
-    @objc func exitAction() {
+    @objc func exitAction()
+    {
         interactor.logout()
     }
-
 }
 
-extension DetailsViewViewController: DetailDisplayLogic {
-    
+extension DetailsViewViewController: DetailDisplayLogic
+{
     var detailDataSource: UICollectionViewDataSource? {
         set {
             entriesCollectionView.dataSource = newValue
@@ -94,20 +94,18 @@ extension DetailsViewViewController: DetailDisplayLogic {
         }
     }
     
-    func displayUserInfo(viewModel: Detail.ViewModel) {
+    func displayUserInfo(viewModel: Detail.ViewModel)
+    {
         nameView.infoLabel.text = viewModel.name
         accountInfoView.infoLabel.text = viewModel.account
         balnceInfoView.infoLabel.text = viewModel.balance
     }
     
-    func displayDetail() {
+    func displayDetail()
+    {
         detailsView.unlock()
         entriesCollectionView.reloadData()
     }
-    
 }
 
-
-extension DetailsViewViewController: UICollectionViewDelegate {
-    
-}
+extension DetailsViewViewController: UICollectionViewDelegate { }

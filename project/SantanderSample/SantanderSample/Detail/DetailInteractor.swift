@@ -12,12 +12,14 @@
 
 import UIKit
 
-protocol DetailBusinessLogic{
+protocol DetailBusinessLogic
+{
     func getDetails()
     func logout()
 }
 
-protocol DetailDataStore{
+protocol DetailDataStore
+{
     var user: Login.UserAccount? { get set }
 }
 
@@ -31,13 +33,14 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore
     
     // MARK: Do something
     
-    func logout() {
+    func logout()
+    {
         user = nil
         router.routeToLogin()
     }
     
-    func getDetails() {
-        
+    func getDetails()
+    {
         var response = Detail.Response()
         
         response.name = self.user?.name
@@ -66,6 +69,5 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore
                 break
             }
         })
-        
     }
 }

@@ -25,7 +25,8 @@ class LoginWorker {
     let patternPassword
         = "^(?=.*[A-Z])(?=.*[!@#$&*])(((?=.*[0-9])|(?=.*[\\w]))).{3,}$"
     
-    func login(_ request: Login.Request, completion: @escaping(Result<Login.UserAccount, Error>)->()) {
+    func login(_ request: Login.Request, completion: @escaping(Result<Login.UserAccount, Error>)->())
+    {
         serviceManager.login(request) { result in
             switch result {
             case .error(let error):
@@ -41,21 +42,24 @@ class LoginWorker {
         }
     }
     
-    func saveLogin(_ request: Login.Request) {
+    func saveLogin(_ request: Login.Request)
+    {
         let user = request.user
         let password = request.password
         let _ = KeychainManager.save(user!, type: .user)
         let _ = KeychainManager.save(password!, type: .password)
     }
     
-    func getLastLogin() -> Login.LoginSave {
+    func getLastLogin() -> Login.LoginSave
+    {
         var response = Login.LoginSave()
         response.user = KeychainManager.get(type: .user)
         response.password = KeychainManager.get(type: .password)
         return response
     }
     
-    func validateId(_ string: String?) -> Bool {
+    func validateId(_ string: String?) -> Bool
+    {
         guard let word = string, word.count >= 3 else {
             return false
         }
@@ -63,7 +67,8 @@ class LoginWorker {
         return (match(word, patternCPF) || match(word, patternEmail) )
     }
     
-    func validatePassword(_ string: String?) -> Bool {
+    func validatePassword(_ string: String?) -> Bool
+    {
         guard let word = string, word.count >= 3 else {
             return false
         }
@@ -71,7 +76,8 @@ class LoginWorker {
         return match(word, patternPassword)
     }
     
-    private func match(_ word: String, _ pattern: String) -> Bool {
+    private func match(_ word: String, _ pattern: String) -> Bool
+    {
         let mutable = NSMutableString(string: word)
         let range: NSRange = NSRange(location: 0, length: word.count)
         do {

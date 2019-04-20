@@ -33,8 +33,6 @@ class DetailRouter: NSObject, DetailDataPassing
     func dismiss(){
       viewController?.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 extension DetailRouter: DetailRoutingLogic{

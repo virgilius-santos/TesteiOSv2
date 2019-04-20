@@ -27,12 +27,10 @@ class DetailPresenter: NSObject
     }
     
     var detailList: [Detail.StatementViewModel] = []
-    
 }
 
 extension DetailPresenter: DetailPresentationLogic
 {
-    
     func presentUserInfo(response: Detail.Response)
     {
         var viewModel = Detail.ViewModel()
@@ -81,12 +79,13 @@ extension DetailPresenter: DetailPresentationLogic
 
 extension DetailPresenter: UICollectionViewDataSource
 {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
         return detailList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
         
         cell?.setup(viewModel: detailList[safeIndex: indexPath.row])

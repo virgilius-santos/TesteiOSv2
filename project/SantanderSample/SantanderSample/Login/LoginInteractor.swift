@@ -18,12 +18,14 @@ protocol LoginBusinessLogic
     func getLastUser()
 }
 
-protocol LoginDataStore {
+protocol LoginDataStore
+{
     var user: Login.UserAccount? { get set }
-    var lastLogin: Login.LoginSave {get}
+    var lastLogin: Login.LoginSave { get }
 }
 
-class LoginInteractor: LoginDataStore {
+class LoginInteractor: LoginDataStore
+{
     var presenter: LoginPresentationLogic?
     var worker: LoginWorker!
     var user: Login.UserAccount?
@@ -33,10 +35,11 @@ class LoginInteractor: LoginDataStore {
     }
 }
 
-extension LoginInteractor: LoginBusinessLogic {
+extension LoginInteractor: LoginBusinessLogic
+{
     
-    func auth(request: Login.Request) {
-
+    func auth(request: Login.Request)
+    {
         let validationId = worker.validateId(request.user)
         let validationPassword = worker.validatePassword(request.password)
         
@@ -63,7 +66,8 @@ extension LoginInteractor: LoginBusinessLogic {
         }
     }
     
-    func getLastUser() {
+    func getLastUser()
+    {
         self.presenter?.present(lastLogin: lastLogin)
     }
 }

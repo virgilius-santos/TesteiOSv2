@@ -20,14 +20,13 @@ protocol LoginPresentationLogic
 
 class LoginPresenter
 {
-    
     weak var viewController: LoginDisplayLogic?
 }
 
-extension LoginPresenter: LoginPresentationLogic {
-    
-    func present(error: Error) {
-        
+extension LoginPresenter: LoginPresentationLogic
+{
+    func present(error: Error)
+    {
         var viewModel = Login.ErrorViewModel()
         
         var message: String {
@@ -51,8 +50,8 @@ extension LoginPresenter: LoginPresentationLogic {
         }
     }
     
-    func present(lastLogin: Login.LoginSave) {
-        
+    func present(lastLogin: Login.LoginSave)
+    {
         var viewModel = Login.LastUserViewModel()
         viewModel.user = lastLogin.user
         viewModel.password = lastLogin.password

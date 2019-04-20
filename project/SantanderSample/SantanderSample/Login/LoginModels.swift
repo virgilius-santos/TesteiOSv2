@@ -12,23 +12,27 @@
 
 import UIKit
 
-enum Login{
+enum Login
+{
     
-    struct Request: APIRequestLogin {
+    struct Request: APIRequestLogin
+    {
         typealias Response = Login.Response
         
         var user: String?
         var password: String?
     }
     
-    struct LoginSave {
+    struct LoginSave
+    {
         var user: String?
         var password: String?
     }
     
-    struct Response: Codable {
-        
-        struct Error: Codable {
+    struct Response: Codable
+    {
+        struct Error: Codable
+        {
             var code: Int?
             var message: String?
         }
@@ -37,13 +41,14 @@ enum Login{
         var error: Error?
     }
     
-    enum Error: Swift.Error {
-        
+    enum Error: Swift.Error
+    {
         case id
         case password
     }
     
-    struct UserAccount: Codable {
+    struct UserAccount: Codable
+    {
         var userId: Int?
         var name: String?
         var bankAccount: String?
@@ -51,13 +56,14 @@ enum Login{
         var balance: Double?
     }
     
-    struct ErrorViewModel {
+    struct ErrorViewModel
+    {
         var error: String?
     }
     
-    struct LastUserViewModel {
+    struct LastUserViewModel
+    {
         var password: String?
         var user: String?
     }
-    
 }

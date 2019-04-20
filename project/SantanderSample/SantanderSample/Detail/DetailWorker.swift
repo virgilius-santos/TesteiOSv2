@@ -12,11 +12,12 @@
 
 import UIKit
 
-class DetailWorker {
-    
+class DetailWorker
+{
     var serviceManager: ServiceManager!
     
-    func getDetails(request: Detail.Request, completion:@escaping(Result<Detail.Response,Error>)->()) {
+    func getDetails(request: Detail.Request, completion:@escaping(Result<Detail.Response,Error>)->())
+    {
         serviceManager.get(request) { result in
             switch result {
             case .error(let error):
