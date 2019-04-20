@@ -33,7 +33,6 @@ final class DetailConfigurator
             user: user)
         
         let controller = DetailsViewViewController(interactor: interactor)
-        controller.detailDataSource = presenter
         
         router.viewController = controller
         presenter.viewController = controller

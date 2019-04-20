@@ -21,8 +21,6 @@ protocol DetailPresentationLogic
 class DetailPresenter: NSObject
 {
     weak var viewController: DetailDisplayLogic?
-    
-    var detailList: [Detail.StatementViewModel] = []
 }
 
 extension DetailPresenter: DetailPresentationLogic
@@ -52,7 +50,7 @@ extension DetailPresenter: DetailPresentationLogic
     func present(response: Detail.Response)
     {
         
-        self.detailList = response
+        let detailList = response
             .statementList
             .map {
                 (st) -> Detail.StatementViewModel in
@@ -68,24 +66,7 @@ extension DetailPresenter: DetailPresentationLogic
         }
         
         DispatchQueue.main.async {
-            self.viewController?.displayDetail()
+            self.viewController?.displayDetail(detailList)
         }
-    }
-}
-
-extension DetailPresenter: UICollectionViewDataSource
-{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return detailList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
-        
-        cell?.setup(viewModel: detailList[safeIndex: indexPath.row])
-        
-        return cell ?? UICollectionViewCell()
     }
 }

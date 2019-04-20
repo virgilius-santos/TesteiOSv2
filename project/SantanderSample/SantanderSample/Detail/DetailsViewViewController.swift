@@ -10,16 +10,14 @@ import UIKit
 
 protocol DetailDisplayLogic: class
 {
-    var detailDataSource: UICollectionViewDataSource? { get set }
-    
     func displayUserInfo(viewModel: Detail.ViewModel)
-    func displayDetail()
+    func displayDetail(_ detailList: [Detail.StatementViewModel])
 }
 
 final class DetailsViewViewController: UIViewController
 {
     let interactor: DetailBusinessLogic
-    weak var detailDataSource: UICollectionViewDataSource?
+    var detailList: [Detail.StatementViewModel] = []
     
     init(interactor: DetailBusinessLogic)
     {
@@ -34,13 +32,6 @@ final class DetailsViewViewController: UIViewController
     }
     
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        entriesCollectionView.dataSource = detailDataSource
-    }
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -106,8 +97,6 @@ final class DetailsViewViewController: UIViewController
 
 extension DetailsViewViewController: DetailDisplayLogic
 {
-    
-    
     func displayUserInfo(viewModel: Detail.ViewModel)
     {
         nameView.infoLabel.text = viewModel.name
@@ -115,11 +104,30 @@ extension DetailsViewViewController: DetailDisplayLogic
         balnceInfoView.infoLabel.text = viewModel.balance
     }
     
-    func displayDetail()
+    func displayDetail(_ detailList: [Detail.StatementViewModel])
     {
+        self.detailList = detailList
+        
         detailsView.unlock()
         entriesCollectionView.reloadData()
     }
 }
 
 extension DetailsViewViewController: UICollectionViewDelegate { }
+
+extension DetailsViewViewController: UICollectionViewDataSource
+{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return detailList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
+        
+        cell?.setup(viewModel: detailList[safeIndex: indexPath.row])
+        
+        return cell ?? UICollectionViewCell()
+    }
+}
