@@ -1,11 +1,3 @@
-//
-//  UICollectionView.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 20/04/19.
-//  Copyright © 2019 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
 extension UICollectionView {

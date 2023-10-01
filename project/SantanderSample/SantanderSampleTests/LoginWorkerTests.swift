@@ -1,82 +1,118 @@
-//
-//  LoginWorkerTests.swift
-//  SantanderSampleTests
-//
-//  Created by Virgilius Santos on 28/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
-import Foundation
-import Quick
-import Nimble
-import Swinject
-
 @testable import SantanderSample
+import XCTest
 
-class LogingWorkerTests: QuickSpec {
-    override func spec() {
-        var container: Container!
-        beforeEach {
-            container = Container()
-            container.register(ServiceManager.self) { _ in ServiceManager() }
-                .inObjectScope(.container)
-            container.register(LoginWorker.self) { r in
-                
-                let serviceManager = r.resolve(ServiceManager.self)
-                let rq = LoginWorker(service: serviceManager!)
-                return rq
-            }
-            let _ = KeychainManager.remove(type: .user)
-            let _ = KeychainManager.remove(type: .password)
-        }
-        it("validacao de senha") {
-            let lw = container.resolve(LoginWorker.self)!
-            expect(lw.validatePassword("T@1")).to(beTrue())
-            expect(lw.validatePassword("a@T")).to(beTrue())
-            expect(lw.validatePassword("fail")).notTo(beTrue())
-            expect(lw.validatePassword("Fail")).notTo(beTrue())
-            expect(lw.validatePassword("f0ail")).notTo(beTrue())
-            expect(lw.validatePassword("fai@l")).notTo(beTrue())
-            expect(lw.validatePassword("@l")).notTo(beTrue())
-            expect(lw.validatePassword("")).notTo(beTrue())
-            expect(lw.validatePassword(nil)).notTo(beTrue())
-        }
-        it("validacao de id") {
-            let lw = container.resolve(LoginWorker.self)!
-            expect(lw.validateId("admin@admin.com")).to(beTrue())
-            expect(lw.validateId("333.777.666-66")).to(beTrue())
-            expect(lw.validateId("33333333339")).to(beTrue())
-            expect(lw.validateId("admin@admin.com.ki")).to(beTrue())
-            expect(lw.validateId("7777uuuuu")).notTo(beTrue())
-            expect(lw.validateId("awewe@l")).notTo(beTrue())
-            expect(lw.validateId("373333333339")).notTo(beTrue())
-            expect(lw.validateId("@lrrttrert")).notTo(beTrue())
-            expect(lw.validateId("")).notTo(beTrue())
-            expect(lw.validateId(nil)).notTo(beTrue())
+private extension LoginWorkerTests {
+    typealias Sut = LoginWorker
+    
+    final class Fields {
+        let clientMock: APIClientMock
+        let keychainMock: KeychainManagerMock
+        
+        var events = [String]()
+        var completionMock: (() -> Void)? = nil
+        
+        init(file: StaticString, line: UInt) {
+            clientMock = .init(file: file, line: line)
+            keychainMock = .init(file: file, line: line)
         }
         
-        it("integração LoginWorker, Keychain, Service") {
-            let lw = container.resolve(LoginWorker.self)!
-            let rq = Login.Request(user: "teste", password: "teste")
-            waitUntil(timeout: 10) { done in
-                lw.login(rq, completion: { (result) in
-                    if case .success(let userAccount) = result {
-                        expect(userAccount.userId)
-                            .notTo(beNil())
-                        
-                        expect(KeychainManager.get(type: .user))
-                            .to(equal(rq.user))
-                        expect(KeychainManager.get(type: .password))
-                            .to(equal(rq.password))
-                    }
-                    done()
-                })
+        func configureClient(
+            requestExpected: APIRequest,
+            resultToSend: Result<Login.UserAccount, APIError>,
+            file: StaticString = #filePath, line: UInt = #line
+        ) {
+            clientMock.requestImpl = { [weak self] request, completion in
+                XCTAssertEqual(request, requestExpected, file: file, line: line)
+                self?.completionMock = { completion(resultToSend)}
+                self?.events.append("client request called")
             }
         }
         
-        afterSuite {
-            let _ = KeychainManager.remove(type: .user)
-            let _ = KeychainManager.remove(type: .password)
+        func configureKeychainToReceiveEvents() {
+            keychainMock.saveImpl = { [weak self] value, type in
+                self?.events.append("keychain save value: \(value) for type: \(type)")
+                return true
+            }
         }
+        
+        func simulateResultAsync() {
+            completionMock?()
+        }
+    }
+    
+    func makeSut(file: StaticString = #filePath, line: UInt = #line) -> (sut: Sut, fields: Fields) {
+        let fields = Fields(file: file, line: line)
+        let sut = LoginWorker(
+            client: fields.clientMock,
+            keychain: fields.keychainMock
+        )
+        checkMemoryLeak(object: sut, file: file, line: line)
+        checkMemoryLeak(object: fields.clientMock, file: file, line: line)
+        checkMemoryLeak(object: fields.keychainMock, file: file, line: line)
+        return (sut, fields)
+    }
+}
+
+final class LoginWorkerTests: XCTestCase {
+    func test_validatePassword_rules() {
+        let sut = makeSut().sut
+        XCTAssertTrue(sut.validatePassword("T@1"))
+        XCTAssertTrue(sut.validatePassword("a@T"))
+        XCTAssertFalse(sut.validatePassword("fail"))
+        XCTAssertFalse(sut.validatePassword("Fail"))
+        XCTAssertFalse(sut.validatePassword("f0ail"))
+        XCTAssertFalse(sut.validatePassword("fai@l"))
+        XCTAssertFalse(sut.validatePassword("@l"))
+        XCTAssertFalse(sut.validatePassword(""))
+        XCTAssertFalse(sut.validatePassword(nil))
+    }
+    
+    func test_validateId_rules() {
+        let sut = makeSut().sut
+        XCTAssertTrue(sut.validateId("admin@admin.com"))
+        XCTAssertTrue(sut.validateId("333.777.666-66"))
+        XCTAssertTrue(sut.validateId("33333333339"))
+        XCTAssertTrue(sut.validateId("admin@admin.com.ki"))
+        XCTAssertFalse(sut.validateId("7777uuuuu"))
+        XCTAssertFalse(sut.validateId("awewe@l"))
+        XCTAssertFalse(sut.validateId("373333333339"))
+        XCTAssertFalse(sut.validateId("@lrrttrert"))
+        XCTAssertFalse(sut.validateId(""))
+        XCTAssertFalse(sut.validateId(nil))
+    }
+    
+    func testLogin_shouldReturnUserAccount() throws {
+        let request = Login.Request(
+            user: "validUser@gmail.com",
+            password: "V@lidPassw0rd"
+        )
+        let userReceived = Login.UserAccount(
+            id: "id",
+            name: "name",
+            bankAccount: "bankAccount",
+            agency: "agency",
+            balance: 50
+        )
+        let requestExpected = APIRequest(url: "v1/login", body: try JSONEncoder().encode(request), httpMethod: .post)
+        let resultExpected =  Result<Login.UserAccount, APIError>.success(userReceived)
+        let (sut, fields) = makeSut()
+        fields.configureClient(requestExpected: requestExpected, resultToSend: resultExpected)
+        fields.configureKeychainToReceiveEvents()
+        
+        sut.login(request) { [weak fields] result in
+            XCTAssertEqual(result, resultExpected)
+            fields?.events.append("login result received")
+        }
+        
+        XCTAssertEqual(fields.events, ["client request called"])
+        
+        fields.simulateResultAsync()
+        
+        XCTAssertEqual(fields.events, [
+            "client request called",
+            "keychain save value: validUser@gmail.com for type: user",
+            "keychain save value: V@lidPassw0rd for type: password",
+            "login result received"
+        ])
     }
 }

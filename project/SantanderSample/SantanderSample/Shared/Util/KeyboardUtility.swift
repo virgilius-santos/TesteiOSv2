@@ -1,23 +1,14 @@
-//
-//  KeyboardUtility.swift
-//  Palindrome
-//
-//  Created by Virgilius Santos on 20/10/2018.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
-import IQKeyboardManager
+import IQKeyboardManagerSwift
 
-
-class KeyboardManager {
-    
+final class KeyboardManager {
     static var shared = KeyboardManager()
+    
     init() {}
     
     var enable: Bool = false {
         didSet(newValue) {
-            IQKeyboardManager.shared().isEnabled = newValue
+            IQKeyboardManager.shared.enable = newValue
         }
     }
     

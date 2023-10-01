@@ -1,42 +1,36 @@
-//
-//  DetailConfigurator.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 20/04/19.
-//  Copyright © 2019 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-final class DetailConfigurator
-{
-    
-    let service: ServiceManager
+final class DetailConfigurator {
+    let client: APIClient
     let user: Login.UserAccount
+    let router: DetailRoutingLogic
     
-    init(service: ServiceManager, user: Login.UserAccount)
-    {
-        self.service = service
+    init(router: DetailRoutingLogic, user: Login.UserAccount, client: APIClient = APIClientImpl()) {
+        self.client = client
         self.user = user
+        self.router = router
     }
     
-    func build() -> UIViewController
-    {
-        let worker = DetailWorker(service: service)
-        let router = DetailRouter()
-        let presenter = DetailPresenter()
-        
+    func build() -> UIViewController {
+        let displayThreadWrapper = DetailDisplayLogicThreadWrapper()
+        let routerThreadWrapper = DetailRoutingLogicThreadWrapper()
+        let worker = DetailWorker(client: client)
+        let presenter = DetailPresenter(displaying: displayThreadWrapper)
         let interactor = DetailInteractor(
             worker: worker,
-            router: router,
+            router: routerThreadWrapper,
             presenter: presenter,
-            user: user)
-        
+            request: user.detailRequest
+        )
         let controller = DetailsViewViewController(interactor: interactor)
-        
-        router.viewController = controller
-        presenter.viewController = controller
-        
+        displayThreadWrapper.displaying = controller
+        routerThreadWrapper.router = router
         return controller
+    }
+}
+
+extension Login.UserAccount {
+    var detailRequest: Detail.Request {
+        .init(userId: id, name: name, bankAccount: bankAccount, agency: agency, balance: balance)
     }
 }

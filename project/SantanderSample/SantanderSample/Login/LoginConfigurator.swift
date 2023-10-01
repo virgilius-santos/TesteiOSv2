@@ -1,42 +1,33 @@
-//
-//  LoginConfigurator.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 20/04/19.
-//  Copyright © 2019 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-final class LoginConfigurator
-{
+final class LoginConfigurator {
+    let client: APIClient
+    let router: LoginRoutingLogic
+    let keychain: KeychainManager
     
-    let service: ServiceManager
-    
-    init(service: ServiceManager)
-    {
-        self.service = service
+    init(
+        router: LoginRoutingLogic,
+        client: APIClient = APIClientImpl(),
+        keychain: KeychainManager = KeychainManagerImpl()
+    ) {
+        self.router = router
+        self.client = client
+        self.keychain = keychain
     }
     
-    func build() -> UIViewController
-    {
-        let worker = LoginWorker(service: service)
-        let router = LoginRouter()
-        let presenter = LoginPresenter()
-        
+    func build() -> UIViewController {
+        let displayThreadWrapper = LoginDisplayLogicThreadWrapper()
+        let routerThreadWrapper = LoginRoutingLogicThreadWrapper()
+        let worker = LoginWorker(client: client, keychain: keychain)
+        let presenter = LoginPresenter(displaying: displayThreadWrapper)
         let interactor = LoginInteractor(
             worker: worker,
-            router: router,
-            presenter: presenter)
-        
+            router: routerThreadWrapper,
+            presenter: presenter
+        )
         let controller = LoginViewController(interactor: interactor)
-        
-        router.dataStore = interactor
-        router.viewController = controller
-        router.worker = worker
-        
-        presenter.viewController = controller
-        
+        displayThreadWrapper.displaying = controller
+        routerThreadWrapper.router = router
         return controller
     }
 }

@@ -1,11 +1,3 @@
-//
-//  UIView.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 26/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
 extension UIView {

@@ -1,42 +1,30 @@
-//
-//  DetailsViewViewController.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 27/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-protocol DetailDisplayLogic: class
-{
+protocol DetailDisplayLogic: AnyObject {
+    func startLoading()
+    func stopLoading()
     func displayUserInfo(viewModel: Detail.ViewModel)
     func displayDetail(_ detailList: [Detail.StatementViewModel])
 }
 
-final class DetailsViewViewController: UIViewController
-{
+final class DetailsViewViewController: UIViewController {
     let interactor: DetailBusinessLogic
     var detailList: [Detail.StatementViewModel] = []
     
-    init(interactor: DetailBusinessLogic)
-    {
+    init(interactor: DetailBusinessLogic) {
         self.interactor = interactor
         
         super.init(nibName: String(describing: DetailsViewViewController.self), bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: View lifecycle
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        detailsView.lock()
         interactor.getDetails()
     }
     
@@ -45,9 +33,11 @@ final class DetailsViewViewController: UIViewController
     @IBOutlet weak var exitView: ExitButtonView! {
         didSet {
             let button = exitView.exitButton
-            button?.addTarget(self,
-                              action: #selector(exitAction),
-                              for: .touchUpInside)
+            button?.addTarget(
+                self,
+                action: #selector(exitAction),
+                for: .touchUpInside
+            )
         }
     }
     
@@ -90,45 +80,42 @@ final class DetailsViewViewController: UIViewController
         }
     }
     
-    @objc func exitAction()
-    {
+    @objc func exitAction() {
         interactor.logout()
     }
 }
 
-extension DetailsViewViewController: DetailDisplayLogic
-{
-    func displayUserInfo(viewModel: Detail.ViewModel)
-    {
+extension DetailsViewViewController: DetailDisplayLogic {
+    func startLoading() {
+        detailsView.lock()
+    }
+    
+    func stopLoading() {
+        detailsView.unlock()
+    }
+    
+    func displayUserInfo(viewModel: Detail.ViewModel) {
         nameView.infoLabel.text = viewModel.name
         accountInfoView.infoLabel.text = viewModel.account
         balnceInfoView.infoLabel.text = viewModel.balance
     }
     
-    func displayDetail(_ detailList: [Detail.StatementViewModel])
-    {
+    func displayDetail(_ detailList: [Detail.StatementViewModel]) {
         self.detailList = detailList
-        
-        detailsView.unlock()
         entriesCollectionView.reloadData()
     }
 }
 
-extension DetailsViewViewController: UICollectionViewDelegate { }
+extension DetailsViewViewController: UICollectionViewDelegate {}
 
-extension DetailsViewViewController: UICollectionViewDataSource
-{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return detailList.count
+extension DetailsViewViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        detailList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
-        
         cell?.setup(viewModel: detailList[safeIndex: indexPath.row])
-        
         return cell ?? UICollectionViewCell()
     }
 }
