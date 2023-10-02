@@ -22,7 +22,6 @@
 		18572B6B2183B9A0008A196B /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B652183B9A0008A196B /* DetailInteractor.swift */; };
 		18572B6E2183BB34008A196B /* InputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B6D2183BB34008A196B /* InputTextView.xib */; };
 		18572B702183BB4A008A196B /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B6F2183BB4A008A196B /* InputTextView.swift */; };
-		18572B722183BB60008A196B /* LogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B712183BB60008A196B /* LogoView.xib */; };
 		18572B742183BB72008A196B /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B732183BB72008A196B /* LogoView.swift */; };
 		18572B762183BBB3008A196B /* LoginButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B752183BBB3008A196B /* LoginButtonView.xib */; };
 		18572B782183BBE3008A196B /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B772183BBE3008A196B /* LoginButtonView.swift */; };
@@ -94,7 +93,6 @@
 		18572B652183B9A0008A196B /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		18572B6D2183BB34008A196B /* InputTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTextView.xib; sourceTree = "<group>"; };
 		18572B6F2183BB4A008A196B /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
-		18572B712183BB60008A196B /* LogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoView.xib; sourceTree = "<group>"; };
 		18572B732183BB72008A196B /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		18572B752183BBB3008A196B /* LoginButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginButtonView.xib; sourceTree = "<group>"; };
 		18572B772183BBE3008A196B /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 		18572B6C2183BAF5008A196B /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				18572B712183BB60008A196B /* LogoView.xib */,
 				18572B6D2183BB34008A196B /* InputTextView.xib */,
 				18572B752183BBB3008A196B /* LoginButtonView.xib */,
 				18572B792183BC74008A196B /* TitleDetailView.xib */,
@@ -458,7 +455,6 @@
 				18572B9821844E4C008A196B /* LoginViewController.xib in Resources */,
 				18572B3E2183B7C2008A196B /* LaunchScreen.storyboard in Resources */,
 				18572B9E21847CEC008A196B /* DetailCell.xib in Resources */,
-				18572B722183BB60008A196B /* LogoView.xib in Resources */,
 				18572B3B2183B7C2008A196B /* Assets.xcassets in Resources */,
 				18572BB12184B299008A196B /* DetailsViewViewController.xib in Resources */,
 				18572B7A2183BC74008A196B /* TitleDetailView.xib in Resources */,

@@ -1,23 +1,11 @@
-//
-//  LogoView.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 26/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-class LogoView: UIView {
-
-    @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var logoImageView: UIImageView! {
-        didSet {
-            logoImageView.image = UIImage(named: "Logo")
-            logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
+final class LogoView: UIView {
+    lazy var logoImageView =  {
+        $0.image = UIImage(named: "Logo")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIImageView())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,18 +18,13 @@ class LogoView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(String(describing: LogoView.self), owner: self, options: nil)
-        
-        addSubview(contentView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
+        addSubview(logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: topAnchor),
+            logoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            logoImageView.leftAnchor.constraint(equalTo: leftAnchor),
+            logoImageView.rightAnchor.constraint(equalTo: rightAnchor),
+        ])
         backgroundColor = .clear
     }
-    
-    
 }
