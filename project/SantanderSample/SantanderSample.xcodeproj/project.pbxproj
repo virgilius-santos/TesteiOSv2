@@ -20,7 +20,6 @@
 		18572B672183B9A0008A196B /* DetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B612183B9A0008A196B /* DetailWorker.swift */; };
 		18572B692183B9A0008A196B /* DetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B632183B9A0008A196B /* DetailModels.swift */; };
 		18572B6B2183B9A0008A196B /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B652183B9A0008A196B /* DetailInteractor.swift */; };
-		18572B6E2183BB34008A196B /* InputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B6D2183BB34008A196B /* InputTextView.xib */; };
 		18572B702183BB4A008A196B /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B6F2183BB4A008A196B /* InputTextView.swift */; };
 		18572B742183BB72008A196B /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B732183BB72008A196B /* LogoView.swift */; };
 		18572B762183BBB3008A196B /* LoginButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B752183BBB3008A196B /* LoginButtonView.xib */; };
@@ -91,7 +90,6 @@
 		18572B612183B9A0008A196B /* DetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWorker.swift; sourceTree = "<group>"; };
 		18572B632183B9A0008A196B /* DetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModels.swift; sourceTree = "<group>"; };
 		18572B652183B9A0008A196B /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
-		18572B6D2183BB34008A196B /* InputTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTextView.xib; sourceTree = "<group>"; };
 		18572B6F2183BB4A008A196B /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		18572B732183BB72008A196B /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		18572B752183BBB3008A196B /* LoginButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginButtonView.xib; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 		18572B6C2183BAF5008A196B /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				18572B6D2183BB34008A196B /* InputTextView.xib */,
 				18572B752183BBB3008A196B /* LoginButtonView.xib */,
 				18572B792183BC74008A196B /* TitleDetailView.xib */,
 				18572B8F2183EE66008A196B /* InfoDetailView.xib */,
@@ -460,7 +457,6 @@
 				18572B7A2183BC74008A196B /* TitleDetailView.xib in Resources */,
 				18572B822183BCD8008A196B /* ExitButtonView.xib in Resources */,
 				18572B762183BBB3008A196B /* LoginButtonView.xib in Resources */,
-				18572B6E2183BB34008A196B /* InputTextView.xib in Resources */,
 				18572B912183EE66008A196B /* InfoDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
