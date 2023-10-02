@@ -32,7 +32,6 @@
 		18572B8D2183E3D8008A196B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B8C2183E3D8008A196B /* UIColorExtensions.swift */; };
 		18572B902183EE66008A196B /* InfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B8E2183EE66008A196B /* InfoDetailView.swift */; };
 		18572B912183EE66008A196B /* InfoDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B8F2183EE66008A196B /* InfoDetailView.xib */; };
-		18572B9821844E4C008A196B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9621844E4C008A196B /* LoginViewController.xib */; };
 		18572B9E21847CEC008A196B /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9C21847CEC008A196B /* DetailCell.xib */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
 		18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BAE2184B299008A196B /* DetailsViewViewController.swift */; };
@@ -61,6 +60,7 @@
 		3B448AC52ACAEAB400F94292 /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC42ACAEAB400F94292 /* APIClientMock.swift */; };
 		3B448AC72ACAEACB00F94292 /* KeychainManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */; };
 		3B448AC92ACAECBB00F94292 /* XCTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC82ACAECBB00F94292 /* XCTestExtensions.swift */; };
+		3B990CA82ACB86CC00982759 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B990CA72ACB86CC00982759 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +101,6 @@
 		18572B8C2183E3D8008A196B /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		18572B8E2183EE66008A196B /* InfoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailView.swift; sourceTree = "<group>"; };
 		18572B8F2183EE66008A196B /* InfoDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDetailView.xib; sourceTree = "<group>"; };
-		18572B9621844E4C008A196B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		18572B9C21847CEC008A196B /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BAE2184B299008A196B /* DetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		3B448AC82ACAECBB00F94292 /* XCTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestExtensions.swift; sourceTree = "<group>"; };
+		3B990CA72ACB86CC00982759 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D784D67B09F33BCDA6A64F1E /* Pods_SantanderSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,6 +215,7 @@
 				18572B562183B97B008A196B /* LoginPresenter.swift */,
 				18572B572183B97B008A196B /* LoginWorker.swift */,
 				18DE5709226B4DF9009E25B5 /* LoginConfigurator.swift */,
+				3B990CA72ACB86CC00982759 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -240,7 +241,6 @@
 				18572B8F2183EE66008A196B /* InfoDetailView.xib */,
 				18572B812183BCD8008A196B /* ExitButtonView.xib */,
 				18572B9C21847CEC008A196B /* DetailCell.xib */,
-				18572B9621844E4C008A196B /* LoginViewController.xib */,
 				18572BAF2184B299008A196B /* DetailsViewViewController.xib */,
 			);
 			path = Xib;
@@ -446,7 +446,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18572B9821844E4C008A196B /* LoginViewController.xib in Resources */,
 				18572B3E2183B7C2008A196B /* LaunchScreen.storyboard in Resources */,
 				18572B9E21847CEC008A196B /* DetailCell.xib in Resources */,
 				18572B3B2183B7C2008A196B /* Assets.xcassets in Resources */,
@@ -509,6 +508,7 @@
 				18572B5C2183B97B008A196B /* LoginPresenter.swift in Sources */,
 				18572B5E2183B97B008A196B /* APPRouter.swift in Sources */,
 				18DE570A226B4DF9009E25B5 /* LoginConfigurator.swift in Sources */,
+				3B990CA82ACB86CC00982759 /* LoginView.swift in Sources */,
 				18572B5D2183B97B008A196B /* LoginWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

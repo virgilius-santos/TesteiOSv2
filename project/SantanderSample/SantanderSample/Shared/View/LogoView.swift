@@ -22,8 +22,8 @@ final class LogoView: UIView {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: topAnchor),
             logoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            logoImageView.leftAnchor.constraint(equalTo: leftAnchor),
-            logoImageView.rightAnchor.constraint(equalTo: rightAnchor),
+            logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
         backgroundColor = .clear
     }

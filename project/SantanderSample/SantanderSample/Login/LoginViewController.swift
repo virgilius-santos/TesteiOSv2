@@ -9,11 +9,11 @@ protocol LoginDisplayLogic: AnyObject {
 
 final class LoginViewController: UIViewController {
     let interactor: LoginBusinessLogic
-
+    lazy var rootView = LoginView()
+    
     init(interactor: LoginBusinessLogic) {
         self.interactor = interactor
-        
-        super.init(nibName: String(describing: LoginViewController.self), bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -21,10 +21,18 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: View lifecycle
+    
+    override func loadView() {
+        view = rootView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
+        configureIdView()
+        configurePasswordView()
+        configureLoginAction()
+        
         KeyboardManager.shared.enable = true
     }
     
@@ -38,37 +46,29 @@ final class LoginViewController: UIViewController {
         KeyboardManager.shared.enable = false
     }
     
-    // MARK: Do something
-
-    @IBOutlet weak var logoView: LogoView!
-    
-    @IBOutlet weak var idView: InputTextView! {
-        didSet {
-            idView.setPlaceholder("User")
-            idView.textField.delegate = self
-            idView.textField.returnKeyType = .next
-            idView.textField.keyboardType = .numberPad
-        }
+    private func configureIdView() {
+        rootView.idView.setPlaceholder("User")
+        rootView.idView.textField.delegate = self
+        rootView.idView.textField.returnKeyType = .next
+        rootView.idView.textField.keyboardType = .numberPad
     }
     
-    @IBOutlet weak var passwordView: InputTextView! {
-        didSet {
-            passwordView.setPlaceholder("Password")
-            passwordView.textField.isSecureTextEntry = true
-            passwordView.textField.delegate = self
-            passwordView.textField.returnKeyType = .done
-        }
+    private func configurePasswordView() {
+        rootView.passwordView.setPlaceholder("Password")
+        rootView.passwordView.textField.isSecureTextEntry = true
+        rootView.passwordView.textField.delegate = self
+        rootView.passwordView.textField.returnKeyType = .done
     }
-    
-    @IBOutlet weak var loginButtonView: LoginButtonView! {
-        didSet {
-            loginButtonView.action = loginAction
+        
+    private func configureLoginAction() {
+        rootView.loginButtonView.action = { [weak self] in
+            guard let self else { return }
+            let request = Login.Request(
+                user: self.rootView.idView.getText(),
+                password: self.rootView.passwordView.getText()
+            )
+            self.interactor.auth(request: request)
         }
-    }
-    
-    func loginAction() {
-        let request = Login.Request(user: idView.textField.text, password: passwordView.textField.text)
-        interactor.auth(request: request)
     }
     
     private func hideKeyboardWhenTappedAround() {
@@ -77,7 +77,7 @@ final class LoginViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -86,7 +86,7 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.returnKeyType == .next {
-            passwordView.textField.becomeFirstResponder()
+            rootView.passwordView.textField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
@@ -104,8 +104,8 @@ extension LoginViewController: LoginDisplayLogic {
     }
     
     func displayLastUser(viewModel: Login.LastUserViewModel) {
-        idView.textField.text = viewModel.user
-        passwordView.textField.text = viewModel.password
+        rootView.idView.set(text: viewModel.user)
+        rootView.passwordView.set(text: viewModel.password)
     }
     
     func displayError(viewModel: Login.ErrorViewModel) {
@@ -114,13 +114,10 @@ extension LoginViewController: LoginDisplayLogic {
     
     private func showAlert(withMessage message: String) {
         let alertController = UIAlertController(title: "Alerta", message: message, preferredStyle: .alert)
-        
         let action = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
             print("You've pressed default");
         }
-        
         alertController.addAction(action)
-        
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

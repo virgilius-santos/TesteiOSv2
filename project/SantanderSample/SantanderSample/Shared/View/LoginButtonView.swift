@@ -27,8 +27,10 @@ final class LoginButtonView: UIView {
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             loginButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            loginButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            loginButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+            loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            loginButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            loginButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 200)
         ])
         backgroundColor = .clear
     }

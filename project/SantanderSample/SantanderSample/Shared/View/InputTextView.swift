@@ -1,5 +1,15 @@
 import UIKit
 
+extension InputTextView {
+    func set(text: String?) {
+        textField.text = text
+    }
+    
+    func getText() -> String? {
+        textField.text
+    }
+}
+
 final class InputTextView: UIView {
     lazy var textField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -23,12 +33,13 @@ final class InputTextView: UIView {
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            textField.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
         backgroundColor = .clear
         borderColor = .grayApp
         borderWidth = 2
+        cornerRadius = 8
     }
     
     func setPlaceholder(_ string: String) {
