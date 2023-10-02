@@ -1,22 +1,16 @@
-//
-//  LoginButton.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 26/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-class LoginButtonView: UIView {
+final class LoginButtonView: UIView {
+    var action: (() -> Void)?
     
-    @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var loginButton: UIButton! {
-        didSet {
-            loginButton.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
+    lazy var loginButton: UIButton = {
+        $0.setTitle("Login", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .blueApp
+        $0.cornerRadius = 8
+        $0.addTarget(self, action: #selector(_Action), for: .touchUpInside)
+        return $0
+    }(UIButton())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,13 +23,17 @@ class LoginButtonView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(String(describing: LoginButtonView.self), owner: self, options: nil)
-        
-        addSubview(contentView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(loginButton)
+        NSLayoutConstraint.activate([
+            loginButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            loginButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            loginButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            loginButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+        ])
         backgroundColor = .clear
     }
-
-
+    
+    @objc private func _Action() {
+        action?()
+    }
 }

@@ -62,14 +62,11 @@ final class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButtonView: LoginButtonView! {
         didSet {
-            let button = loginButtonView.loginButton
-            button?.addTarget(self,
-                              action: #selector(loginAction),
-                              for: .touchUpInside)
+            loginButtonView.action = loginAction
         }
     }
     
-    @objc func loginAction() {
+    func loginAction() {
         let request = Login.Request(user: idView.textField.text, password: passwordView.textField.text)
         interactor.auth(request: request)
     }
