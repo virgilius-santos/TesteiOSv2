@@ -3,6 +3,8 @@ import UIKit
 final class LogoView: UIView {
     lazy var logoImageView =  {
         $0.image = UIImage(named: "Logo")
+        $0.isAccessibilityElement = true
+        $0.accessibilityLabel = "Bank Logo"
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIImageView())
