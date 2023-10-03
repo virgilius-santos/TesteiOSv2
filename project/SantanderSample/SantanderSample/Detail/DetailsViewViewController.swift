@@ -10,11 +10,11 @@ protocol DetailDisplayLogic: AnyObject {
 final class DetailsViewViewController: UIViewController {
     let interactor: DetailBusinessLogic
     var detailList: [Detail.StatementViewModel] = []
+    lazy var rootView = DetailView()
     
     init(interactor: DetailBusinessLogic) {
         self.interactor = interactor
-        
-        super.init(nibName: String(describing: DetailsViewViewController.self), bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,83 +23,44 @@ final class DetailsViewViewController: UIViewController {
     
     // MARK: View lifecycle
     
+    override func loadView() {
+        view = rootView
+        rootView.exit.action = { [interactor] in
+            interactor.logout()
+        }
+        rootView.statements.collection.delegate = self
+        rootView.statements.collection.dataSource = self
+        rootView.statements.collection.registerWithNib(instance: DetailCell.self)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor.getDetails()
     }
     
-    // MARK: Do something
-    
-    @IBOutlet weak var exitView: ExitButtonView! {
-        didSet {
-            exitView.action = { [weak self] in
-                self?.exitAction()
-            }
-        }
-    }
-    
-    @IBOutlet weak var nameView: InfoDetailView! {
-        didSet{
-            nameView.infoLabel.text = ""
-        }
-    }
-    
-    @IBOutlet weak var accountTitleView: TitleDetailView! {
-        didSet {
-            accountTitleView.titleLabel.text = "Conta"
-        }
-    }
-    @IBOutlet weak var accountInfoView: InfoDetailView! {
-        didSet{
-            accountInfoView.infoLabel.text = ""
-        }
-    }
-    
-    @IBOutlet weak var balanceTitleView: TitleDetailView! {
-        didSet {
-            balanceTitleView.titleLabel.text = "Saldo"
-        }
-    }
-    
-    @IBOutlet weak var balnceInfoView: InfoDetailView!{
-        didSet{
-            balnceInfoView.infoLabel.text = ""
-        }
-    }
-    
-    @IBOutlet weak var detailsView: UIView!
-    
-    @IBOutlet weak var entriesCollectionView: UICollectionView! {
-        didSet {
-            entriesCollectionView.delegate = self
-            entriesCollectionView.dataSource = self
-            entriesCollectionView.registerWithNib(instance: DetailCell.self)
-        }
-    }
-    
-    @objc func exitAction() {
+    func exitAction() {
         interactor.logout()
     }
 }
 
 extension DetailsViewViewController: DetailDisplayLogic {
     func startLoading() {
-        detailsView.lock()
+        rootView.statements.lock()
     }
     
     func stopLoading() {
-        detailsView.unlock()
+        rootView.statements.unlock()
     }
     
     func displayUserInfo(viewModel: Detail.ViewModel) {
-        nameView.infoLabel.text = viewModel.name
-        accountInfoView.infoLabel.text = viewModel.account
-        balnceInfoView.infoLabel.text = viewModel.balance
+        rootView.name.label.text = viewModel.name
+        rootView.account.set(title: "Conta", info: viewModel.account ?? "")
+        rootView.balance.set(title: "Saldo", info: viewModel.balance ?? "")
     }
     
     func displayDetail(_ detailList: [Detail.StatementViewModel]) {
         self.detailList = detailList
-        entriesCollectionView.reloadData()
+        rootView.statements.collection.reloadData()
     }
 }
 

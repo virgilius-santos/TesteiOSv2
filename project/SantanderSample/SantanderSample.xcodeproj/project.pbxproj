@@ -32,7 +32,6 @@
 		18572B9E21847CEC008A196B /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9C21847CEC008A196B /* DetailCell.xib */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
 		18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BAE2184B299008A196B /* DetailsViewViewController.swift */; };
-		18572BB12184B299008A196B /* DetailsViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572BAF2184B299008A196B /* DetailsViewViewController.xib */; };
 		18572BB62184E791008A196B /* APIClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BB52184E791008A196B /* APIClientImpl.swift */; };
 		18572BB82184F60B008A196B /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BB72184F60B008A196B /* CodableExtensions.swift */; };
 		18572BBB21853BBA008A196B /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BBA21853BB9008A196B /* DoubleExtensions.swift */; };
@@ -59,6 +58,8 @@
 		3B448AC92ACAECBB00F94292 /* XCTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC82ACAECBB00F94292 /* XCTestExtensions.swift */; };
 		3B990CA82ACB86CC00982759 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B990CA72ACB86CC00982759 /* LoginView.swift */; };
 		3B990CAA2ACB9E9900982759 /* HeaderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B990CA92ACB9E9900982759 /* HeaderDetailView.swift */; };
+		3B990CAC2ACBA04A00982759 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B990CAB2ACBA04A00982759 /* DetailView.swift */; };
+		3B990CAE2ACBA68B00982759 /* StatementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B990CAD2ACBA68B00982759 /* StatementsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +100,6 @@
 		18572B9C21847CEC008A196B /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BAE2184B299008A196B /* DetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewViewController.swift; sourceTree = "<group>"; };
-		18572BAF2184B299008A196B /* DetailsViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewViewController.xib; sourceTree = "<group>"; };
 		18572BB52184E791008A196B /* APIClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientImpl.swift; sourceTree = "<group>"; };
 		18572BB72184F60B008A196B /* CodableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtensions.swift; sourceTree = "<group>"; };
 		18572BBA21853BB9008A196B /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
@@ -126,6 +126,8 @@
 		3B448AC82ACAECBB00F94292 /* XCTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestExtensions.swift; sourceTree = "<group>"; };
 		3B990CA72ACB86CC00982759 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3B990CA92ACB9E9900982759 /* HeaderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDetailView.swift; sourceTree = "<group>"; };
+		3B990CAB2ACBA04A00982759 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		3B990CAD2ACBA68B00982759 /* StatementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementsView.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D784D67B09F33BCDA6A64F1E /* Pods_SantanderSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -226,6 +228,7 @@
 				18572B602183B9A0008A196B /* DetailPresenter.swift */,
 				18572B612183B9A0008A196B /* DetailWorker.swift */,
 				18DE570D226B54D2009E25B5 /* DetailConfigurator.swift */,
+				3B990CAB2ACBA04A00982759 /* DetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -234,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				18572B9C21847CEC008A196B /* DetailCell.xib */,
-				18572BAF2184B299008A196B /* DetailsViewViewController.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -266,6 +268,7 @@
 				3B990CA92ACB9E9900982759 /* HeaderDetailView.swift */,
 				18572B832183BCF1008A196B /* ExitButtonView.swift */,
 				18572B852183BD2C008A196B /* DetailCell.swift */,
+				3B990CAD2ACBA68B00982759 /* StatementsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,7 +446,6 @@
 				18572B3E2183B7C2008A196B /* LaunchScreen.storyboard in Resources */,
 				18572B9E21847CEC008A196B /* DetailCell.xib in Resources */,
 				18572B3B2183B7C2008A196B /* Assets.xcassets in Resources */,
-				18572BB12184B299008A196B /* DetailsViewViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +469,7 @@
 				18572B5B2183B97B008A196B /* LoginViewController.swift in Sources */,
 				18572B782183BBE3008A196B /* LoginButtonView.swift in Sources */,
 				18572B7C2183BC8B008A196B /* TitleDetailView.swift in Sources */,
+				3B990CAE2ACBA68B00982759 /* StatementsView.swift in Sources */,
 				18572B702183BB4A008A196B /* InputTextView.swift in Sources */,
 				18572B672183B9A0008A196B /* DetailWorker.swift in Sources */,
 				18572BBB21853BBA008A196B /* DoubleExtensions.swift in Sources */,
@@ -492,6 +495,7 @@
 				18DE5706226B2FC4009E25B5 /* ArrayExtensions.swift in Sources */,
 				18572B6B2183B9A0008A196B /* DetailInteractor.swift in Sources */,
 				18572B842183BCF1008A196B /* ExitButtonView.swift in Sources */,
+				3B990CAC2ACBA04A00982759 /* DetailView.swift in Sources */,
 				3B448ABB2AC9D8F100F94292 /* LoginRoutingLogicThreadWrapper.swift in Sources */,
 				18572B742183BB72008A196B /* LogoView.swift in Sources */,
 				18572B342183B7C1008A196B /* AppDelegate.swift in Sources */,
