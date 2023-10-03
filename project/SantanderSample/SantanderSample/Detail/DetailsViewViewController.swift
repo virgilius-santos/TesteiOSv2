@@ -32,12 +32,9 @@ final class DetailsViewViewController: UIViewController {
     
     @IBOutlet weak var exitView: ExitButtonView! {
         didSet {
-            let button = exitView.exitButton
-            button?.addTarget(
-                self,
-                action: #selector(exitAction),
-                for: .touchUpInside
-            )
+            exitView.action = { [weak self] in
+                self?.exitAction()
+            }
         }
     }
     
