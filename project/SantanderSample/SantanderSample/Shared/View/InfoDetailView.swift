@@ -1,23 +1,12 @@
-//
-//  DetailView.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 26/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-class InfoDetailView: UIView {
-
-    @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var infoLabel: UILabel! {
-        didSet {
-            infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
+final class InfoDetailView: UIView {
+    lazy var infoLabel: UILabel = {
+        $0.textColor = .white
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .preferredFont(forTextStyle: .headline)
+        return $0
+    }(UILabel())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,17 +19,13 @@ class InfoDetailView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(String(describing: InfoDetailView.self), owner: self, options: nil)
-        
-        addSubview(contentView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
+        addSubview(infoLabel)
+        NSLayoutConstraint.activate([
+            infoLabel.topAnchor.constraint(equalTo: topAnchor),
+            infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+        ])
         backgroundColor = .clear
     }
-
 }

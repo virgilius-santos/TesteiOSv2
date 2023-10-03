@@ -30,7 +30,6 @@
 		18572B8B2183E352008A196B /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B8A2183E352008A196B /* UIViewExtensions.swift */; };
 		18572B8D2183E3D8008A196B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B8C2183E3D8008A196B /* UIColorExtensions.swift */; };
 		18572B902183EE66008A196B /* InfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B8E2183EE66008A196B /* InfoDetailView.swift */; };
-		18572B912183EE66008A196B /* InfoDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B8F2183EE66008A196B /* InfoDetailView.xib */; };
 		18572B9E21847CEC008A196B /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18572B9C21847CEC008A196B /* DetailCell.xib */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
 		18572BB02184B299008A196B /* DetailsViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BAE2184B299008A196B /* DetailsViewViewController.swift */; };
@@ -98,7 +97,6 @@
 		18572B8A2183E352008A196B /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		18572B8C2183E3D8008A196B /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		18572B8E2183EE66008A196B /* InfoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailView.swift; sourceTree = "<group>"; };
-		18572B8F2183EE66008A196B /* InfoDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDetailView.xib; sourceTree = "<group>"; };
 		18572B9C21847CEC008A196B /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BAE2184B299008A196B /* DetailsViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewViewController.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 		18572B6C2183BAF5008A196B /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				18572B8F2183EE66008A196B /* InfoDetailView.xib */,
 				18572B812183BCD8008A196B /* ExitButtonView.xib */,
 				18572B9C21847CEC008A196B /* DetailCell.xib */,
 				18572BAF2184B299008A196B /* DetailsViewViewController.xib */,
@@ -448,7 +445,6 @@
 				18572B3B2183B7C2008A196B /* Assets.xcassets in Resources */,
 				18572BB12184B299008A196B /* DetailsViewViewController.xib in Resources */,
 				18572B822183BCD8008A196B /* ExitButtonView.xib in Resources */,
-				18572B912183EE66008A196B /* InfoDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
