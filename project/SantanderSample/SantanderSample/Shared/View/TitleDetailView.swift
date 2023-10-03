@@ -1,7 +1,7 @@
 import UIKit
 
 final class TitleDetailView: UIView {
-    lazy var titleLabel: UILabel = {
+    lazy var label: UILabel = {
         $0.textColor = .white
         $0.accessibilityTraits = .header
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -20,12 +20,12 @@ final class TitleDetailView: UIView {
     }
     
     func commonInit() {
-        addSubview(titleLabel)
+        addSubview(label)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
         backgroundColor = .clear
     }

@@ -1,7 +1,7 @@
 import UIKit
 
 final class InfoDetailView: UIView {
-    lazy var infoLabel: UILabel = {
+    lazy var label: UILabel = {
         $0.textColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .headline)
@@ -19,12 +19,12 @@ final class InfoDetailView: UIView {
     }
     
     func commonInit() {
-        addSubview(infoLabel)
+        addSubview(label)
         NSLayoutConstraint.activate([
-            infoLabel.topAnchor.constraint(equalTo: topAnchor),
-            infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
         backgroundColor = .clear
     }
