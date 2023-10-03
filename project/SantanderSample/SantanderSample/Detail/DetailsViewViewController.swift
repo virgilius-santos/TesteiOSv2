@@ -16,9 +16,8 @@ final class DetailsViewViewController: ViewControllerBase<DetailBusinessLogic, D
         rootView.exit.action = { [interactor] in
             interactor.logout()
         }
-        rootView.statements.collection.delegate = self
-        rootView.statements.collection.dataSource = self
-        rootView.statements.collection.registerWithNib(instance: DetailCell.self)
+        rootView.statements.list.dataSource = self
+        rootView.statements.list.registerWithNib(instance: DetailCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,20 +47,18 @@ extension DetailsViewViewController: DetailDisplayLogic {
     
     func displayDetail(_ detailList: [Detail.StatementViewModel]) {
         self.detailList = detailList
-        rootView.statements.collection.reloadData()
+        rootView.statements.reload()
     }
 }
 
-extension DetailsViewViewController: UICollectionViewDelegate {}
-
-extension DetailsViewViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension DetailsViewViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         detailList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
-        cell?.setup(viewModel: detailList[safeIndex: indexPath.row])
-        return cell ?? UICollectionViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(cellForItemAt: indexPath, instance: DetailCell.self)
+        cell.setup(viewModel: detailList[indexPath.row])
+        return cell
     }
 }

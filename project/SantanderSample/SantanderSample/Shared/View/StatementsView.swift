@@ -1,13 +1,12 @@
 import UIKit
 
 final class StatementsView: UIView {
-    lazy var collection: UICollectionView = {
+    lazy var list: UITableView = {
+        $0.separatorStyle = .none
+        $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
-        ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = .init(width: 342, height: 80)
-        ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.estimatedItemSize = .zero
-
         return $0
-    }(UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()))
+    }(UITableView())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,13 +19,17 @@ final class StatementsView: UIView {
     }
     
     func commonInit() {
-        addSubview(collection)
+        addSubview(list)
         NSLayoutConstraint.activate([
-            collection.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            collection.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            collection.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            collection.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            list.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            list.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            list.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            list.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
         backgroundColor = .clear
+    }
+    
+    func reload() {
+        list.reloadData()
     }
 }

@@ -1,7 +1,6 @@
 import UIKit
 
 extension UICollectionView {
-
     func dequeueReusableCell<T: UICollectionViewCell>(cellForItemAt indexPath: IndexPath, instance: T.Type) -> T? {
         
         let cellIdentifier = String(describing: instance.self)
@@ -15,5 +14,4 @@ extension UICollectionView {
         let nib = UINib(nibName: cellIdentifier, bundle: nil)
         register(nib, forCellWithReuseIdentifier: cellIdentifier)
     }
-    
 }

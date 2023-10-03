@@ -5,6 +5,8 @@ final class InfoDetailView: UIView {
         $0.textColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .headline)
+        $0.adjustsFontForContentSizeCategory = true
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     

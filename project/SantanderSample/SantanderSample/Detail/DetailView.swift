@@ -95,6 +95,6 @@ final class DetailView: UIView {
             statements.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
         
-        backgroundColor = .white
+        backgroundColor = .grayApp
     }
 }

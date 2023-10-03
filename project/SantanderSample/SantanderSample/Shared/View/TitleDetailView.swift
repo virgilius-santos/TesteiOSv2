@@ -6,6 +6,8 @@ final class TitleDetailView: UIView {
         $0.accessibilityTraits = .header
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .preferredFont(forTextStyle: .subheadline)
+        $0.adjustsFontForContentSizeCategory = true
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
