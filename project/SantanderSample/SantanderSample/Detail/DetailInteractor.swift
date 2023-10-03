@@ -4,7 +4,7 @@ protocol DetailRoutingLogic: AnyObject {
     func routeToLogin()
 }
 
-protocol DetailBusinessLogic {
+protocol DetailBusinessLogic: AnyObject {
     func getDetails()
     func logout()
 }

@@ -7,24 +7,12 @@ protocol DetailDisplayLogic: AnyObject {
     func displayDetail(_ detailList: [Detail.StatementViewModel])
 }
 
-final class DetailsViewViewController: UIViewController {
-    let interactor: DetailBusinessLogic
+final class DetailsViewViewController: ViewControllerBase<DetailBusinessLogic, DetailView> {
     var detailList: [Detail.StatementViewModel] = []
-    lazy var rootView = DetailView()
-    
-    init(interactor: DetailBusinessLogic) {
-        self.interactor = interactor
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: View lifecycle
-    
-    override func loadView() {
-        view = rootView
+    override func viewDidLoad() {
+        super.viewDidLoad()
         rootView.exit.action = { [interactor] in
             interactor.logout()
         }
