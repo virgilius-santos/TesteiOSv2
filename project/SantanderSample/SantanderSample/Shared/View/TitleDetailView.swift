@@ -1,23 +1,13 @@
-//
-//  DetailView.swift
-//  SantanderSample
-//
-//  Created by Virgilius Santos on 26/10/18.
-//  Copyright © 2018 Virgilius Santos. All rights reserved.
-//
-
 import UIKit
 
-class TitleDetailView: UIView {
-
-    @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var titleLabel: UILabel! {
-        didSet {
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
+final class TitleDetailView: UIView {
+    lazy var titleLabel: UILabel = {
+        $0.textColor = .white
+        $0.accessibilityTraits = .header
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .preferredFont(forTextStyle: .subheadline)
+        return $0
+    }(UILabel())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,17 +20,13 @@ class TitleDetailView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(String(describing: TitleDetailView.self), owner: self, options: nil)
-        
-        addSubview(contentView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
+        addSubview(titleLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+        ])
         backgroundColor = .clear
     }
-
 }
