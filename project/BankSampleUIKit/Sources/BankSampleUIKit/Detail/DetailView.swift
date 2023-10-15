@@ -1,6 +1,7 @@
 import UIKit
+import UIKitComponents
 
-final class DetailView: UIView {
+public final class DetailView: UIView {
     lazy var content: UIView = {
         $0.backgroundColor = .blueApp
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -39,12 +40,12 @@ final class DetailView: UIView {
         return $0
     }(StatementsView())
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }

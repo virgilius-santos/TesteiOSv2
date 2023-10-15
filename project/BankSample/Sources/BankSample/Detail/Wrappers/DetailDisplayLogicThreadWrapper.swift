@@ -1,27 +1,31 @@
 import Foundation
 
-final class DetailDisplayLogicThreadWrapper: DetailDisplayLogic {
-    weak var displaying: DetailDisplayLogic?
+public final class DetailDisplayLogicThreadWrapper: DetailDisplayLogic {
+    public weak var displaying: DetailDisplayLogic?
     
-    func displayUserInfo(viewModel: Detail.ViewModel) {
+    public init(displaying: DetailDisplayLogic? = nil) {
+        self.displaying = displaying
+    }
+    
+    public func displayUserInfo(viewModel: Detail.ViewModel) {
         displaying.executeInMainThread { displaying in
             displaying.displayUserInfo(viewModel: viewModel)
         }
     }
     
-    func displayDetail(_ detailList: [Detail.StatementViewModel]) {
+    public func displayDetail(_ detailList: [Detail.StatementViewModel]) {
         displaying.executeInMainThread { displaying in
             displaying.displayDetail(detailList)
         }
     }
     
-    func startLoading() {
+    public func startLoading() {
         displaying.executeInMainThread { displaying in
             displaying.startLoading()
         }
     }
     
-    func stopLoading() {
+    public func stopLoading() {
         displaying.executeInMainThread { displaying in
             displaying.stopLoading()
         }

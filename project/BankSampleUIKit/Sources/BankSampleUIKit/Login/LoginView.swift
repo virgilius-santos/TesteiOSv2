@@ -1,6 +1,6 @@
 import UIKit
 
-final class LoginView: UIView {
+public final class LoginView: UIView {
     lazy var contentView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -32,12 +32,12 @@ final class LoginView: UIView {
         return $0
     }(LoginButtonView())
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }

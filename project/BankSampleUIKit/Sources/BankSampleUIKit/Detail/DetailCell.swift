@@ -89,11 +89,4 @@ final class DetailCell: UITableViewCell {
         contentView.backgroundColor = .clear
         card.cornerRadius = 8
     }
-    
-    func setup(viewModel: Detail.StatementViewModel) {
-        dateLabel.text = viewModel.date
-        infoLabel.text = viewModel.desc
-        paymentLabel.text = viewModel.title
-        priceLabel.text = viewModel.value
-    }
 }

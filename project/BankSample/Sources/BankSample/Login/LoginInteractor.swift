@@ -4,17 +4,17 @@ public protocol LoginRoutingLogic: AnyObject {
     func routeToDetails(user: Login.UserAccount)
 }
 
-protocol LoginBusinessLogic {
+public protocol LoginBusinessLogic {
     func auth(request: Login.Request)
     func getLastUser()
 }
 
-final class LoginInteractor {
+public final class LoginInteractor {
     let worker: LoginWorker
     let router: LoginRoutingLogic
     let presenter: LoginPresentationLogic
     
-    init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresentationLogic) {
+    public init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresentationLogic) {
         self.presenter = presenter
         self.worker = worker
         self.router = router
@@ -30,7 +30,7 @@ extension LoginInteractor: LoginBusinessLogic {
         worker.validatePassword(request.password)
     }
     
-    func auth(request: Login.Request) {
+    public func auth(request: Login.Request) {
         guard isValidId(request: request) else {
             presenter.present(error: Login.Error.id)
             return
@@ -54,7 +54,7 @@ extension LoginInteractor: LoginBusinessLogic {
         }
     }
     
-    func getLastUser() {
+    public func getLastUser() {
         let lastLogin = worker.getLastLogin()
         presenter.present(lastLogin: lastLogin)
     }

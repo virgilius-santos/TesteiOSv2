@@ -1,18 +1,20 @@
 import UIKit
 import Network
+import BankSample
+import BankSampleUIKit
 
-public final class DetailConfigurator {
+final class DetailConfigurator {
     let client: APIClient
     let user: Login.UserAccount
     let router: DetailRoutingLogic
     
-    public init(router: DetailRoutingLogic, user: Login.UserAccount, client: APIClient) {
+    init(router: DetailRoutingLogic, user: Login.UserAccount, client: APIClient) {
         self.client = client
         self.user = user
         self.router = router
     }
     
-    public func build() -> UIViewController {
+    func build() -> UIViewController {
         let displayThreadWrapper = DetailDisplayLogicThreadWrapper()
         let routerThreadWrapper = DetailRoutingLogicThreadWrapper()
         let worker = DetailWorker(client: client)

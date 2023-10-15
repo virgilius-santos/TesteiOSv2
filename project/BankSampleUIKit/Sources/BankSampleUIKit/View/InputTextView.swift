@@ -1,4 +1,5 @@
 import UIKit
+import UIKitComponents
 
 extension InputTextView {
     func set(text: String?) {

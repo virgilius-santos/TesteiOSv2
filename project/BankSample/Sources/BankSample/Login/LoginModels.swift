@@ -1,17 +1,17 @@
 import UIKit
 
 public enum Login {
-    struct Request: Encodable, Equatable {
+    public struct Request: Encodable, Equatable {
         let user: String
         let password: String
         
-        init(user: String?, password: String?) {
+        public init(user: String?, password: String?) {
             self.user = user ?? ""
             self.password = password ?? ""
         }
     }
     
-    struct LoginSave {
+    public struct LoginSave {
         let user: String?
         let password: String?
     }
@@ -29,12 +29,12 @@ public enum Login {
         public let balance: Double
     }
     
-    struct ErrorViewModel {
-        let error: String?
+    public struct ErrorViewModel {
+        public let error: String?
     }
     
-    struct LastUserViewModel {
-        let password: String?
-        let user: String?
+    public struct LastUserViewModel {
+        public let password: String?
+        public let user: String?
     }
 }

@@ -1,13 +1,15 @@
 import UIKit
 import Network
 import KeyChain
+import BankSample
+import BankSampleUIKit
 
-public final class LoginConfigurator {
+final class LoginConfigurator {
     let client: APIClient
     let router: LoginRoutingLogic
     let keychain: KeychainManager
     
-    public init(
+    init(
         router: LoginRoutingLogic,
         client: APIClient,
         keychain: KeychainManager
@@ -17,7 +19,7 @@ public final class LoginConfigurator {
         self.keychain = keychain
     }
     
-    public func build() -> UIViewController {
+    func build() -> UIViewController {
         let displayThreadWrapper = LoginDisplayLogicThreadWrapper()
         let routerThreadWrapper = LoginRoutingLogicThreadWrapper()
         let worker = LoginWorker(client: client, keychain: keychain)

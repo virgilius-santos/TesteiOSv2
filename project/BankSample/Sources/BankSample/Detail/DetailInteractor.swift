@@ -5,18 +5,18 @@ public protocol DetailRoutingLogic: AnyObject {
     func routeToLogin()
 }
 
-protocol DetailBusinessLogic: AnyObject {
+public protocol DetailBusinessLogic: AnyObject {
     func getDetails()
     func logout()
 }
 
-final class DetailInteractor {
+public final class DetailInteractor {
     let presenter: DetailPresentationLogic
     let worker: DetailWorker
     let router: DetailRoutingLogic
     let request: Detail.Request
     
-    init(
+    public init(
         worker: DetailWorker,
         router: DetailRoutingLogic,
         presenter: DetailPresentationLogic,
@@ -31,11 +31,11 @@ final class DetailInteractor {
 }
 
 extension DetailInteractor: DetailBusinessLogic {
-    func logout() {
+    public func logout() {
         router.routeToLogin()
     }
     
-    func getDetails() {
+    public func getDetails() {
         let response = Detail.UserViewModel(
             id: request.userId,
             name: request.name,

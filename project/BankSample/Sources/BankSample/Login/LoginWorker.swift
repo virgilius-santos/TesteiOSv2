@@ -1,13 +1,13 @@
-import UIKit
+import Foundation
 import Network
 import KeyChain
 import FoundationUtils
 
-final class LoginWorker {
+public final class LoginWorker {
     private let client: APIClient
     private let keychain: KeychainManager
     
-    init(client: APIClient, keychain: KeychainManager) {
+    public init(client: APIClient, keychain: KeychainManager) {
         self.client = client
         self.keychain = keychain
     }

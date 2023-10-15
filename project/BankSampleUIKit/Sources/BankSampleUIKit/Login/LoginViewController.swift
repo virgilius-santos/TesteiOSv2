@@ -1,16 +1,10 @@
 import UIKit
 import UIKitComponents
+import BankSample
 
-protocol LoginDisplayLogic: AnyObject {
-    func startLoading()
-    func stopLoading()
-    func displayError(viewModel: Login.ErrorViewModel)
-    func displayLastUser(viewModel: Login.LastUserViewModel)
-}
-
-final class LoginViewController: ViewControllerBase<LoginBusinessLogic, LoginView> {
+public final class LoginViewController: ViewControllerBase<LoginBusinessLogic, LoginView> {
     // MARK: View lifecycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         configureIdView()
@@ -20,12 +14,12 @@ final class LoginViewController: ViewControllerBase<LoginBusinessLogic, LoginVie
 //        KeyboardManager.shared.enable = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor.getLastUser()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 //        KeyboardManager.shared.enable = false
     }
@@ -68,7 +62,7 @@ final class LoginViewController: ViewControllerBase<LoginBusinessLogic, LoginVie
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.returnKeyType == .next {
             rootView.passwordView.textField.becomeFirstResponder()
         } else {
@@ -79,20 +73,20 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 extension LoginViewController: LoginDisplayLogic {
-    func startLoading() {
+    public func startLoading() {
         view.lock()
     }
     
-    func stopLoading() {
+    public func stopLoading() {
         view.unlock()
     }
     
-    func displayLastUser(viewModel: Login.LastUserViewModel) {
+    public func displayLastUser(viewModel: Login.LastUserViewModel) {
         rootView.idView.set(text: viewModel.user)
         rootView.passwordView.set(text: viewModel.password)
     }
     
-    func displayError(viewModel: Login.ErrorViewModel) {
+    public func displayError(viewModel: Login.ErrorViewModel) {
         showAlert(withMessage: viewModel.error!)
     }
     

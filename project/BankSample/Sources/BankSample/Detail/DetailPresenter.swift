@@ -1,6 +1,6 @@
 import UIKit
 
-protocol DetailPresentationLogic {
+public protocol DetailPresentationLogic {
     func startLoading()
     func stopLoading()
     func present(response: [Detail.Statement])
@@ -8,28 +8,28 @@ protocol DetailPresentationLogic {
     func present(error: Detail.Error)
 }
 
-final class DetailPresenter {
+public final class DetailPresenter {
     let displaying: DetailDisplayLogic
     
-    init(displaying: DetailDisplayLogic) {
+    public init(displaying: DetailDisplayLogic) {
         self.displaying = displaying
     }
 }
 
 extension DetailPresenter: DetailPresentationLogic {
-    func startLoading() {
+    public func startLoading() {
         displaying.startLoading()
     }
     
-    func stopLoading() {
+    public func stopLoading() {
         displaying.stopLoading()
     }
     
-    func present(error: Detail.Error) {
+    public func present(error: Detail.Error) {
         // TODO: definir layout de erro
     }
     
-    func presentUserInfo(response: Detail.UserViewModel) {
+    public func presentUserInfo(response: Detail.UserViewModel) {
         let mStr = NSMutableString(string: response.agency)
         mStr.insert("-", at: response.agency.count-1)
         mStr.insert(".", at: 2)
@@ -41,7 +41,7 @@ extension DetailPresenter: DetailPresentationLogic {
         displaying.displayUserInfo(viewModel: viewModel)
     }
     
-    func present(response: [Detail.Statement]) {
+    public func present(response: [Detail.Statement]) {
         let detailList = response
             .map {
                 Detail.StatementViewModel(
