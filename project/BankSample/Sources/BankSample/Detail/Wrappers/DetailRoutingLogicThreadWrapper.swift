@@ -1,14 +1,14 @@
 import Foundation
 import FoundationUtils
 
-public final class DetailRoutingLogicThreadWrapper: DetailRoutingLogic {
-    public weak var router: DetailRoutingLogic?
+final class DetailRoutingLogicThreadWrapper: DetailRoutingLogic {
+    weak var router: DetailRoutingLogic?
     
-    public init(router: DetailRoutingLogic? = nil) {
+    init(router: DetailRoutingLogic? = nil) {
         self.router = router
     }
     
-    public func routeToLogin() {
+    func routeToLogin() {
         router.executeInMainThread { router in
             router.routeToLogin()
         }

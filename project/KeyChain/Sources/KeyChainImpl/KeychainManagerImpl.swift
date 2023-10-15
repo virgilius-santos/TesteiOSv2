@@ -5,7 +5,11 @@ import KeyChain
 public final class KeychainManagerImpl: KeychainManager {
     private var wrapper: KeychainWrapper
     
-    public init(wrapper: KeychainWrapper = KeychainWrapper.standard) {
+    public convenience init() {
+        self.init(wrapper: KeychainWrapper.standard)
+    }
+    
+    init(wrapper: KeychainWrapper) {
         self.wrapper = wrapper
     }
     

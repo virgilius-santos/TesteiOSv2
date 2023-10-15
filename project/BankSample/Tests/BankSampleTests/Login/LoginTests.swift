@@ -13,6 +13,7 @@ extension Login.UserAccount {
         )
     }
 }
+
 private extension LoginTests {
     typealias Sut = LoginBusinessLogic
     

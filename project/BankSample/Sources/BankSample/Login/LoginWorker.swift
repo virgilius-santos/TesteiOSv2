@@ -3,11 +3,11 @@ import Network
 import KeyChain
 import FoundationUtils
 
-public final class LoginWorker {
+final class LoginWorker {
     private let client: APIClient
     private let keychain: KeychainManager
     
-    public init(client: APIClient, keychain: KeychainManager) {
+    init(client: APIClient, keychain: KeychainManager) {
         self.client = client
         self.keychain = keychain
     }

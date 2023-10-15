@@ -9,12 +9,12 @@ public protocol LoginBusinessLogic {
     func getLastUser()
 }
 
-public final class LoginInteractor {
+final class LoginInteractor {
     let worker: LoginWorker
     let router: LoginRoutingLogic
     let presenter: LoginPresenter
     
-    public init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresenter) {
+    init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresenter) {
         self.presenter = presenter
         self.worker = worker
         self.router = router
@@ -30,7 +30,7 @@ extension LoginInteractor: LoginBusinessLogic {
         worker.validatePassword(request.password)
     }
     
-    public func auth(request: Login.Request) {
+    func auth(request: Login.Request) {
         guard isValidId(request: request) else {
             presenter.present(error: Login.Error.id)
             return
@@ -54,7 +54,7 @@ extension LoginInteractor: LoginBusinessLogic {
         }
     }
     
-    public func getLastUser() {
+    func getLastUser() {
         let lastLogin = worker.getLastLogin()
         presenter.present(lastLogin: lastLogin)
     }

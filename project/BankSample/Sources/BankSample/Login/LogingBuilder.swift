@@ -5,7 +5,7 @@ import KeyChain
 public enum LoginBuider<Display: LoginDisplayLogic> {
     public typealias DisplayProvider = (LoginBusinessLogic) -> Display
     
-    static func initialize(
+    public static func initialize(
         router: LoginRoutingLogic,
         client: APIClient,
         keychain: KeychainManager,

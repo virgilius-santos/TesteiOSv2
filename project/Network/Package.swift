@@ -16,7 +16,6 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "FoundationUtils"),
-        .package(url: "https://github.com/jrendel/SwiftKeychainWrapper", from: "4.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -31,7 +30,6 @@ let package = Package(
             name: "NetworkImpl",
             dependencies: [
                 "Network",
-                .product(name: "SwiftKeychainWrapper", package: "SwiftKeychainWrapper"),
                 .product(name: "FoundationUtils", package: "FoundationUtils"),
             ]),
     ]

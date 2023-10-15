@@ -20,21 +20,11 @@ final class LoginConfigurator {
     }
     
     func build() -> UIViewController {
-        let displayThreadWrapper = LoginDisplayLogicThreadWrapper()
-        let routerThreadWrapper = LoginRoutingLogicThreadWrapper()
-        let worker = LoginWorker(client: client, keychain: keychain)
-        let presenter = LoginPresenter(displaying: displayThreadWrapper)
-        let interactor = LoginInteractor(
-            worker: worker,
-            router: routerThreadWrapper,
-            presenter: presenter
-        )
-        let controller = LoginViewController(
-            interactor: interactor,
-            keyboardManager: KeyboardManagerImpl()
-        )
-        displayThreadWrapper.displaying = controller
-        routerThreadWrapper.router = router
-        return controller
+        LoginBuider.initialize(router: router, client: client, keychain: keychain, displayProvider: { interactor in
+            LoginViewController(
+                interactor: interactor,
+                keyboardManager: KeyboardManagerImpl()
+            )
+        })
     }
 }

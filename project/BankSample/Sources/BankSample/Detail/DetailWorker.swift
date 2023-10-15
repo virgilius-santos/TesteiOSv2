@@ -1,10 +1,10 @@
 import UIKit
 import Network
 
-public final class DetailWorker {
+final class DetailWorker {
     let client: APIClient
     
-    public init(client: APIClient) {
+    init(client: APIClient) {
         self.client = client
     }
     

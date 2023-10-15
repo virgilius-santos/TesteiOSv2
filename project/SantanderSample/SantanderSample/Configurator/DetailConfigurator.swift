@@ -15,20 +15,7 @@ final class DetailConfigurator {
     }
     
     func build() -> UIViewController {
-        let displayThreadWrapper = DetailDisplayLogicThreadWrapper()
-        let routerThreadWrapper = DetailRoutingLogicThreadWrapper()
-        let worker = DetailWorker(client: client)
-        let presenter = DetailPresenter(displaying: displayThreadWrapper)
-        let interactor = DetailInteractor(
-            worker: worker,
-            router: routerThreadWrapper,
-            presenter: presenter,
-            request: user.detailRequest
-        )
-        let controller = DetailsViewViewController(interactor: interactor)
-        displayThreadWrapper.displaying = controller
-        routerThreadWrapper.router = router
-        return controller
+        DetailBuider.initialize(request: user.detailRequest, router: router, client: client, displayProvider: DetailsViewViewController.init(interactor:))
     }
 }
 

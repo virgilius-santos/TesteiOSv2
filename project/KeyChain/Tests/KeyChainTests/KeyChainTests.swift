@@ -4,7 +4,7 @@ import SwiftKeychainWrapper
 import XCTest
 
 private extension KeychainTests {
-    typealias Sut = KeychainManager
+    typealias Sut = KeychainManagerImpl
     
     func makeSut() -> Sut {
         let wrapper = KeychainWrapper(serviceName: UUID().uuidString)

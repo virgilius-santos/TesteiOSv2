@@ -1,9 +1,9 @@
 import UIKit
 
-public final class LoginPresenter {
+final class LoginPresenter {
     let displaying: LoginDisplayLogic
     
-    public init(displaying: LoginDisplayLogic) {
+    init(displaying: LoginDisplayLogic) {
         self.displaying = displaying
     }
     

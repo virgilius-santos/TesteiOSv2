@@ -10,16 +10,16 @@ public protocol DetailBusinessLogic: AnyObject {
     func logout()
 }
 
-public final class DetailInteractor {
-    let presenter: DetailPresentationLogic
+final class DetailInteractor {
+    let presenter: DetailPresenter
     let worker: DetailWorker
     let router: DetailRoutingLogic
     let request: Detail.Request
     
-    public init(
+    init(
         worker: DetailWorker,
         router: DetailRoutingLogic,
-        presenter: DetailPresentationLogic,
+        presenter: DetailPresenter,
         request: Detail.Request
     ) {
         
@@ -31,11 +31,11 @@ public final class DetailInteractor {
 }
 
 extension DetailInteractor: DetailBusinessLogic {
-    public func logout() {
+    func logout() {
         router.routeToLogin()
     }
     
-    public func getDetails() {
+    func getDetails() {
         let response = Detail.UserViewModel(
             id: request.userId,
             name: request.name,

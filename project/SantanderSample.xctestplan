@@ -1,0 +1,59 @@
+{
+  "configurations" : [
+    {
+      "id" : "A8E32563-F2F2-4F30-A69E-4A376F410C7B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/BankSample",
+        "identifier" : "BankSampleTests",
+        "name" : "BankSampleTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/BankSampleUIKit",
+        "identifier" : "BankSampleUIKitTests",
+        "name" : "BankSampleUIKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/UIKitComponents",
+        "identifier" : "UIKitComponentsTests",
+        "name" : "UIKitComponentsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SantanderSample.xcodeproj",
+        "identifier" : "18572BD72185C786008A196B",
+        "name" : "SantanderSampleTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Network",
+        "identifier" : "NetworkTests",
+        "name" : "NetworkTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/FoundationUtils",
+        "identifier" : "FoundationUtilsTests",
+        "name" : "FoundationUtilsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
