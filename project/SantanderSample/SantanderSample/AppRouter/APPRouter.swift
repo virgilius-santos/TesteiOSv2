@@ -1,4 +1,5 @@
 import UIKit
+import BankSampleUIKit
 
 final class APPRouter: NSObject {
     let window: UIWindow
@@ -9,7 +10,7 @@ final class APPRouter: NSObject {
     }
     
     func start() {
-        let controller = LoginConfigurator(router: self).build()
+        let controller = LoginConfigurator(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl()).build()
         navigation.viewControllers = [controller]
         window.rootViewController = navigation
         window.makeKeyAndVisible()
@@ -23,7 +24,7 @@ final class APPRouter: NSObject {
 extension APPRouter: LoginRoutingLogic {
     // MARK: Routing
     func routeToDetails(user: Login.UserAccount) {
-        let details = DetailConfigurator(router: self, user: user).build()
+        let details = DetailConfigurator(router: self, user: user, client: APIClientImpl()).build()
         navigation.present(details, animated: true, completion: nil)
     }
 }

@@ -1,17 +1,6 @@
 import Foundation
 import SwiftKeychainWrapper
-
-enum DestinationType: String {
-    case user, password
-}
-
-protocol KeychainManager {
-    @discardableResult
-    func save(_ value: String, type: DestinationType) -> Bool
-    func get(type: DestinationType) -> String?
-    @discardableResult
-    func remove(type: DestinationType) -> Bool
-}
+import KeyChain
 
 final class KeychainManagerImpl: KeychainManager {
     private var wrapper: KeychainWrapper
