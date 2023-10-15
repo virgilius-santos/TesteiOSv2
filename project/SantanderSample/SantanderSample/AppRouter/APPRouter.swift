@@ -13,7 +13,12 @@ final class APPRouter: NSObject {
     }
     
     func start() {
-        let controller = LoginConfigurator(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl()).build()
+        let controller = LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
+            LoginViewController(
+                interactor: interactor,
+                keyboardManager: KeyboardManagerImpl()
+            )
+        })
         navigation.viewControllers = [controller]
         window.rootViewController = navigation
         window.makeKeyAndVisible()
@@ -27,7 +32,7 @@ final class APPRouter: NSObject {
 extension APPRouter: LoginRoutingLogic {
     // MARK: Routing
     func routeToDetails(user: Login.UserAccount) {
-        let details = DetailConfigurator(router: self, user: user, client: APIClientImpl()).build()
+        let details = DetailBuider.initialize(request: user.detailRequest, router: self, client: APIClientImpl(), displayProvider: DetailsViewViewController.init(interactor:))
         navigation.present(details, animated: true, completion: nil)
     }
 }
@@ -35,5 +40,11 @@ extension APPRouter: LoginRoutingLogic {
 extension APPRouter: DetailRoutingLogic {
     func routeToLogin() {
         dismiss()
+    }
+}
+
+extension Login.UserAccount {
+    var detailRequest: Detail.Request {
+        .init(userId: id, name: name, bankAccount: bankAccount, agency: agency, balance: balance)
     }
 }

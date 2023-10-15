@@ -13,8 +13,6 @@
 		18572B5E2183B97B008A196B /* APPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B582183B97B008A196B /* APPRouter.swift */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
 		3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F0F2ADB653D002C1144 /* BankSampleUIKit */; };
-		3B059F132ADB6AF4002C1144 /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B059F122ADB6AF4002C1144 /* DetailConfigurator.swift */; };
-		3B059F152ADB6B00002C1144 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B059F142ADB6B00002C1144 /* LoginConfigurator.swift */; };
 		3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F162ADB7C46002C1144 /* NetworkImpl */; };
 		3B059F192ADB7EAF002C1144 /* KeyChainImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F182ADB7EAF002C1144 /* KeyChainImpl */; };
 		3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */; };
@@ -47,8 +45,6 @@
 		3B059F0C2ADB647D002C1144 /* KeyChain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyChain; path = ../KeyChain; sourceTree = "<group>"; };
 		3B059F0D2ADB6495002C1144 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Network; path = ../Network; sourceTree = "<group>"; };
 		3B059F0E2ADB649D002C1144 /* BankSampleUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BankSampleUIKit; path = ../BankSampleUIKit; sourceTree = "<group>"; };
-		3B059F122ADB6AF4002C1144 /* DetailConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
-		3B059F142ADB6B00002C1144 /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +105,6 @@
 		18572B322183B7C1008A196B /* SantanderSample */ = {
 			isa = PBXGroup;
 			children = (
-				3B059F112ADB6ADE002C1144 /* Configurator */,
 				3B448AAF2AC9CBD300F94292 /* AppRouter */,
 				18572B452183B7DD008A196B /* SupportFiles */,
 				18572BB9218539E5008A196B /* Shared */,
@@ -163,15 +158,6 @@
 				3B059F0E2ADB649D002C1144 /* BankSampleUIKit */,
 			);
 			name = Packages;
-			sourceTree = "<group>";
-		};
-		3B059F112ADB6ADE002C1144 /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				3B059F142ADB6B00002C1144 /* LoginConfigurator.swift */,
-				3B059F122ADB6AF4002C1144 /* DetailConfigurator.swift */,
-			);
-			path = Configurator;
 			sourceTree = "<group>";
 		};
 		3B448AAF2AC9CBD300F94292 /* AppRouter */ = {
@@ -303,9 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B059F152ADB6B00002C1144 /* LoginConfigurator.swift in Sources */,
 				18572BA321848994008A196B /* KeyboardUtility.swift in Sources */,
-				3B059F132ADB6AF4002C1144 /* DetailConfigurator.swift in Sources */,
 				18572B342183B7C1008A196B /* AppDelegate.swift in Sources */,
 				18572B5E2183B97B008A196B /* APPRouter.swift in Sources */,
 			);
