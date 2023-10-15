@@ -12,9 +12,11 @@
 		18572B3E2183B7C2008A196B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18572B3C2183B7C2008A196B /* LaunchScreen.storyboard */; };
 		18572B5E2183B97B008A196B /* APPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B582183B97B008A196B /* APPRouter.swift */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
+		3B00617A2ADC44BC005CE302 /* KeychainManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */; };
+		3B00617C2ADC44CE005CE302 /* KeyChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */; };
+		3B0061832ADC463E005CE302 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */; };
 		3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F0F2ADB653D002C1144 /* BankSampleUIKit */; };
 		3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F162ADB7C46002C1144 /* NetworkImpl */; };
-		3B059F192ADB7EAF002C1144 /* KeyChainImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F182ADB7EAF002C1144 /* KeyChainImpl */; };
 		3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */; };
 		3B448AC52ACAEAB400F94292 /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC42ACAEAB400F94292 /* APIClientMock.swift */; };
 		3B448AC72ACAEACB00F94292 /* KeychainManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */; };
@@ -40,6 +42,9 @@
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BD82185C786008A196B /* SantanderSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18572BDC2185C786008A196B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SantanderSample.entitlements; sourceTree = "<group>"; };
+		3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerImpl.swift; sourceTree = "<group>"; };
+		3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainTests.swift; sourceTree = "<group>"; };
 		3B059F0A2ADB645C002C1144 /* FoundationUtils */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoundationUtils; path = ../FoundationUtils; sourceTree = "<group>"; };
 		3B059F0B2ADB646E002C1144 /* UIKitComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UIKitComponents; path = ../UIKitComponents; sourceTree = "<group>"; };
 		3B059F0C2ADB647D002C1144 /* KeyChain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyChain; path = ../KeyChain; sourceTree = "<group>"; };
@@ -57,8 +62,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */,
-				3B059F192ADB7EAF002C1144 /* KeyChainImpl in Frameworks */,
 				3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */,
+				3B0061832ADC463E005CE302 /* SwiftKeychainWrapper in Frameworks */,
 				3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +110,7 @@
 		18572B322183B7C1008A196B /* SantanderSample */ = {
 			isa = PBXGroup;
 			children = (
+				3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */,
 				3B448AAF2AC9CBD300F94292 /* AppRouter */,
 				18572B452183B7DD008A196B /* SupportFiles */,
 				18572BB9218539E5008A196B /* Shared */,
@@ -126,6 +132,7 @@
 		18572BA121848994008A196B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */,
 				18572BA221848994008A196B /* KeyboardUtility.swift */,
 			);
 			path = Util;
@@ -142,6 +149,7 @@
 		18572BD92185C786008A196B /* SantanderSampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */,
 				3B448AC32ACAEAAB00F94292 /* helpers */,
 				18572BDC2185C786008A196B /* Info.plist */,
 			);
@@ -197,7 +205,7 @@
 				3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */,
 				3B059F0F2ADB653D002C1144 /* BankSampleUIKit */,
 				3B059F162ADB7C46002C1144 /* NetworkImpl */,
-				3B059F182ADB7EAF002C1144 /* KeyChainImpl */,
+				3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */,
 			);
 			productName = SantanderSample;
 			productReference = 18572B302183B7C1008A196B /* SantanderSample.app */;
@@ -254,6 +262,7 @@
 			mainGroup = 18572B272183B7C1008A196B;
 			packageReferences = (
 				3B448AA52AC9AB8B00F94292 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				3B00617F2ADC451D005CE302 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 18572B312183B7C1008A196B /* Products */;
 			projectDirPath = "";
@@ -290,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18572BA321848994008A196B /* KeyboardUtility.swift in Sources */,
+				3B00617A2ADC44BC005CE302 /* KeychainManagerImpl.swift in Sources */,
 				18572B342183B7C1008A196B /* AppDelegate.swift in Sources */,
 				18572B5E2183B97B008A196B /* APPRouter.swift in Sources */,
 			);
@@ -299,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B00617C2ADC44CE005CE302 /* KeyChainTests.swift in Sources */,
 				3B448AC52ACAEAB400F94292 /* APIClientMock.swift in Sources */,
 				3B448AC72ACAEACB00F94292 /* KeychainManagerMock.swift in Sources */,
 			);
@@ -448,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SantanderSample/SantanderSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
@@ -467,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SantanderSample/SantanderSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
@@ -555,6 +568,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3B00617F2ADC451D005CE302 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		3B448AA52AC9AB8B00F94292 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -566,6 +587,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B00617F2ADC451D005CE302 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		3B059F0F2ADB653D002C1144 /* BankSampleUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BankSampleUIKit;
@@ -573,10 +599,6 @@
 		3B059F162ADB7C46002C1144 /* NetworkImpl */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkImpl;
-		};
-		3B059F182ADB7EAF002C1144 /* KeyChainImpl */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = KeyChainImpl;
 		};
 		3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

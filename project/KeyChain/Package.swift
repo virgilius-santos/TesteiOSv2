@@ -9,14 +9,10 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "KeyChain",
-            targets: ["KeyChain"]),
-        .library(
-            name: "KeyChainImpl",
-            targets: ["KeyChainImpl"]),
+            targets: ["KeyChain"])
     ],
     dependencies: [
         .package(path: "FoundationUtils"),
-        .package(url: "https://github.com/jrendel/SwiftKeychainWrapper", from: "4.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -26,13 +22,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "KeyChainTests",
-            dependencies: ["KeyChainImpl"]),
-        .target(
-            name: "KeyChainImpl",
-            dependencies: [
-                "KeyChain",
-                .product(name: "FoundationUtils", package: "FoundationUtils"),
-                .product(name: "SwiftKeychainWrapper", package: "SwiftKeychainWrapper"),
-            ]),
+            dependencies: ["KeyChain"])
     ]
 )
