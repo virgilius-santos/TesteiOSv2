@@ -12,9 +12,9 @@ public protocol LoginBusinessLogic {
 public final class LoginInteractor {
     let worker: LoginWorker
     let router: LoginRoutingLogic
-    let presenter: LoginPresentationLogic
+    let presenter: LoginPresenter
     
-    public init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresentationLogic) {
+    public init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresenter) {
         self.presenter = presenter
         self.worker = worker
         self.router = router

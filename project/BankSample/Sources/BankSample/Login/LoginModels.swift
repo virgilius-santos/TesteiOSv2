@@ -29,11 +29,11 @@ public enum Login {
         public let balance: Double
     }
     
-    public struct ErrorViewModel {
+    public struct ErrorViewModel: Equatable {
         public let error: String?
     }
     
-    public struct LastUserViewModel {
+    public struct LastUserViewModel: Equatable {
         public let password: String?
         public let user: String?
     }

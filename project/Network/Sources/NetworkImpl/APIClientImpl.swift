@@ -11,7 +11,7 @@ public final class APIClientImpl: APIClient {
         self.task = task
     }
     
-    public func request<Response: Decodable>(_ request: APIRequest, completion: @escaping (Result<Response, APIError>)->()) {
+    public func request<Response: Decodable>(_ request: APIRequest, completion: @escaping Completion<Response>) {
         guard let url = URL(string: baseApi + request.url) else {
             completion(.failure(.invalid(url: request.url)))
             return

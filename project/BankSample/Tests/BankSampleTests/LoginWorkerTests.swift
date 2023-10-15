@@ -1,11 +1,12 @@
-@testable import SantanderSample
+@testable import BankSample
 import XCTest
+import Network
 
 private extension LoginWorkerTests {
     typealias Sut = LoginWorker
     
     final class Fields {
-        let clientMock: APIClientMock
+        let clientMock: APIClientMock<Login.UserAccount>
         let keychainMock: KeychainManagerMock
         
         var events = [String]()
@@ -23,7 +24,7 @@ private extension LoginWorkerTests {
         ) {
             clientMock.requestImpl = { [weak self] request, completion in
                 XCTAssertEqual(request, requestExpected, file: file, line: line)
-                self?.completionMock = { completion(resultToSend)}
+                self?.completionMock = { completion?(resultToSend) }
                 self?.events.append("client request called")
             }
         }

@@ -1,5 +1,6 @@
 import Foundation
 
 public protocol APIClient {
-    func request<Response: Decodable>(_ request: APIRequest, completion: @escaping (Result<Response, APIError>)->())
+    typealias Completion<R> = (Result<R, APIError>) -> Void
+    func request<Response: Decodable>(_ request: APIRequest, completion: @escaping Completion<Response>)
 }

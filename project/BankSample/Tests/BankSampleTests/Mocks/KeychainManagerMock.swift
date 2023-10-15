@@ -1,5 +1,5 @@
-@testable import SantanderSample
 import XCTest
+@testable import BankSample
 import KeyChain
 
 final class KeychainManagerMock: KeychainManager {
@@ -19,19 +19,19 @@ final class KeychainManagerMock: KeychainManager {
         saveImpl(value, type)
     }
     
-    lazy var getTypeImpl: (_ type: DestinationType) -> String? = { [file, line] _ in
-        XCTFail("getTypeImpl not implemented", file: file, line: line)
+    lazy var getImpl: (_ type: DestinationType) -> String? = { [file, line] _ in
+        XCTFail("getImpl not implemented", file: file, line: line)
         return nil
     }
     func get(type: DestinationType) -> String? {
-        getTypeImpl(type)
+        getImpl(type)
     }
     
-    lazy var removeTypeImpl: (_ type: DestinationType) -> Bool = { [file, line] _ in
-        XCTFail("removeTypeImpl not implemented", file: file, line: line)
+    lazy var removeImpl: (_ type: DestinationType) -> Bool = { [file, line] _ in
+        XCTFail("removeImpl not implemented", file: file, line: line)
         return false
     }
     func remove(type: DestinationType) -> Bool {
-        removeTypeImpl(type)
+        removeImpl(type)
     }
 }

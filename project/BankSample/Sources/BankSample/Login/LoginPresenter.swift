@@ -1,30 +1,21 @@
 import UIKit
 
-public protocol LoginPresentationLogic {
-    func startLoading()
-    func stopLoading()
-    func present(error: Error)
-    func present(lastLogin: Login.LoginSave)
-}
-
 public final class LoginPresenter {
     let displaying: LoginDisplayLogic
     
     public init(displaying: LoginDisplayLogic) {
         self.displaying = displaying
     }
-}
-
-extension LoginPresenter: LoginPresentationLogic {
-    public func startLoading() {
+    
+    func startLoading() {
         displaying.startLoading()
     }
     
-    public func stopLoading() {
+    func stopLoading() {
         displaying.stopLoading()
     }
     
-    public func present(error: Error) {
+    func present(error: Error) {
         let message: String = {
             switch error {
                 
@@ -42,7 +33,7 @@ extension LoginPresenter: LoginPresentationLogic {
         displaying.displayError(viewModel: viewModel)
     }
     
-    public func present(lastLogin: Login.LoginSave) {
+    func present(lastLogin: Login.LoginSave) {
         let viewModel = Login.LastUserViewModel(
             password: lastLogin.password,
             user: lastLogin.user
