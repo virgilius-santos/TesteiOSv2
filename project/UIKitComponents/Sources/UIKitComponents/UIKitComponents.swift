@@ -1,6 +1,4 @@
-public struct UIKitComponents {
-    public private(set) var text = "Hello, World!"
 
-    public init() {
-    }
+public protocol KeyboardManager: AnyObject {
+    var enable: Bool { get set }
 }

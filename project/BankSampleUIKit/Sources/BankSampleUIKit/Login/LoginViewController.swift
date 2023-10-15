@@ -3,6 +3,17 @@ import UIKitComponents
 import BankSample
 
 public final class LoginViewController: ViewControllerBase<LoginBusinessLogic, LoginView> {
+    let keyboardManager: KeyboardManager
+    
+    public init(interactor: LoginBusinessLogic, keyboardManager: KeyboardManager) {
+        self.keyboardManager = keyboardManager
+        super.init(interactor: interactor)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: View lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -11,7 +22,7 @@ public final class LoginViewController: ViewControllerBase<LoginBusinessLogic, L
         configurePasswordView()
         configureLoginAction()
         
-//        KeyboardManager.shared.enable = true
+        keyboardManager.enable = true
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -21,7 +32,7 @@ public final class LoginViewController: ViewControllerBase<LoginBusinessLogic, L
 
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        KeyboardManager.shared.enable = false
+        keyboardManager.enable = false
     }
     
     private func configureIdView() {

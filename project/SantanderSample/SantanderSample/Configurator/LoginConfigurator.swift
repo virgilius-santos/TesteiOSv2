@@ -29,7 +29,10 @@ final class LoginConfigurator {
             router: routerThreadWrapper,
             presenter: presenter
         )
-        let controller = LoginViewController(interactor: interactor)
+        let controller = LoginViewController(
+            interactor: interactor,
+            keyboardManager: KeyboardManagerImpl()
+        )
         displayThreadWrapper.displaying = controller
         routerThreadWrapper.router = router
         return controller

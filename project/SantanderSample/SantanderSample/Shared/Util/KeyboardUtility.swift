@@ -1,8 +1,9 @@
 import UIKit
+import UIKitComponents
 import IQKeyboardManagerSwift
 
-final class KeyboardManager {
-    static var shared = KeyboardManager()
+final class KeyboardManagerImpl: KeyboardManager {
+    static var shared = KeyboardManagerImpl()
     
     init() {}
     
