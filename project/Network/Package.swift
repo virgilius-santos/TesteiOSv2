@@ -10,10 +10,13 @@ let package = Package(
         .library(
             name: "Network",
             targets: ["Network"]),
+        .library(
+            name: "NetworkImpl",
+            targets: ["NetworkImpl"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(path: "FoundationUtils"),
+        .package(url: "https://github.com/jrendel/SwiftKeychainWrapper", from: "4.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -23,6 +26,13 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "NetworkTests",
-            dependencies: ["Network"]),
+            dependencies: ["NetworkImpl"]),
+        .target(
+            name: "NetworkImpl",
+            dependencies: [
+                "Network",
+                .product(name: "SwiftKeychainWrapper", package: "SwiftKeychainWrapper"),
+                .product(name: "FoundationUtils", package: "FoundationUtils"),
+            ]),
     ]
 )

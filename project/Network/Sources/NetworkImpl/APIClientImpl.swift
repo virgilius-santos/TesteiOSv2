@@ -1,12 +1,17 @@
 import Foundation
+import FoundationUtils
 import Network
 
-final class APIClientImpl: APIClient {
+public final class APIClientImpl: APIClient {
     let baseApi = "https://65198632818c4e98ac6078a8.mockapi.io/api/"
     
     var task: URLSessionDataTask?
     
-    func request<Response: Decodable>(_ request: APIRequest, completion: @escaping (Result<Response, APIError>)->()) {
+    public init(task: URLSessionDataTask? = nil) {
+        self.task = task
+    }
+    
+    public func request<Response: Decodable>(_ request: APIRequest, completion: @escaping (Result<Response, APIError>)->()) {
         guard let url = URL(string: baseApi + request.url) else {
             completion(.failure(.invalid(url: request.url)))
             return
