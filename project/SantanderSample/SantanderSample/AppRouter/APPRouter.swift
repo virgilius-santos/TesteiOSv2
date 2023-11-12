@@ -7,6 +7,15 @@ final class APPRouter: NSObject {
     let window: UIWindow
     let navigation = UINavigationController()
     
+    var makeLoginViewController: UIViewController {
+        LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
+            LoginViewController(
+                interactor: interactor,
+                keyboardManager: KeyboardManagerImpl()
+            )
+        })
+    }
+    
     init(window: UIWindow) {
         self.window = window
     }
@@ -20,11 +29,12 @@ final class APPRouter: NSObject {
         })
         navigation.viewControllers = [controller]
         window.rootViewController = navigation
+        navigation.delegate = self
         window.makeKeyAndVisible()
     }
     
     func dismiss() {
-        navigation.dismiss(animated: true, completion: nil)
+        navigation.dismiss(animated: true)
     }
 }
 
@@ -32,7 +42,8 @@ extension APPRouter: LoginRoutingLogic {
     // MARK: Routing
     func routeToDetails(user: Login.UserAccount) {
         let details = DetailBuider.initialize(request: user.detailRequest, router: self, client: APIClientImpl(), displayProvider: DetailsViewViewController.init(interactor:))
-        navigation.present(details, animated: true, completion: nil)
+        details.modalPresentationStyle = .overFullScreen
+        navigation.showDetailViewController(details, sender: nil)
     }
 }
 
@@ -41,6 +52,8 @@ extension APPRouter: DetailRoutingLogic {
         dismiss()
     }
 }
+
+extension APPRouter: UINavigationControllerDelegate {}
 
 extension Login.UserAccount {
     var detailRequest: Detail.Request {

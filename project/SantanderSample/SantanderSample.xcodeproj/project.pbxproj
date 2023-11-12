@@ -45,11 +45,6 @@
 		3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SantanderSample.entitlements; sourceTree = "<group>"; };
 		3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerImpl.swift; sourceTree = "<group>"; };
 		3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainTests.swift; sourceTree = "<group>"; };
-		3B059F0A2ADB645C002C1144 /* FoundationUtils */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoundationUtils; path = ../FoundationUtils; sourceTree = "<group>"; };
-		3B059F0B2ADB646E002C1144 /* UIKitComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UIKitComponents; path = ../UIKitComponents; sourceTree = "<group>"; };
-		3B059F0C2ADB647D002C1144 /* KeyChain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyChain; path = ../KeyChain; sourceTree = "<group>"; };
-		3B059F0D2ADB6495002C1144 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Network; path = ../Network; sourceTree = "<group>"; };
-		3B059F0E2ADB649D002C1144 /* BankSampleUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BankSampleUIKit; path = ../BankSampleUIKit; sourceTree = "<group>"; };
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +85,6 @@
 		18572B272183B7C1008A196B = {
 			isa = PBXGroup;
 			children = (
-				3B059F092ADB645C002C1144 /* Packages */,
 				18572B322183B7C1008A196B /* SantanderSample */,
 				18572BD92185C786008A196B /* SantanderSampleTests */,
 				18572B312183B7C1008A196B /* Products */,
@@ -154,18 +148,6 @@
 				18572BDC2185C786008A196B /* Info.plist */,
 			);
 			path = SantanderSampleTests;
-			sourceTree = "<group>";
-		};
-		3B059F092ADB645C002C1144 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				3B059F0A2ADB645C002C1144 /* FoundationUtils */,
-				3B059F0B2ADB646E002C1144 /* UIKitComponents */,
-				3B059F0C2ADB647D002C1144 /* KeyChain */,
-				3B059F0D2ADB6495002C1144 /* Network */,
-				3B059F0E2ADB649D002C1144 /* BankSampleUIKit */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		3B448AAF2AC9CBD300F94292 /* AppRouter */ = {
