@@ -14,7 +14,11 @@ public extension String {
     func toDate(format: DateFormatterString) -> Date {
         let dateFormatter = Formatter.utc
         dateFormatter.dateFormat = format.rawValue
-        return dateFormatter.date(from: self) ?? .init()
+        guard let date = dateFormatter.date(from: self) else {
+            assertionFailure("expected format: \(format.rawValue) but receive: \(self)")
+            return .init()
+        }
+        return date
     }
 }
 

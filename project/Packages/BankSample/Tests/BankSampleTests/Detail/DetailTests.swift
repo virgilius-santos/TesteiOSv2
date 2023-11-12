@@ -22,7 +22,7 @@ extension Detail.Response {
 
 extension Detail.Statement {
     static func fixture() -> Self {
-        .init(title: "title", desc: "desc", date: "date", value: 12)
+        .init(title: "title", desc: "desc", date: "2023-10-15T06:42:21.169Z", value: 12)
     }
 }
 
