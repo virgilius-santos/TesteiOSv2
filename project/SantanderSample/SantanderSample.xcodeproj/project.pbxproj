@@ -164,12 +164,12 @@
 		3B37E3012B0118A3007CB692 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3B37E3082B0119D0007CB692 /* UIKitComponents */,
-				3B37E3022B0118A3007CB692 /* FoundationUtils */,
-				3B37E3032B0118A3007CB692 /* Network */,
 				3B37E3042B0118A3007CB692 /* BankSample */,
-				3B37E3052B0118A3007CB692 /* KeyChain */,
 				3B37E3062B0118A3007CB692 /* BankSampleUIKit */,
+				3B37E3022B0118A3007CB692 /* FoundationUtils */,
+				3B37E3052B0118A3007CB692 /* KeyChain */,
+				3B37E3032B0118A3007CB692 /* Network */,
+				3B37E3082B0119D0007CB692 /* UIKitComponents */,
 				3B37E3072B01197F007CB692 /* BankSample */,
 			);
 			name = Packages;
