@@ -2,6 +2,7 @@ import NetworkImpl
 import UIKit
 import BankSample
 import BankSampleUIKit
+import BankSampleSwiftUI
 import SwiftUI
 
 final class APPRouter: NSObject, ObservableObject {
@@ -15,6 +16,14 @@ final class APPRouter: NSObject, ObservableObject {
                 keyboardManager: KeyboardManagerImpl()
             )
         })
+    }
+    
+    var makeLoginSwiftUIViewController: UIViewController {
+        let display = LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
+            LoginView.ViewModel(interactor: interactor)
+        })
+        let view = LoginView(viewModel: display)
+        return UIHostingController(rootView: view)
     }
     
     init(window: UIWindow) {
@@ -58,7 +67,7 @@ extension APPRouter: AppSelectionRouting {
     }
     
     func showBakingWithSwiftUI() {
-        // TODO: Next Task
+        navigation.show(makeLoginSwiftUIViewController, sender: nil)
     }
 }
 

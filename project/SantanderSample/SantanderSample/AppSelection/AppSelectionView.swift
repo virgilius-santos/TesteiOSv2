@@ -16,7 +16,7 @@ struct AppSelectionView: View {
                 }
             Text("Banking With SwiftUI")
                 .onTapGesture {
-                    
+                    routing.showBakingWithSwiftUI()
                 }
         }
     }

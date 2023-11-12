@@ -18,6 +18,7 @@
 		3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F0F2ADB653D002C1144 /* BankSampleUIKit */; };
 		3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F162ADB7C46002C1144 /* NetworkImpl */; };
 		3B37E30B2B011CEA007CB692 /* AppSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */; };
+		3B37E30E2B0193DE007CB692 /* BankSampleSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3B37E30D2B0193DE007CB692 /* BankSampleSwiftUI */; };
 		3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */; };
 		3B448AC52ACAEAB400F94292 /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC42ACAEAB400F94292 /* APIClientMock.swift */; };
 		3B448AC72ACAEACB00F94292 /* KeychainManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */; };
@@ -69,6 +70,7 @@
 				3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */,
 				3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */,
 				3B0061832ADC463E005CE302 /* SwiftKeychainWrapper in Frameworks */,
+				3B37E30E2B0193DE007CB692 /* BankSampleSwiftUI in Frameworks */,
 				3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +226,7 @@
 				3B059F0F2ADB653D002C1144 /* BankSampleUIKit */,
 				3B059F162ADB7C46002C1144 /* NetworkImpl */,
 				3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */,
+				3B37E30D2B0193DE007CB692 /* BankSampleSwiftUI */,
 			);
 			productName = SantanderSample;
 			productReference = 18572B302183B7C1008A196B /* SantanderSample.app */;
@@ -618,6 +621,10 @@
 		3B059F162ADB7C46002C1144 /* NetworkImpl */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkImpl;
+		};
+		3B37E30D2B0193DE007CB692 /* BankSampleSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BankSampleSwiftUI;
 		};
 		3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
