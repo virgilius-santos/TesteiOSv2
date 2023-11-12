@@ -54,6 +54,7 @@
 		3B37E3072B01197F007CB692 /* BankSample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSample; sourceTree = "<group>"; };
 		3B37E3082B0119D0007CB692 /* UIKitComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIKitComponents; sourceTree = "<group>"; };
 		3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionView.swift; sourceTree = "<group>"; };
+		3B37E30C2B0121F3007CB692 /* BankSampleSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSampleSwiftUI; sourceTree = "<group>"; };
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +165,7 @@
 		3B37E3012B0118A3007CB692 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				3B37E30C2B0121F3007CB692 /* BankSampleSwiftUI */,
 				3B37E3042B0118A3007CB692 /* BankSample */,
 				3B37E3062B0118A3007CB692 /* BankSampleUIKit */,
 				3B37E3022B0118A3007CB692 /* FoundationUtils */,
