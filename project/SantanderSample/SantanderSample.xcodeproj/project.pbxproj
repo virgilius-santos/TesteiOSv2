@@ -17,6 +17,7 @@
 		3B0061832ADC463E005CE302 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */; };
 		3B059F102ADB653D002C1144 /* BankSampleUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F0F2ADB653D002C1144 /* BankSampleUIKit */; };
 		3B059F172ADB7C46002C1144 /* NetworkImpl in Frameworks */ = {isa = PBXBuildFile; productRef = 3B059F162ADB7C46002C1144 /* NetworkImpl */; };
+		3B37E30B2B011CEA007CB692 /* AppSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */; };
 		3B448AA72AC9AB8C00F94292 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B448AA62AC9AB8C00F94292 /* IQKeyboardManagerSwift */; };
 		3B448AC52ACAEAB400F94292 /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC42ACAEAB400F94292 /* APIClientMock.swift */; };
 		3B448AC72ACAEACB00F94292 /* KeychainManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */; };
@@ -52,6 +53,7 @@
 		3B37E3062B0118A3007CB692 /* BankSampleUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSampleUIKit; sourceTree = "<group>"; };
 		3B37E3072B01197F007CB692 /* BankSample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSample; sourceTree = "<group>"; };
 		3B37E3082B0119D0007CB692 /* UIKitComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIKitComponents; sourceTree = "<group>"; };
+		3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionView.swift; sourceTree = "<group>"; };
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		46066C2E03FD947BBA38B203 /* Pods_SantanderSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SantanderSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 		18572B322183B7C1008A196B /* SantanderSample */ = {
 			isa = PBXGroup;
 			children = (
+				3B37E3092B011CD5007CB692 /* AppSelection */,
 				3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */,
 				3B448AAF2AC9CBD300F94292 /* AppRouter */,
 				18572B452183B7DD008A196B /* SupportFiles */,
@@ -171,6 +174,14 @@
 			);
 			name = Packages;
 			path = ../Packages;
+			sourceTree = "<group>";
+		};
+		3B37E3092B011CD5007CB692 /* AppSelection */ = {
+			isa = PBXGroup;
+			children = (
+				3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */,
+			);
+			path = AppSelection;
 			sourceTree = "<group>";
 		};
 		3B448AAF2AC9CBD300F94292 /* AppRouter */ = {
@@ -307,6 +318,7 @@
 				3B00617A2ADC44BC005CE302 /* KeychainManagerImpl.swift in Sources */,
 				18572B342183B7C1008A196B /* AppDelegate.swift in Sources */,
 				18572B5E2183B97B008A196B /* APPRouter.swift in Sources */,
+				3B37E30B2B011CEA007CB692 /* AppSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -450,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -468,7 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
 				INFOPLIST_FILE = SantanderSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
