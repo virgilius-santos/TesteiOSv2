@@ -2,8 +2,9 @@ import NetworkImpl
 import UIKit
 import BankSample
 import BankSampleUIKit
+import SwiftUI
 
-final class APPRouter: NSObject {
+final class APPRouter: NSObject, ObservableObject {
     let window: UIWindow
     let navigation = UINavigationController()
     
@@ -21,12 +22,8 @@ final class APPRouter: NSObject {
     }
     
     func start() {
-        let controller = LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
-            LoginViewController(
-                interactor: interactor,
-                keyboardManager: KeyboardManagerImpl()
-            )
-        })
+        let view = AppSelectionView(routing: self)
+        let controller = UIHostingController(rootView: view)
         navigation.viewControllers = [controller]
         window.rootViewController = navigation
         navigation.delegate = self
@@ -54,6 +51,16 @@ extension APPRouter: DetailRoutingLogic {
 }
 
 extension APPRouter: UINavigationControllerDelegate {}
+
+extension APPRouter: AppSelectionRouting {
+    func showBakingWithUIKit() {
+        navigation.show(makeLoginViewController, sender: nil)
+    }
+    
+    func showBakingWithSwiftUI() {
+        // TODO: Next Task
+    }
+}
 
 extension Login.UserAccount {
     var detailRequest: Detail.Request {
