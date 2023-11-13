@@ -13,6 +13,7 @@ let package = Package(
             targets: ["BankSampleSwiftUI"]),
     ],
     dependencies: [
+        .package(path: "UIKitComponents"),
         .package(path: "FoundationUtils"),
         .package(path: "BankSample")
     ],
@@ -22,6 +23,7 @@ let package = Package(
         .target(
             name: "BankSampleSwiftUI",
             dependencies: [
+                .product(name: "UIKitComponents", package: "UIKitComponents"),
                 .product(name: "FoundationUtils", package: "FoundationUtils"),
                 .product(name: "BankSample", package: "BankSample")
             ]),

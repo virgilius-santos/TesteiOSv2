@@ -35,23 +35,27 @@ public struct LoginView: View {
     @StateObject private var viewModel: ViewModel
     
     public var body: some View {
-        VStack(alignment: .center) {
-            Image("Logo")
-                .frame(width: 125, height: 70)
+        VStack {
+            VStack(alignment: .center) {
+                Image("Logo")
+                    .frame(width: 125, height: 70)
+                
+                Spacer()
+                
+                InputView(title: "User", isSecure: false, text: $viewModel.user)
+                
+                InputView(title: "Password", isSecure: true, text: $viewModel.password)
+                
+                ButtonApp(title: "Login") {
+                    viewModel.auth()
+                }
+            }
+            .frame(height: 300)
+            .onAppear {
+                viewModel.loadLastUser()
+            }
             
             Spacer()
-            
-            TextField("User", text: $viewModel.user)
-            
-            SecureField("Password", text: $viewModel.password)
-            
-            Button("Login") {
-                viewModel.auth()
-            }
-        }
-        .frame(height: 300)
-        .onAppear {
-            viewModel.loadLastUser()
         }
     }
     
