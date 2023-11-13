@@ -45,11 +45,7 @@ extension APIRequest {
         let baseApi = "https://65198632818c4e98ac6078a8.mockapi.io/api/"
         guard let url = URL(string: baseApi + url) else {
             return nil
-        }
-        let config = URLSessionConfiguration.default
-        config.httpAdditionalHeaders = headers
-        let session = URLSession(configuration: config)
-        
+        }        
         var mutableRequest = URLRequest(url: url)
         mutableRequest.httpBody = body
         mutableRequest.httpMethod = httpMethod.rawValue
