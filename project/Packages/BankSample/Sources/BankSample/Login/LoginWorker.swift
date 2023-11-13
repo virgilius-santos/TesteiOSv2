@@ -16,27 +16,25 @@ final class LoginWorker {
 // MARK: Remote Data
 
 extension LoginWorker {
-    func login(_ request: Login.Request, completion: @escaping (Result<Login.UserAccount, APIError>) -> ()) {
+    func login(_ request: Login.Request) async -> Result<Login.UserAccount, APIError> {
         var body: Data?
         do {
             body = try JSONEncoder().encode(request)
         } catch {
-            completion(.failure(APIError.invalidBody))
-            return
+            return .failure(APIError.invalidBody)
         }
         let apiRequest = APIRequest(
             url: "v1/login",
             body: body,
             httpMethod: .post
         )
-        client.request(apiRequest) { [weak self] (result: Result<Login.UserAccount, APIError> ) in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let userAccount):
-                self?.saveLogin(request)
-                completion(.success(userAccount))
-            }
+        let result: Result<Login.UserAccount, APIError> = await self.client.request(apiRequest)
+        switch result {
+        case .failure(let error):
+            return .failure(error)
+        case .success(let userAccount):
+            saveLogin(request)
+            return .success(userAccount)
         }
     }
 }

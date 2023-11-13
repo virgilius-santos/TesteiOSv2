@@ -2,52 +2,57 @@ import Foundation
 import FoundationUtils
 import Network
 
-public final class APIClientImpl: APIClient {
+public final class APIClientImpl: NSObject, APIClient {
     let baseApi = "https://65198632818c4e98ac6078a8.mockapi.io/api/"
     
-    var task: URLSessionDataTask?
+    var task: URLSessionTask?
     
     public init(task: URLSessionDataTask? = nil) {
         self.task = task
+        super.init()
     }
     
-    public func request<Response: Decodable>(_ request: APIRequest, completion: @escaping Completion<Response>) {
-        guard let url = URL(string: baseApi + request.url) else {
-            completion(.failure(.invalid(url: request.url)))
-            return
+    public func request<Response: Decodable>(_ request: APIRequest) async -> Result<Response, APIError> {
+        guard let requestMapped = request.mapped else {
+            return .failure(.invalid(url: request.url))
         }
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = request.headers
         let session = URLSession(configuration: config)
         
-        let mutableRequest = NSMutableURLRequest(url: url)
-        mutableRequest.httpBody = request.body
-        mutableRequest.httpMethod = request.httpMethod.rawValue
-
-        let task = session.dataTask(with: mutableRequest as URLRequest) { [weak self] (data, response, error) in
-            guard self != nil else { return }
-            if let error {
-                completion(.failure(.requestError(error as NSError, data, response)))
-                return
-            }
-            guard let data = data else {
-                completion(.failure(.dataNil(response)))
-                return
-            }
-
-            do {
-                let object = try Response.decoder(data: data)
-                completion(.success(object))
-            } catch {
-                completion(.failure(.decodeError(data, response)))
-            }
+        do {
+            async let (data, _) = try session.data(for: requestMapped)
+            let object = try await Response.decoder(data: data)
+            return .success(object)
+        } catch {
+            return .failure(.requestError(error as NSError, nil, nil))
         }
-        
-        self.task = task
-        task.resume()
     }
     
     deinit {
         task?.cancel()
+    }
+}
+
+extension APIClientImpl: URLSessionTaskDelegate {
+    public func urlSession(_ session: URLSession, didCreateTask task: URLSessionTask) {
+        self.task = task
+    }
+}
+
+extension APIRequest {
+    var mapped: URLRequest? {
+        let baseApi = "https://65198632818c4e98ac6078a8.mockapi.io/api/"
+        guard let url = URL(string: baseApi + url) else {
+            return nil
+        }
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = headers
+        let session = URLSession(configuration: config)
+        
+        var mutableRequest = URLRequest(url: url)
+        mutableRequest.httpBody = body
+        mutableRequest.httpMethod = httpMethod.rawValue
+        return mutableRequest
     }
 }

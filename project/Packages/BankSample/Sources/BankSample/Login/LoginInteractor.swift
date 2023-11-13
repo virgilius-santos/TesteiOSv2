@@ -14,10 +14,16 @@ final class LoginInteractor {
     let router: LoginRoutingLogic
     let presenter: LoginPresenter
     
+    private var loadingTask: Task<Void, Never>?
+    
     init(worker: LoginWorker, router: LoginRoutingLogic, presenter: LoginPresenter) {
         self.presenter = presenter
         self.worker = worker
         self.router = router
+    }
+    
+    deinit {
+        loadingTask?.cancel()
     }
 }
 
@@ -41,15 +47,14 @@ extension LoginInteractor: LoginBusinessLogic {
         }
         
         presenter.startLoading()
-        worker.login(request) { [weak self] (result) in
-            guard let self else { return }
-            self.presenter.stopLoading()
+        loadingTask = Task { [weak self, worker] in
+            let result = await worker.login(request)
+            self?.presenter.stopLoading()
             switch result{
             case .success(let userAccount):
-                self.router.routeToDetails(user: userAccount)
-                
+                self?.router.routeToDetails(user: userAccount)
             case .failure(let error):
-                self.presenter.present(error: error)
+                self?.presenter.present(error: error)
             }
         }
     }

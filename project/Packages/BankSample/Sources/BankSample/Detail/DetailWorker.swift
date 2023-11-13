@@ -8,10 +8,9 @@ final class DetailWorker {
         self.client = client
     }
     
-    func getDetails(request: Detail.Request, completion: @escaping (Result<Detail.Response, APIError>) -> ()) {
+    func getDetails(request: Detail.Request) async -> Result<Detail.Response, APIError> {
         let apiRequest = APIRequest(url: "v1/login/1")
-        client.request(apiRequest) { (result: Result<Detail.Response, APIError>) in
-            completion(result)
-        }
+        let result: Result<Detail.Response, APIError> = await client.request(apiRequest)
+        return result
     }
 }
