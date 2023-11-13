@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "BankSampleUIKit",
-    platforms: [.iOS(.v12)],
+    platforms: [.iOS(.v16)],
     products: [
         .library(
             name: "BankSampleUIKit",
