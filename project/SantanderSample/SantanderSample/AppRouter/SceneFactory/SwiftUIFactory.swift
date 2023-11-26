@@ -14,7 +14,7 @@ final class SwiftUIFactory: SceneFactory {
     }
     
     func makeLogin() -> UIViewController {
-        let display = LoginBuider.initialize(
+        let viewModel = LoginBuider.initialize(
             router: loginRouter,
             client: APIClientImpl(),
             keychain: KeychainManagerImpl(),
@@ -22,11 +22,20 @@ final class SwiftUIFactory: SceneFactory {
                 LoginView.ViewModel(interactor: interactor)
             }
         )
-        let view = LoginView(viewModel: display)
+        let view = LoginView(viewModel: viewModel)
         return UIHostingController(rootView: view)
     }
     
     func makeDetail(user: Login.UserAccount) -> UIViewController {
-        .init()
+        let viewModel = DetailBuider.initialize(
+            request: user.detailRequest,
+            router: detailRouter,
+            client: APIClientImpl(),
+            displayProvider: { interactor in
+                DetailView.ViewModel(interactor: interactor)
+            }
+        )
+        let view = DetailView(viewModel: viewModel)
+        return UIHostingController(rootView: view)
     }
 }
