@@ -3,13 +3,7 @@ import BankSample
 
 public extension DetailView {
     final class ViewModel: ObservableObject, DetailDisplayLogic {
-        struct UserInfo {
-            var name = ""
-            var account = ""
-            var balance = ""
-        }
-        
-        @Published var user = UserInfo()
+        @Published var user = UserInfoViewModel()
         @Published var statements = [CardViewModel]()
         
         let interactor: DetailBusinessLogic
@@ -74,29 +68,12 @@ public struct DetailView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading, spacing: 24) {
-                HStack {
-                    TitleView(text: viewModel.user.name)
-                    
-                    Spacer()
-                    
-                    CloseButton {
-                        viewModel.close()
-                    }
+            UserInfoView(
+                viewModel: viewModel.user,
+                closeAction: {
+                    viewModel.close()
                 }
-                
-                HeaderView(
-                    title: "Conta",
-                    value: viewModel.user.account
-                )
-                
-                HeaderView(
-                    title: "Saldo",
-                    value: viewModel.user.balance
-                )
-                .padding(.bottom, 24)
-            }
-            .background(Color.blueApp)
+            )
             
             TitleView(
                 text: "Recents",
