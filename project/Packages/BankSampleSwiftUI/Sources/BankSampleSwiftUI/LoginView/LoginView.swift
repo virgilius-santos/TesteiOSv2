@@ -2,10 +2,9 @@ import SwiftUI
 import BankSample
 
 extension LoginView {
-    @MainActor
     public final class ViewModel: ObservableObject {
-        @MainActor @Published var user = ""
-        @MainActor @Published var password = ""
+        @Published var user = ""
+        @Published var password = ""
         
         let interactor: LoginBusinessLogic
         
@@ -21,10 +20,12 @@ extension LoginView {
             interactor.getLastUser()
         }
         
+        @MainActor
         func set(user: String?) async {
             self.user = user ?? ""
         }
         
+        @MainActor
         func set(password: String?) async {
             self.password = password ?? ""
         }

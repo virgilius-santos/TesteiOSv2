@@ -9,22 +9,7 @@ final class APPRouter: NSObject, ObservableObject {
     let window: UIWindow
     let navigation = UINavigationController()
     
-    var makeLoginViewController: UIViewController {
-        LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
-            LoginViewController(
-                interactor: interactor,
-                keyboardManager: KeyboardManagerImpl()
-            )
-        })
-    }
-    
-    var makeLoginSwiftUIViewController: UIViewController {
-        let display = LoginBuider.initialize(router: self, client: APIClientImpl(), keychain: KeychainManagerImpl(), displayProvider: { interactor in
-            LoginView.ViewModel(interactor: interactor)
-        })
-        let view = LoginView(viewModel: display)
-        return UIHostingController(rootView: view)
-    }
+    lazy var factory: SceneFactory = UIKitFactory(loginRouter: self, detailRouter: self)
     
     init(window: UIWindow) {
         self.window = window
@@ -47,7 +32,7 @@ final class APPRouter: NSObject, ObservableObject {
 extension APPRouter: LoginRoutingLogic {
     // MARK: Routing
     func routeToDetails(user: Login.UserAccount) {
-        let details = DetailBuider.initialize(request: user.detailRequest, router: self, client: APIClientImpl(), displayProvider: DetailsViewViewController.init(interactor:))
+        let details = factory.makeDetail(user: user)
         details.modalPresentationStyle = .overFullScreen
         navigation.showDetailViewController(details, sender: nil)
     }
@@ -63,11 +48,13 @@ extension APPRouter: UINavigationControllerDelegate {}
 
 extension APPRouter: AppSelectionRouting {
     func showBakingWithUIKit() {
-        navigation.show(makeLoginViewController, sender: nil)
+        factory = UIKitFactory(loginRouter: self, detailRouter: self)
+        navigation.show(factory.makeLogin(), sender: nil)
     }
     
     func showBakingWithSwiftUI() {
-        navigation.show(makeLoginSwiftUIViewController, sender: nil)
+        factory = SwiftUIFactory(loginRouter: self, detailRouter: self)
+        navigation.show(factory.makeLogin(), sender: nil)
     }
 }
 
