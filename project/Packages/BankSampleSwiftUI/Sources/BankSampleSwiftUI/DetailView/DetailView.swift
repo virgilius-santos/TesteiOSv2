@@ -9,16 +9,8 @@ public extension DetailView {
             var balance = ""
         }
         
-        struct Statement: Identifiable {
-            var id = UUID()
-            let title: String
-            let date: String
-            let info: String
-            let price: String
-        }
-        
         @Published var user = UserInfo()
-        @Published var statements = [Statement]()
+        @Published var statements = [CardViewModel]()
         
         let interactor: DetailBusinessLogic
         
@@ -113,7 +105,7 @@ public struct DetailView: View {
             
             List {
                 ForEach(viewModel.statements) { item in
-                    card(item: item)
+                    CardView(viewModel: item)
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(
@@ -132,85 +124,5 @@ public struct DetailView: View {
     
     public init(viewModel: ViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
-    }
-    
-    @ViewBuilder
-    func card(item: DetailView.ViewModel.Statement) -> some View {
-        VStack {
-            HStack {
-                Text(item.title)
-                    .font(.caption)
-                Spacer()
-                Text(item.date)
-                    .font(.caption)
-            }
-            .padding(.bottom, 16)
-            
-            HStack {
-                Text(item.info)
-                    .font(.body)
-                Spacer()
-                Text(item.price)
-                    .font(.body)
-            }
-        }
-        .padding(8)
-    }
-}
-
-struct TitleView: View {
-    let text: String
-    var foregroundColor = Color.white
-    
-    var body: some View {
-        Text(text)
-            .lineLimit(.zero)
-            .foregroundColor(foregroundColor)
-            .font(Font.subheadline)
-            .padding(.horizontal, 16)
-            .accessibilityAddTraits(.isHeader)
-            .fixedSize(horizontal: false, vertical: true)
-    }
-}
-
-struct InfoView: View {
-    let text: String
-    
-    var body: some View {
-        Text(text)
-            .lineLimit(.zero)
-            .foregroundColor(Color.white)
-            .font(Font.headline)
-            .padding(.horizontal, 16)
-            .fixedSize(horizontal: false, vertical: true)
-    }
-}
-
-struct HeaderView: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            TitleView(text: title)
-            InfoView(text: value)
-        }
-    }
-}
-
-struct CloseButton: View {
-    let action: () -> Void
-    
-    var body: some View {
-        Button.init(
-            action: action,
-            label: {
-                Image("logout 2")
-            }
-        )
-        .padding(8)
-        .background(Color.blueApp)
-        .frame(minWidth: 44, minHeight: 44)
-        .padding(.trailing, 16)
     }
 }
