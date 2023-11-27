@@ -2,7 +2,7 @@ import SwiftUI
 import BankSample
 
 public extension DetailView {
-    final class ViewModel: ObservableObject, DetailDisplayLogic {
+    final class ViewModel: ObservableObject {
         @Published var user = UserInfoViewModel()
         @Published var statements = [CardViewModel]()
         @Published var loading = true
@@ -45,30 +45,6 @@ public extension DetailView {
         @MainActor
         func update(loading: Bool) {
             self.loading = loading
-        }
-        
-        public func startLoading() {
-            Task {
-                await self.update(loading: true)
-            }
-        }
-        
-        public func stopLoading() {
-            Task {
-                await self.update(loading: false)
-            }
-        }
-        
-        public func displayUserInfo(viewModel: Detail.ViewModel) {
-            Task {
-                await self.update(userViewModel: viewModel)
-            }
-        }
-        
-        public func displayDetail(_ detailList: [Detail.StatementViewModel]) {
-            Task {
-                await self.update(statementsViewModel: detailList)
-            }
         }
     }
 }
@@ -113,5 +89,31 @@ public struct DetailView: View {
     
     public init(viewModel: ViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
+    }
+}
+
+extension DetailView.ViewModel: DetailDisplayLogic {
+    public func startLoading() {
+        Task {
+            await self.update(loading: true)
+        }
+    }
+    
+    public func stopLoading() {
+        Task {
+            await self.update(loading: false)
+        }
+    }
+    
+    public func displayUserInfo(viewModel: Detail.ViewModel) {
+        Task {
+            await self.update(userViewModel: viewModel)
+        }
+    }
+    
+    public func displayDetail(_ detailList: [Detail.StatementViewModel]) {
+        Task {
+            await self.update(statementsViewModel: detailList)
+        }
     }
 }
