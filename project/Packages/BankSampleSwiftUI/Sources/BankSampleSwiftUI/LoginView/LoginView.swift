@@ -5,6 +5,7 @@ extension LoginView {
     public final class ViewModel: ObservableObject {
         @Published var user = ""
         @Published var password = ""
+        @Published var loading = false
         
         let interactor: LoginBusinessLogic
         
@@ -18,6 +19,11 @@ extension LoginView {
         
         func loadLastUser() {
             interactor.getLastUser()
+        }
+        
+        @MainActor
+        func set(loading: Bool) async {
+            self.loading = loading
         }
         
         @MainActor
@@ -36,27 +42,29 @@ public struct LoginView: View {
     @StateObject private var viewModel: ViewModel
     
     public var body: some View {
-        VStack {
-            VStack(alignment: .center) {
-                Image("Logo")
-                    .frame(width: 125, height: 70)
+        LoadingView(loading: $viewModel.loading) {
+            VStack {
+                VStack(alignment: .center) {
+                    Image("Logo")
+                        .frame(width: 125, height: 70)
+                    
+                    Spacer()
+                    
+                    InputView(title: "User", isSecure: false, text: $viewModel.user)
+                    
+                    InputView(title: "Password", isSecure: true, text: $viewModel.password)
+                    
+                    ButtonApp(title: "Login") {
+                        viewModel.auth()
+                    }
+                }
+                .frame(height: 300)
+                .onAppear {
+                    viewModel.loadLastUser()
+                }
                 
                 Spacer()
-                
-                InputView(title: "User", isSecure: false, text: $viewModel.user)
-                
-                InputView(title: "Password", isSecure: true, text: $viewModel.password)
-                
-                ButtonApp(title: "Login") {
-                    viewModel.auth()
-                }
             }
-            .frame(height: 300)
-            .onAppear {
-                viewModel.loadLastUser()
-            }
-            
-            Spacer()
         }
     }
     
@@ -78,11 +86,15 @@ struct SwiftUIView_Previews: PreviewProvider {
 
 extension LoginView.ViewModel: LoginDisplayLogic {
     public nonisolated func startLoading() {
-        // TODO: To be defined
+        Task {
+            await set(loading: true)
+        }
     }
     
     public nonisolated func stopLoading() {
-        // TODO: To be defined
+        Task {
+            await set(loading: false)
+        }
     }
     
     public nonisolated func displayError(viewModel: BankSample.Login.ErrorViewModel) {
