@@ -3,9 +3,15 @@ import BankSample
 
 extension LoginView {
     public final class ViewModel: ObservableObject {
+        struct Error: LocalizedError {
+            var errorDescription: String? = "Error"
+            var recoverySuggestion: String?
+        }
+        
         @Published var user = ""
         @Published var password = ""
         @Published var loading = false
+        @Published var error: Swift.Error?
         
         let interactor: LoginBusinessLogic
         
@@ -19,6 +25,11 @@ extension LoginView {
         
         func loadLastUser() {
             interactor.getLastUser()
+        }
+        
+        @MainActor
+        func set(error: Error) async {
+            self.error = error
         }
         
         @MainActor
@@ -66,6 +77,7 @@ public struct LoginView: View {
                 Spacer()
             }
         }
+        .errorAlert(error: $viewModel.error)
     }
     
     public init(viewModel: ViewModel) {
@@ -97,8 +109,10 @@ extension LoginView.ViewModel: LoginDisplayLogic {
         }
     }
     
-    public nonisolated func displayError(viewModel: BankSample.Login.ErrorViewModel) {
-        // TODO: To be defined
+    public nonisolated func displayError(viewModel: Login.ErrorViewModel) {
+        Task {
+            await set(error: .init(recoverySuggestion: viewModel.error))
+        }
     }
     
     public nonisolated func displayLastUser(viewModel: BankSample.Login.LastUserViewModel) {
