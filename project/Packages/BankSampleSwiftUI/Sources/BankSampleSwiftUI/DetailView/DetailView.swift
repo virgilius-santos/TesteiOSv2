@@ -5,6 +5,7 @@ public extension DetailView {
     final class ViewModel: ObservableObject, DetailDisplayLogic {
         @Published var user = UserInfoViewModel()
         @Published var statements = [CardViewModel]()
+        @Published var loading = true
         
         let interactor: DetailBusinessLogic
         
@@ -41,12 +42,21 @@ public extension DetailView {
             }
         }
         
+        @MainActor
+        func update(loading: Bool) {
+            self.loading = loading
+        }
+        
         public func startLoading() {
-            // TODO: Next Change
+            Task {
+                await self.update(loading: true)
+            }
         }
         
         public func stopLoading() {
-            // TODO: Next Change
+            Task {
+                await self.update(loading: false)
+            }
         }
         
         public func displayUserInfo(viewModel: Detail.ViewModel) {
@@ -80,17 +90,19 @@ public struct DetailView: View {
                 foregroundColor: Color.blueApp
             )
             
-            List {
-                ForEach(viewModel.statements) { item in
-                    CardView(viewModel: item)
+            LoadingView(loading: $viewModel.loading) {
+                List {
+                    ForEach(viewModel.statements) { item in
+                        CardView(viewModel: item)
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(
+                        RoundedRectangle(cornerRadius: 4)
+                            .background(.clear)
+                            .foregroundColor(Color.white)
+                            .padding(8)
+                    )
                 }
-                .listRowSeparator(.hidden)
-                .listRowBackground(
-                    RoundedRectangle(cornerRadius: 4)
-                        .background(.clear)
-                        .foregroundColor(Color.white)
-                        .padding(8)
-                )
             }
         }
         .background(Color.grayApp)
