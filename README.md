@@ -1,61 +1,96 @@
-# Show me the code
+# Santander BankApp (iOS)
 
-Esse repositório contem todo o material necessário para realizar o teste: 
-- A especificação do layout está na pasta 'bank_app_layout' abrindo o index.html, os icones estão na pasta 'assets'
+Santander BankApp é um projeto iOS moderno desenvolvido para demonstrar boas práticas de arquitetura, organização e código limpo em apps financeiros. O app simula o fluxo de autenticação e exibição de extrato bancário, utilizando dados mockados via API REST.
 
-- Os dados da Api estão mockados, os exemplos e a especificação dos serviços (login e statements) na api https://65198632818c4e98ac6078a8.mockapi.io/api/v1/login
+## 🔥 Funcionalidades
 
-![Image of Yaktocat](https://github.com/SantanderTecnologia/TesteiOSv2/blob/master/telas.png)
+- Autenticação de usuário com validações de CPF/email e senha segura
+- Salvamento seguro do último usuário autenticado (via Keychain)
+- Exibição de informações da conta bancária e lançamentos (extrato)
+- Suporte completo à navegação desacoplada via `Coordinators` e `Routers`
 
-### # DESAFIO:
+## 💡 Layout
 
-Na primeira tela teremos um formulario de login, o campo user deve aceitar email ou cpf,
-o campo password deve validar se a senha tem pelo menos uma letra maiuscula, um caracter especial e um caracter alfanumérico.
-Apos a validação, realizar o login no endpoint https://65198632818c4e98ac6078a8.mockapi.io/api/v1/login e exibir os dados de retorno na próxima tela.
-O ultimo usuário logado deve ser salvo de forma segura localmente, e exibido na tela de login se houver algum salvo. 
+O design está disponível na pasta `/bank_app_layout`. Basta abrir o arquivo `index.html` no navegador. Os ícones e recursos visuais estão em `/bank_app_layout/assets`.
 
-Na segunda tela será exibido os dados formatados do retorno do login e será necessário fazer um segundo request para obter os lançamentos do usuário, no endpoint https://65198632818c4e98ac6078a8.mockapi.io/api/v1/login/{idUser} que retornará uma lista de lançamentos
+![Screenshot](https://github.com/SantanderTecnologia/TesteiOSv2/blob/master/telas.png)
 
-### # Avaliação
+## 🧱 Arquitetura e Tecnologias
 
-Você será avaliado pela usabilidade, por respeitar o design e pela arquitetura do app. É esperado que você consiga explicar as decisões que tomou durante o desenvolvimento através de commits.
+- **Arquitetura:** VIP (View, Interactor, Presenter), baseada em Clean Architecture
+- **UI:** 100% ViewCode (sem Storyboards ou Xibs)
+- **Navegação:** Desacoplada, com suporte a UIKit e SwiftUI
+- **Networking:** URLSession + `async/await`, fortemente tipado
+- **Persistência:** Keychain para dados sensíveis
+- **Modularização:** Swift Package Manager (SPM)
 
-Obrigatórios:
+## ✅ Requisitos
 
-* Swift 3.0 ou superior
-* Autolayout
-* O app deve funcionar no iOS 9
-* Testes unitários, pode usar a ferramenta que você tem mais experiência, só nos explique o que ele tem de bom.
-* Arquitetura a ser utilizada: VIP
-* Uso do git.
+- Swift 5.8 ou superior
+- iOS 13+ (App compatível com iOS 9+ com adaptações)
+- Xcode 14 ou superior
 
-### # Observações gerais
+## 🧪 Testes
 
-Adicione um arquivo [README.md](http://README.md) com os procedimentos para executar o projeto.
+- ViewModels, Interactors e validações testadas isoladamente
+- Mocking manual e via protocolos para simulações de rede e navegação
 
-# SantanderSample in Swift!
+## 🔐 Validações
 
-this is a demo application where you can:
-- insert an email/cpf and a password to login
-- after login has completed you will see some account informations
-- you can logout too.
+- **Usuário:** Campo aceita CPF (11 números) ou e-mail válido
+- **Senha:** Deve conter pelo menos:
+  - 1 letra maiúscula
+  - 1 caractere especial
+  - 1 número
 
-in the first screen it will show the last valid user, if it exists.
+## 🌐 Endpoints mockados
 
-obs.
-- cpf must have 11 numbers 
-- password must have 1 Uppercase, 1 alphanumeric and 1 especial character
+- **Login:** `https://65198632818c4e98ac6078a8.mockapi.io/api/v1/login`
+- **Extrato:** `https://65198632818c4e98ac6078a8.mockapi.io/api/v1/login/{userId}`
 
+Os dados são mockados e retornam objetos de login e extrato.
 
-Although simple, it is being used:
-- Clean Swift architecture
-- API Restful
-- Unit tests
-- Keychain for secure information persistence
+## ▶️ Como rodar
 
-CocoaPods:
-- Swinject, a simple way to inject dependencies avoiding coupling
-- Quick / Nimble, it's more simple and readable.
-- IQKeyboardManager, 
-- SwiftKeychainWrapper, for persistance of safe data
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/SantanderBankApp.git
+   cd SantanderBankApp
+   ```
+2. Abra o projeto com o **Xcode 14+**
+3. Compile e rode o projeto em um simulador iOS 13+
 
+## 🧩 Dependências
+
+Integradas via **Swift Package Manager**:
+
+- `SwiftKeychainWrapper` – persistência segura
+- `IQKeyboardManager` – controle automático do teclado (opcional)
+
+## 📁 Organização
+
+```
+SantanderBankApp/
+├── App/                     # Ponto de entrada e scene delegate
+├── Modules/                 # Feature modules (Login, Statements)
+├── Core/                    # Helpers, Extensions, Networking
+├── Resources/               # Assets, cores, fontes
+├── Tests/                   # Testes unitários
+├── bank_app_layout/         # Especificação visual
+└── README.md
+```
+
+## 📌 Observações
+
+- O último usuário logado é salvo de forma segura no Keychain e reaparece automaticamente no login.
+- Todos os dados são fictícios e usados apenas para fins demonstrativos.
+
+---
+
+## 📄 Licença
+
+MIT © 2025 - Projeto de demonstração para avaliação técnica e estudos.
+
+---
+
+Este projeto foi criado para demonstrar domínio das melhores práticas de desenvolvimento iOS: arquitetura limpa, código desacoplado, testes automatizados e foco em usabilidade e segurança.
