@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.organization.SantanderSample</string>
+		<string>$(AppIdentifierPrefix)com.versus.SantanderSample</string>
 	</array>
 </dict>
 </plist>

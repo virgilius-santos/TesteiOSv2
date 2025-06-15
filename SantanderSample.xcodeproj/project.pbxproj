@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -50,15 +50,7 @@
 		3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SantanderSample.entitlements; sourceTree = "<group>"; };
 		3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerImpl.swift; sourceTree = "<group>"; };
 		3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainTests.swift; sourceTree = "<group>"; };
-		3B37E3022B0118A3007CB692 /* FoundationUtils */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FoundationUtils; sourceTree = "<group>"; };
-		3B37E3032B0118A3007CB692 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
-		3B37E3042B0118A3007CB692 /* BankSample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSample; sourceTree = "<group>"; };
-		3B37E3052B0118A3007CB692 /* KeyChain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = KeyChain; sourceTree = "<group>"; };
-		3B37E3062B0118A3007CB692 /* BankSampleUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSampleUIKit; sourceTree = "<group>"; };
-		3B37E3072B01197F007CB692 /* BankSample */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSample; sourceTree = "<group>"; };
-		3B37E3082B0119D0007CB692 /* UIKitComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIKitComponents; sourceTree = "<group>"; };
 		3B37E30A2B011CEA007CB692 /* AppSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionView.swift; sourceTree = "<group>"; };
-		3B37E30C2B0121F3007CB692 /* BankSampleSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BankSampleSwiftUI; sourceTree = "<group>"; };
 		3B448AC42ACAEAB400F94292 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		3B448AC62ACAEACB00F94292 /* KeychainManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerMock.swift; sourceTree = "<group>"; };
 		3B589F6A2B13F27900248F0B /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
@@ -103,7 +95,6 @@
 		18572B272183B7C1008A196B = {
 			isa = PBXGroup;
 			children = (
-				3B37E3012B0118A3007CB692 /* Packages */,
 				18572B322183B7C1008A196B /* SantanderSample */,
 				18572BD92185C786008A196B /* SantanderSampleTests */,
 				18572B312183B7C1008A196B /* Products */,
@@ -168,22 +159,6 @@
 				18572BDC2185C786008A196B /* Info.plist */,
 			);
 			path = SantanderSampleTests;
-			sourceTree = "<group>";
-		};
-		3B37E3012B0118A3007CB692 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				3B37E30C2B0121F3007CB692 /* BankSampleSwiftUI */,
-				3B37E3042B0118A3007CB692 /* BankSample */,
-				3B37E3062B0118A3007CB692 /* BankSampleUIKit */,
-				3B37E3022B0118A3007CB692 /* FoundationUtils */,
-				3B37E3052B0118A3007CB692 /* KeyChain */,
-				3B37E3032B0118A3007CB692 /* Network */,
-				3B37E3082B0119D0007CB692 /* UIKitComponents */,
-				3B37E3072B01197F007CB692 /* BankSample */,
-			);
-			name = Packages;
-			path = ../Packages;
 			sourceTree = "<group>";
 		};
 		3B37E3092B011CD5007CB692 /* AppSelection */ = {
@@ -510,7 +485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.versus.SantanderSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -530,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.organization.SantanderSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.versus.SantanderSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
