@@ -3,18 +3,22 @@ import BankSample
 import NetworkImpl
 import BankSampleUIKit
 
+protocol HasUIKitFactory {
+    var uiKitFactory: SceneFactory { get }
+}
+
 final class UIKitFactory: SceneFactory {
-    let loginRouter: LoginRoutingLogic
-    let detailRouter: DetailRoutingLogic
+    typealias Dependencies = HasLoginRoutingLogic & HasDetailRoutingLogic
     
-    init(loginRouter: LoginRoutingLogic, detailRouter: DetailRoutingLogic) {
-        self.loginRouter = loginRouter
-        self.detailRouter = detailRouter
+    let dependencies: Dependencies
+    
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
     
     func makeLogin() -> UIViewController {
         LoginBuider.initialize(
-            router: loginRouter,
+            router: dependencies.loginRouter,
             client: APIClientImpl(),
             keychain: KeychainManagerImpl(),
             displayProvider: { interactor in
@@ -29,7 +33,7 @@ final class UIKitFactory: SceneFactory {
     func makeDetail(user: Login.UserAccount) -> UIViewController {
         DetailBuider.initialize(
             request: user.detailRequest,
-            router: detailRouter,
+            router: dependencies.detailRouter,
             client: APIClientImpl(),
             displayProvider: DetailsViewViewController.init(interactor:)
         )

@@ -4,7 +4,11 @@ public enum DestinationType: String {
 }
 
 public protocol KeychainManager {
-    @discardableResult func save(_ value: String, type: DestinationType) -> Bool
+    @discardableResult
+    func save(_ value: String, type: DestinationType) -> Bool
+    
     func get(type: DestinationType) -> String?
-    @discardableResult func remove(type: DestinationType) -> Bool
+    
+    @discardableResult
+    func remove(type: DestinationType) -> Bool
 }

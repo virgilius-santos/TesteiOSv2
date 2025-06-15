@@ -5,14 +5,26 @@ import BankSampleUIKit
 import BankSampleSwiftUI
 import SwiftUI
 
+protocol HasLoginRoutingLogic {
+    var loginRouter: LoginRoutingLogic { get }
+}
+
+protocol HasDetailRoutingLogic {
+    var detailRouter: DetailRoutingLogic { get }
+}
+
 final class APPRouter: NSObject, ObservableObject {
+    typealias Dependencies = HasUIKitFactory & HasSwiftUIFactory
+    
+    let dependencies: Dependencies
     let window: UIWindow
     let navigation = UINavigationController()
+        
+    lazy var factory: SceneFactory = dependencies.uiKitFactory
     
-    lazy var factory: SceneFactory = UIKitFactory(loginRouter: self, detailRouter: self)
-    
-    init(window: UIWindow) {
+    init(window: UIWindow, dependencies: Dependencies) {
         self.window = window
+        self.dependencies = dependencies
     }
     
     func start() {
@@ -48,12 +60,12 @@ extension APPRouter: UINavigationControllerDelegate {}
 
 extension APPRouter: AppSelectionRouting {
     func showBakingWithUIKit() {
-        factory = UIKitFactory(loginRouter: self, detailRouter: self)
+        factory = dependencies.uiKitFactory
         navigation.show(factory.makeLogin(), sender: nil)
     }
     
     func showBakingWithSwiftUI() {
-        factory = SwiftUIFactory(loginRouter: self, detailRouter: self)
+        factory = dependencies.swiftUIFactory
         navigation.show(factory.makeLogin(), sender: nil)
     }
 }

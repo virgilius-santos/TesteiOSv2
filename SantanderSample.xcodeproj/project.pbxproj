@@ -12,6 +12,7 @@
 		18572B3E2183B7C2008A196B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18572B3C2183B7C2008A196B /* LaunchScreen.storyboard */; };
 		18572B5E2183B97B008A196B /* APPRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572B582183B97B008A196B /* APPRouter.swift */; };
 		18572BA321848994008A196B /* KeyboardUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18572BA221848994008A196B /* KeyboardUtility.swift */; };
+		18CB936F2DFF408200E41AD0 /* DependenciesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB936E2DFF408200E41AD0 /* DependenciesContainer.swift */; };
 		3B00617A2ADC44BC005CE302 /* KeychainManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */; };
 		3B00617C2ADC44CE005CE302 /* KeyChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */; };
 		3B0061832ADC463E005CE302 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 3B0061822ADC463E005CE302 /* SwiftKeychainWrapper */; };
@@ -47,6 +48,7 @@
 		18572BA221848994008A196B /* KeyboardUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardUtility.swift; sourceTree = "<group>"; };
 		18572BD82185C786008A196B /* SantanderSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantanderSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18572BDC2185C786008A196B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18CB936E2DFF408200E41AD0 /* DependenciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesContainer.swift; sourceTree = "<group>"; };
 		3B0061772ADC3DCA005CE302 /* SantanderSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SantanderSample.entitlements; sourceTree = "<group>"; };
 		3B0061792ADC44BC005CE302 /* KeychainManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerImpl.swift; sourceTree = "<group>"; };
 		3B00617B2ADC44CE005CE302 /* KeyChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainTests.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				18572B332183B7C1008A196B /* AppDelegate.swift */,
+				18CB936E2DFF408200E41AD0 /* DependenciesContainer.swift */,
 				18572B3F2183B7C2008A196B /* Info.plist */,
 				18572B3C2183B7C2008A196B /* LaunchScreen.storyboard */,
 				18572B3A2183B7C2008A196B /* Assets.xcassets */,
@@ -315,6 +318,7 @@
 				3B589F6B2B13F27900248F0B /* SceneFactory.swift in Sources */,
 				3B589F6F2B13F30A00248F0B /* SwiftUIFactory.swift in Sources */,
 				3B589F6D2B13F2B200248F0B /* UIKitFactory.swift in Sources */,
+				18CB936F2DFF408200E41AD0 /* DependenciesContainer.swift in Sources */,
 				3B00617A2ADC44BC005CE302 /* KeychainManagerImpl.swift in Sources */,
 				18572B342183B7C1008A196B /* AppDelegate.swift in Sources */,
 				18572B5E2183B97B008A196B /* APPRouter.swift in Sources */,

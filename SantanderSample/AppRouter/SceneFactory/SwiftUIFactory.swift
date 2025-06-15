@@ -4,18 +4,22 @@ import NetworkImpl
 import BankSampleSwiftUI
 import SwiftUI
 
+protocol HasSwiftUIFactory {
+    var swiftUIFactory: SceneFactory { get }
+}
+
 final class SwiftUIFactory: SceneFactory {
-    let loginRouter: LoginRoutingLogic
-    let detailRouter: DetailRoutingLogic
+    typealias Dependencies = HasLoginRoutingLogic & HasDetailRoutingLogic
     
-    init(loginRouter: LoginRoutingLogic, detailRouter: DetailRoutingLogic) {
-        self.loginRouter = loginRouter
-        self.detailRouter = detailRouter
+    let dependencies: Dependencies
+    
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
     
     func makeLogin() -> UIViewController {
         let viewModel = LoginBuider.initialize(
-            router: loginRouter,
+            router: dependencies.loginRouter,
             client: APIClientImpl(),
             keychain: KeychainManagerImpl(),
             displayProvider: { interactor in
@@ -29,7 +33,7 @@ final class SwiftUIFactory: SceneFactory {
     func makeDetail(user: Login.UserAccount) -> UIViewController {
         let viewModel = DetailBuider.initialize(
             request: user.detailRequest,
-            router: detailRouter,
+            router: dependencies.detailRouter,
             client: APIClientImpl(),
             displayProvider: { interactor in
                 DetailView.ViewModel(interactor: interactor)
