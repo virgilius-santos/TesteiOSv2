@@ -20,13 +20,20 @@ public final class APIClientImpl: NSObject, APIClient {
         config.httpAdditionalHeaders = request.headers
         let session = URLSession(configuration: config)
         
+        let (data, response): (Data, URLResponse)
         do {
-            async let (data, _) = try session.data(for: requestMapped)
-            let object = try await Response.decoder(data: data)
-            return .success(object)
+            await (data, response) = try session.data(for: requestMapped)
         } catch {
             return .failure(.requestError(error as NSError, nil, nil))
         }
+        let object = Response.decoder(data: data)
+        switch object {
+        case .success(let success):
+            return .success(success)
+        case .failure(let error):
+            return .failure(.decodeError(error as NSError, data, response))
+        }
+        
     }
     
     deinit {

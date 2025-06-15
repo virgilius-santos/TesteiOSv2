@@ -5,23 +5,25 @@ public enum CodableError: Error, Equatable {
 }
 
 public extension Encodable {
-    func toJson(excluding keys: [String] = [String]()) throws -> [String: Any] {
+    func toJson(excluding keys: [String] = [String]()) -> Result<[String: AnyCodable], CodableError> {
         var jsonObject: Any?
         do {
             let objectData = try JSONEncoder().encode(self)
             jsonObject = try JSONSerialization.jsonObject(with: objectData, options: [])
         } catch {
-            throw CodableError.encodeError(error as NSError)
+            return .failure(.encodeError(error as NSError))
         }
         
         guard var json = jsonObject as? [String: Any] else {
             print("Error to encode")
-            throw CodableError.nullableJson
+            return .failure(.nullableJson)
         }
         
         keys.forEach { json[$0] = nil }
         
-        return json
+        let codableJson = json.mapValues { AnyCodable($0) }
+        
+        return .success(codableJson)
     }
 }
 
@@ -29,7 +31,7 @@ public extension Decodable {
     static func decoder(
         json: [String:Any] = [String:Any](),
         with id: String? = nil
-    ) throws -> Self {
+    ) -> Result<Self, CodableError> {
         
         var json = json
         if id != nil {
@@ -38,24 +40,23 @@ public extension Decodable {
         do {
             let documentData = try JSONSerialization.data(withJSONObject: json, options: [])
             let decodeObject = try JSONDecoder().decode(Self.self, from: documentData)
-            return decodeObject
+            return .success(decodeObject)
         } catch {
-            throw CodableError.decodeError(error as NSError)
+            return .failure(.decodeError(error as NSError))
         }
         
     }
     
-    static func decoder(data: Data?) throws -> Self {
+    static func decoder(data: Data?) -> Result<Self, CodableError> {
         guard let data = data else {
-            throw CodableError.nullableData
+            return .failure(.nullableData)
         }
-        
         do {
             let decodeObject
                 = try JSONDecoder().decode(Self.self, from: data)
-            return decodeObject
+            return .success(decodeObject)
         } catch {
-            throw CodableError.decodeError(error as NSError)
+            return .failure(.decodeError(error as NSError))
         }
         
     }

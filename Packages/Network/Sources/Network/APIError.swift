@@ -5,5 +5,5 @@ public enum APIError: Error, Equatable {
     case invalid(url: String)
     case requestError(NSError, Data?, URLResponse?)
     case dataNil(URLResponse?)
-    case decodeError(Data, URLResponse?)
+    case decodeError(NSError, Data, URLResponse?)
 }
